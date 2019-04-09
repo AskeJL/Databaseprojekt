@@ -10,5 +10,5 @@ package domain;
  * @author Joachim
  */
 public class Controller {
-
+    //yeah
 }
