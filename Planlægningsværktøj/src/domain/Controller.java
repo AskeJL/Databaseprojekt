@@ -6,8 +6,6 @@
 
 package domain;
 
-import static javafx.application.Application.launch;
-
 /**
  * @author Joachim
  */
