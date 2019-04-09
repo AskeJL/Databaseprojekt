@@ -6,9 +6,14 @@
 
 package domain;
 
+import static javafx.application.Application.launch;
+
 /**
  * @author Joachim
  */
 public class Controller {
 
+     public static void main(String[] args) {
+        //GG
+    }
 }
