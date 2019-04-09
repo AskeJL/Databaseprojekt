@@ -3,7 +3,7 @@ package domain;
 
 import javafx.scene.image.Image;
 
-public class Activity {
+public class Activity {//TODO comparator needed
     
     private String name;
     private String description;
