@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="UI.SOSUController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="UI.SOSUMainController">
    <children>
       <Text layoutX="164.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen ">
          <font>

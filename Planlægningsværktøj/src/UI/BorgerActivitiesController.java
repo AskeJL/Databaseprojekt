@@ -5,19 +5,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 
-/**
- * FXML Controller class
- *
- * @author joakim
- */
-public class ActivitiesController implements Initializable {
-
+public class BorgerActivitiesController implements Initializable {
+    Planlægningsværktøj pl = new Planlægningsværktøj();
     @FXML
     private Label dayLabel;
     @FXML
@@ -26,10 +20,6 @@ public class ActivitiesController implements Initializable {
     private ImageView pictogramIv;
     @FXML
     private TextArea pictogramTa;
-    @FXML
-    private Button removeActivityBtn;
-    @FXML
-    private Button createActivityBtn;
 
     /**
      * Initializes the controller class.
@@ -40,11 +30,8 @@ public class ActivitiesController implements Initializable {
     }    
 
     @FXML
-    private void removeActivityBtnHandle(ActionEvent event) {
-    }
-
-    @FXML
-    private void createActivityBtnHandle(ActionEvent event) {
+    private void goBackButtonHandle(ActionEvent event) {
+        pl.changeScene("BorgerSchedule.fxml");
     }
     
 }

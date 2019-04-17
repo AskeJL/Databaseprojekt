@@ -7,13 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-/**
- * FXML Controller class
- *
- * @author joakim
- */
-public class ScheduleController implements Initializable {
-
+public class BorgerScheduleController implements Initializable {
+    Planlægningsværktøj pl = new Planlægningsværktøj();
     @FXML
     private Label displayName;
 
@@ -27,30 +22,42 @@ public class ScheduleController implements Initializable {
 
     @FXML
     private void mondayBtnHandle(ActionEvent event) {
+        pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void tuesdayBtnHandle(ActionEvent event) {
+        pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void wednesdayBtnHandle(ActionEvent event) {
+        pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void thursdayBtnHandle(ActionEvent event) {
+        pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void fridayBtnHandle(ActionEvent event) {
+        pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void saturdayBtnHandle(ActionEvent event) {
+        pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void sundayBtnHandle(ActionEvent event) {
+        pl.changeScene("BorgerActivities.fxml");
+    }
+
+    @FXML
+    private void logOffButtonHandle(ActionEvent event) {
+        pl.changeScene("Login.fxml");
     }
     
 }

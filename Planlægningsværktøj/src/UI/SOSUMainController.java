@@ -10,13 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author joakim
- */
-public class SOSUController implements Initializable {
-
+public class SOSUMainController implements Initializable {
+    Planlægningsværktøj pl = new Planlægningsværktøj();
     @FXML
     private Label displayName;
     @FXML
@@ -44,10 +39,12 @@ public class SOSUController implements Initializable {
 
     @FXML
     private void seeScheduleBtnHandle(ActionEvent event) {
+        pl.changeScene("SOSUSchedule.fxml");
     }
 
     @FXML
     private void logOffBtnHandle(ActionEvent event) {
+        pl.changeScene("Login.fxml");
     }
     
 }
