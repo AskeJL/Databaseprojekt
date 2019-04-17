@@ -19,7 +19,7 @@ public class Planlægningsværktøj extends Application {
         
         Scene scene = new Scene(root);
         
-        scene.getStylesheets().add(Planlægningsværktøj.class.getResource("StyleSheet.css").toExternalForm());
+//        scene.getStylesheets().add(Planlægningsværktøj.class.getResource("StyleSheet.css").toExternalForm());
         
         stage.setScene(scene);
         stage.show();
@@ -32,7 +32,7 @@ public class Planlægningsværktøj extends Application {
                 Parent root1 = (Parent) loader.load();
                 Stage stage = Planlægningsværktøj.stage;
                 Scene scene = new Scene(root1);
-                scene.getStylesheets().add(Planlægningsværktøj.class.getResource("StyleSheet.css").toExternalForm());
+//                scene.getStylesheets().add(Planlægningsværktøj.class.getResource("StyleSheet.css").toExternalForm());
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e){
