@@ -27,4 +27,13 @@ public class Schedule {
         schedule[day].add(activity);
         
     }
+    
+    public void removeActivity(Activity activity){
+        for (int i = 0; i < schedule.length; i++) {
+            if( schedule[i].contains(activity)){
+                schedule[i].remove(activity);
+                break;
+            }
+        }
+    }
 }
