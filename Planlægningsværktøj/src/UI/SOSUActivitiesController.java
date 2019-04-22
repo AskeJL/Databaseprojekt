@@ -36,7 +36,7 @@ public class SOSUActivitiesController implements Initializable {
 
     @FXML
     private void goBackButtonHandle(ActionEvent event) {
-        pl.changeScene("SOSUSchedule.fxml");
+        pl.changeScene("Schedule.fxml");
     }
 
     @FXML

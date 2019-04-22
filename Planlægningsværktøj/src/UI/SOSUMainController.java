@@ -39,7 +39,7 @@ public class SOSUMainController implements Initializable {
 
     @FXML
     private void seeScheduleBtnHandle(ActionEvent event) {
-        pl.changeScene("SOSUSchedule.fxml");
+        pl.changeScene("Schedule.fxml");
     }
 
     @FXML

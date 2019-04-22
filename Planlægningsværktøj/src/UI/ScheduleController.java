@@ -5,16 +5,17 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class SOSUScheduleController implements Initializable {
+/**
+ * FXML Controller class
+ *
+ * @author joakim
+ */
+public class ScheduleController implements Initializable {
     Planlægningsværktøj pl = new Planlægningsværktøj();
     @FXML
     private Label displayName;
-    
-    @FXML
-    private Button mondaybtn;
 
     /**
      * Initializes the controller class.
@@ -63,6 +64,5 @@ public class SOSUScheduleController implements Initializable {
     private void goBackButtonHandle(ActionEvent event) {
         pl.changeScene("SOSUMain.fxml");
     }
-
     
 }
