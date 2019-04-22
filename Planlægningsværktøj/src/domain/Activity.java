@@ -1,9 +1,10 @@
 
 package domain;
 
+import java.io.Serializable;
 import javafx.scene.image.Image;
 
-public class Activity {//TODO comparator needed
+public class Activity implements Serializable {//TODO comparator needed
     
     private String name;
     private String description;

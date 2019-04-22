@@ -1,10 +1,11 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Schedule {
+public class Schedule implements Serializable {
     //TODO update sequence diagram for the usecase opretAktivitet
     private ArrayList<Activity>[] schedule;
     
