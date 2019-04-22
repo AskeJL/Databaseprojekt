@@ -24,6 +24,6 @@ public interface IController {
     
     int getActivityEndTime(UUID userID, UUID activityID);
     
-    String getImagePath(UUID userID, UUID activityID);
+    String getPictogramPath(UUID userID, UUID activityID);
 
 }
