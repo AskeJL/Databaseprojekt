@@ -3,8 +3,8 @@ package domain.users;
 import java.util.UUID;
 
 public abstract class User {
-  
-    private UUID id;
+
+    private final UUID id;
     private String name;
 
     public User(String name) {
@@ -23,6 +23,5 @@ public abstract class User {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
 }

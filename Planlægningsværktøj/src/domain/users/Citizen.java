@@ -24,5 +24,5 @@ public class Citizen extends User {
     public Schedule getSchedule() {
         return schedule;
     }
-    
+
 }
