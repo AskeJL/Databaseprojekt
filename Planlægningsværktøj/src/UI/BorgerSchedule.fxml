@@ -44,7 +44,7 @@
             <Font size="34.0" />
          </font>
       </Button>
-      <Button layoutX="209.0" layoutY="249.0" mnemonicParsing="false" onAction="#sundayBtnHandle" prefHeight="66.0" prefWidth="182.0" text="Søndag">
+      <Button layoutX="209.0" layoutY="250.0" mnemonicParsing="false" onAction="#sundayBtnHandle" prefHeight="66.0" prefWidth="182.0" text="Søndag">
          <font>
             <Font size="34.0" />
          </font>
