@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 
 public class BorgerActivitiesController implements Initializable {
 
-    Planlægningsværktøj pl = Planlægningsværktøj.getPVInstance();
+    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
     @FXML
     private Label dayLabel;
     @FXML

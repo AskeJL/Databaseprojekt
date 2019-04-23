@@ -51,7 +51,6 @@ public class Controller implements IController {
         System.out.println(controller.tempList.get(0).getSchedule().toString());
 
         //System.out.println(login.authenticate("Anders And", "5678"));
-
     }
 
     private Citizen getCitizen(UUID userID) {
@@ -105,6 +104,6 @@ public class Controller implements IController {
 
     @Override
     public boolean authenticate(String name, String CPR) {
-     return login.authenticate(name, CPR);
+        return login.authenticate(name, CPR);
     }
 }

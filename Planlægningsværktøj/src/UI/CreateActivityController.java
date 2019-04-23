@@ -9,7 +9,7 @@ import javafx.scene.control.ListView;
 
 public class CreateActivityController implements Initializable {
 
-    Planlægningsværktøj pl = Planlægningsværktøj.getPVInstance();
+    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
     @FXML
     private ListView<?> timeLv;
     @FXML

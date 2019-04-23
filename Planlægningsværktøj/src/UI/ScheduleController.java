@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
  */
 public class ScheduleController implements Initializable {
 
-    Planlægningsværktøj pl = Planlægningsværktøj.getPVInstance();
+    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
     
     @FXML
     private Label displayName;

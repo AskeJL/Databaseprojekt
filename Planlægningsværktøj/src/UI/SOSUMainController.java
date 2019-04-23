@@ -11,7 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class SOSUMainController implements Initializable {
-    Planlægningsværktøj pl = Planlægningsværktøj.getPVInstance();
+    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
     @FXML
     private Label displayName;
     @FXML
