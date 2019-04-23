@@ -33,18 +33,6 @@ public class LoginController implements Initializable {
 
     }    
     
-    private void nextGUIButton(KeyEvent event) throws IOException{
-        if (event.getCode()==KeyCode.ENTER) {
-        if(userName.getText().equals("LarsLort")&&passWord.getText().equals("1234")){
-            pl.changeScene("BorgerSchedule.fxml");
-        } else if(userName.getText().equals("DitteSørensen")&&passWord.getText().equals("kat123")){
-            pl.changeScene("SOSUMain.fxml");
-        } else {
-            loginFail.setText("Ugyldigt kombination af Brugernavn og Kodeord!");
-        }
-        }
-    }
-    
     @FXML
     private void handleLoginBtn(ActionEvent event) {
         if(userName.getText().equals("LarsLort")&&passWord.getText().equals("1234")){
