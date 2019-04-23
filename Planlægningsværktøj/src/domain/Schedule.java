@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.UUID;
 
 public class Schedule implements Serializable {
+
     //TODO update sequence diagram for the usecase opretAktivitet
     private ArrayList<Activity> schedule;
 
@@ -31,7 +32,7 @@ public class Schedule implements Serializable {
         return null;
     }
 
-    public String toString() {
+    public String toString() {      //TODO maybe delete or update
         String returnString = "";
         for (Activity activity : schedule) {
             returnString += activity.getName();
@@ -39,13 +40,10 @@ public class Schedule implements Serializable {
         }
         return returnString;
     }
-    
-    public void removeActivity(Activity activity){      //TODO update
-        for (int i = 0; i < schedule.length; i++) {
-            if( schedule[i].contains(activity)){
-                schedule[i].remove(activity);
-                break;
-            }
+
+    public void removeActivity(Activity activity) {
+        if (schedule.contains(activity)) {
+            schedule.remove(activity);
         }
     }
 }

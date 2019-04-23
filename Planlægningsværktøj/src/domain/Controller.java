@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.image.Image;
 import java.util.UUID;
 
 public class Controller implements IController {
@@ -42,7 +41,7 @@ public class Controller implements IController {
         controller.addActivity(lars, "onanifirst", "at onanere", 800, 1200, null, 5);
         controller.addActivity(lars, "onanisecond", "at onanere", 700, 1200, null, 6);
         System.out.println(controller.tempList.get(0).getSchedule().toString());
-        System.out.println(controller.tempList.get(0).getSchedule().getSchedule()[6]);
+        System.out.println(controller.tempList.get(0).getSchedule().getSchedule());
         //yeah7
 
         Login login = new Login();
