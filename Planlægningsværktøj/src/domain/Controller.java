@@ -18,6 +18,10 @@ public class Controller implements IController {
     Login login;
     User currentUser;
 
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
     public void addActivity(Citizen citizen, String name, String description, int startTime, int endTime, String pictogram, int day) {
         if (tempList.contains(citizen)) {
             citizen.getSchedule().addActivity(new Activity(name, description, startTime, endTime, pictogram, day));
@@ -25,7 +29,7 @@ public class Controller implements IController {
     }
 
     public Controller() {
-        login = new Login();
+        login = new Login(this);
         tempList = new ArrayList<>();
     }
 
@@ -105,5 +109,10 @@ public class Controller implements IController {
     @Override
     public boolean authenticate(String name, String CPR) {
         return login.authenticate(name, CPR);
+    }
+
+    @Override
+    public UUID getUserID() {
+        return currentUser.getId();
     }
 }

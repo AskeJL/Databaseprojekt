@@ -25,9 +25,10 @@ public class Citizen extends User implements Serializable {
     public Schedule getSchedule() {
         return schedule;
     }
-    
-    public boolean AuthenticateCPR(String CPR){
+
+    public boolean AuthenticateCPR(String CPR) {
         return this.CPR.equals(CPR);
-        
+
     }
+
 }

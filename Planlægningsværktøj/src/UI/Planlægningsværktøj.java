@@ -16,9 +16,8 @@ public class Planlægningsværktøj extends Application {
 
     private static Planlægningsværktøj pl = new Planlægningsværktøj();
 
-    public Planlægningsværktøj() {}
-//    UUID userID;
-
+    public Planlægningsværktøj() {
+    }
 
     public static Stage stage;
     private final IController iController = new Controller();

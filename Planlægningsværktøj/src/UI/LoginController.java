@@ -12,9 +12,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import sun.java2d.loops.SurfaceType;
 
 public class LoginController implements Initializable {
 
@@ -41,17 +43,13 @@ public class LoginController implements Initializable {
 
     @FXML
     private void handleLoginBtn(ActionEvent event) {
-        if (controller.authenticate(userName.getText(), passWord.getText())) {
-           
+        RadioButton rb = (RadioButton) userType.getSelectedToggle();
+        if (rb.getText().equals("SOSU") && controller.authenticate(userName.getText(), passWord.getText())) {
+            pl.changeScene("SOSUMain.fxml");
+        } else if (rb.getText().equals("Borger") && controller.authenticate(userName.getText(), passWord.getText())) {
+            pl.changeScene("BorgerSchedule.fxml");
+        } else {
+            loginFail.setText("Ugyldigt kombination af Brugernavn og Kodeord!");
         }
-
-
-//        if (userName.getText().equals("LarsLort") && passWord.getText().equals("1234")) {
-//            pl.changeScene("BorgerSchedule.fxml");
-//        } else if (userName.getText().equals("DitteSørensen") && passWord.getText().equals("kat123")) {
-//            pl.changeScene("SOSUMain.fxml");
-//        } else {
-//            loginFail.setText("Ugyldigt kombination af Brugernavn og Kodeord!");
-//        }
     }
 }
