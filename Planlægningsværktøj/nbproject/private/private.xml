@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/planlægningsværktøj/FXMLDocumentController.java</file>
-            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/planlægningsværktøj/Planlægningsværktøj.java</file>
-            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/planlægningsværktøj/FXMLDocument.fxml</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/UI/Planlægningsværktøj.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/users/Citizen.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/Activity.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/Controller.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/Login.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/Schedule.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/users/User.java</file>
         </group>
     </open-files>
 </project-private>

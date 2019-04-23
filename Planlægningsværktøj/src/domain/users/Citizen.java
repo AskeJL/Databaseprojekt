@@ -2,9 +2,10 @@ package domain.users;
 
 import domain.Activity;
 import domain.Schedule;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Citizen extends User {
+public class Citizen extends User implements Serializable {
 
     private final String CPR;
     private Date birthday;
@@ -25,4 +26,8 @@ public class Citizen extends User {
         return schedule;
     }
     
+    public boolean AuthenticateCPR(String CPR){
+        return this.CPR.equals(CPR);
+        
+    }
 }
