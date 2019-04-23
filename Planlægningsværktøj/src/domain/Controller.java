@@ -41,8 +41,6 @@ public class Controller implements IController {
         controller.addActivity(lars, "onanifirst", "at onanere", 800, 1200, null, 5);
         controller.addActivity(lars, "onanisecond", "at onanere", 700, 1200, null, 6);
         System.out.println(controller.tempList.get(0).getSchedule().toString());
-        System.out.println(controller.tempList.get(0).getSchedule().getSchedule());
-        //yeah7
 
         Login login = new Login();
         System.out.println(login.Authenticate("Anders And", "5678"));
