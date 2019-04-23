@@ -30,5 +30,4 @@ public class Citizen extends User implements Serializable {
         return this.CPR.equals(CPR);
         
     }
-    
 }

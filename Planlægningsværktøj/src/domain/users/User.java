@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public abstract class User implements Serializable {
   
-    private UUID id;
+    private final UUID id;
     private String name;
 
     public User(String name) {
@@ -24,6 +24,5 @@ public abstract class User implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
 }

@@ -4,24 +4,25 @@ import domain.users.Citizen;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import interfaces.IController;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
+import java.util.UUID;
 
-public class Controller {
+public class Controller implements IController {
 
     ArrayList<Citizen> tempList = new ArrayList<>();
 
-    public void addActivity(Citizen citizen, String name, String description, int startTime, int endTime, Image pictogram, int day) {
+    public void addActivity(Citizen citizen, String name, String description, int startTime, int endTime, String pictogram, int day) {
         if (tempList.contains(citizen)) {
-            citizen.getSchedule().addActivity(new Activity(name, description, startTime, endTime, pictogram), day);
+            citizen.getSchedule().addActivity(new Activity(name, description, startTime, endTime, pictogram, day));
         }
     }
 
     public static void main(String[] args) {
-        //GG
         Controller controller = new Controller();
         Citizen lars = new Citizen("Lars Lort", "1234", new Date());
         Citizen anders = new Citizen("Anders And", "5678", new Date());
@@ -38,11 +39,63 @@ public class Controller {
         }
         controller.tempList.add(lars);
         controller.addActivity(lars, "onani", "at onanere", 800, 1200, null, 6);
+        controller.addActivity(lars, "onanifirst", "at onanere", 800, 1200, null, 5);
+        controller.addActivity(lars, "onanisecond", "at onanere", 700, 1200, null, 6);
+        System.out.println(controller.tempList.get(0).getSchedule().toString());
         System.out.println(controller.tempList.get(0).getSchedule().getSchedule()[6]);
         //yeah7
 
         Login login = new Login();
         System.out.println(login.Authenticate("Anders And", "5678"));
 
+    }
+
+    private Citizen getCitizen(UUID userID) {
+        //TODO update for database
+        for (Citizen citizen : tempList) {
+            if (citizen.getId().equals(userID)) {
+                return citizen;
+            }
+        }
+        return null;
+    }
+
+    private Activity getActivity(UUID userID, UUID activityID) {
+        return getCitizen(userID).getSchedule().getActivity(activityID);
+    }
+
+    @Override
+    public ArrayList<UUID> getSchedule(UUID userID) {
+        ArrayList<UUID> returnSchedule = new ArrayList<>();
+        ArrayList<Activity> originalSchedule = getCitizen(userID).getSchedule().getSchedule();
+        for (Activity activity : originalSchedule) {
+            returnSchedule.add(activity.getActivityID());
+        }
+        return returnSchedule;
+    }
+
+    @Override
+    public String getActivityName(UUID userID, UUID activityID) {
+        return getActivity(userID, activityID).getName();
+    }
+
+    @Override
+    public String getActivityDescription(UUID userID, UUID activityID) {
+        return getActivity(userID, activityID).getDescription();
+    }
+
+    @Override
+    public int getActivityStartTime(UUID userID, UUID activityID) {
+        return getActivity(userID, activityID).getStartTime();
+    }
+
+    @Override
+    public int getActivityEndTime(UUID userID, UUID activityID) {
+        return getActivity(userID, activityID).getEndTime();
+    }
+
+    @Override
+    public String getPictogramPath(UUID userID, UUID activityID) {
+        return getActivity(userID, activityID).getPictogramPath();
     }
 }
