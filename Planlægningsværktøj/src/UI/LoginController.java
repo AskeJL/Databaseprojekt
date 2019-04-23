@@ -1,5 +1,6 @@
 package UI;
 
+import interfaces.IController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,8 +15,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class LoginController implements Initializable {   
-    Planlægningsværktøj pl = new Planlægningsværktøj();
+public class LoginController implements Initializable {
+
+    Planlægningsværktøj pl = Planlægningsværktøj.getPVInstance();
+    IController controller;
     @FXML
     private Label label;
     @FXML
@@ -26,21 +29,24 @@ public class LoginController implements Initializable {
     private Text loginFail;
     @FXML
     private Button loginBtn;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        controller = pl.getiController();
 
-    }    
-    
+    }
+
     @FXML
     private void handleLoginBtn(ActionEvent event) {
-        if(userName.getText().equals("LarsLort")&&passWord.getText().equals("1234")){
-            pl.changeScene("BorgerSchedule.fxml");
-        } else if(userName.getText().equals("DitteSørensen")&&passWord.getText().equals("kat123")){
-            pl.changeScene("SOSUMain.fxml");
-        } else {
-            loginFail.setText("Ugyldigt kombination af Brugernavn og Kodeord!");
+        if (controller.authenticate(userName.getText(), passWord.getText())) {
+           
         }
+//        if (userName.getText().equals("LarsLort") && passWord.getText().equals("1234")) {
+//            pl.changeScene("BorgerSchedule.fxml");
+//        } else if (userName.getText().equals("DitteSørensen") && passWord.getText().equals("kat123")) {
+//            pl.changeScene("SOSUMain.fxml");
+//        } else {
+//            loginFail.setText("Ugyldigt kombination af Brugernavn og Kodeord!");
+//        }
     }
 }

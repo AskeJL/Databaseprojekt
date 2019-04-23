@@ -1,7 +1,10 @@
 package UI;
 
+import domain.Controller;
+import interfaces.IController;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.UUID;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +14,22 @@ import javafx.stage.Stage;
 
 public class Planlægningsværktøj extends Application {
     
+    private static Planlægningsværktøj p1 = new Planlægningsværktøj();
+    
+    UUID userID;
+    
+    private Planlægningsværktøj(){}
+    
     public static Stage stage;
+    private IController iController = new Controller();
+
+    public IController getiController() {
+        return iController;
+    }
+    
+    public static Planlægningsværktøj getPVInstance(){
+        return p1;
+    }
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -35,6 +53,7 @@ public class Planlægningsværktøj extends Application {
                 scene.getStylesheets().add(Planlægningsværktøj.class.getResource("StyleSheet.css").toExternalForm());
                 stage.setScene(scene);
                 stage.show();
+                
             } catch (IOException e){
                 System.out.println("Can't load window");
             }

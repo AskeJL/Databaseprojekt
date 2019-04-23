@@ -16,7 +16,7 @@ public class Login {
 
     }
 
-    public boolean Authenticate(String username, String password) {
+    public boolean authenticate(String username, String password) {
         Citizen citizen = null;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
             while (true) {

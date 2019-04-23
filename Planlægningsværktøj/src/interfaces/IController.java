@@ -17,4 +17,5 @@ public interface IController {
 
     String getPictogramPath(UUID userID, UUID activityID);
 
+    boolean authenticate(String name, String CPR);
 }

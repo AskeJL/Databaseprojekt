@@ -8,7 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 public class BorgerScheduleController implements Initializable {
-    Planlægningsværktøj pl = new Planlægningsværktøj();
+
+    Planlægningsværktøj pl = Planlægningsværktøj.getPVInstance();
     @FXML
     private Label displayName;
 
@@ -18,11 +19,12 @@ public class BorgerScheduleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void mondayBtnHandle(ActionEvent event) {
         pl.changeScene("BorgerActivities.fxml");
+
     }
 
     @FXML
@@ -59,5 +61,5 @@ public class BorgerScheduleController implements Initializable {
     private void logOffButtonHandle(ActionEvent event) {
         pl.changeScene("Login.fxml");
     }
-    
+
 }

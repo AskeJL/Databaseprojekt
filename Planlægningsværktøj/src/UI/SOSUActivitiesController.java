@@ -12,7 +12,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 
 public class SOSUActivitiesController implements Initializable {
-    Planlægningsværktøj pl = new Planlægningsværktøj();
+
+    Planlægningsværktøj pl = Planlægningsværktøj.getPVInstance();
     @FXML
     private Label dayLabel;
     @FXML
@@ -32,7 +33,7 @@ public class SOSUActivitiesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void goBackButtonHandle(ActionEvent event) {
@@ -52,6 +53,4 @@ public class SOSUActivitiesController implements Initializable {
     private void printActivityButtonHandle(ActionEvent event) {
     }
 
-
-    
 }
