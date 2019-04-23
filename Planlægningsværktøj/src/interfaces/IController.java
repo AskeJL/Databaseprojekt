@@ -19,11 +19,11 @@ public interface IController {
     String getActivityName(UUID userID, UUID activityID);
 
     String getActivityDescription(UUID userID, UUID activityID);
-    
+
     int getActivityStartTime(UUID userID, UUID activityID);
-    
+
     int getActivityEndTime(UUID userID, UUID activityID);
-    
+
     String getPictogramPath(UUID userID, UUID activityID);
 
 }

@@ -23,23 +23,20 @@ public class Schedule {
     }
 
     public Activity getActivity(UUID activityID) {
-
         for (Activity activity : schedule) {
             if (activity.getActivityID().equals(activityID)) {
                 return activity;
             }
         }
         return null;
-
     }
-    public String toString(){
+
+    public String toString() {
         String returnString = "";
-        for (Activity activity : schedule){
-            returnString+=activity.getName();
-            returnString+=" ";
+        for (Activity activity : schedule) {
+            returnString += activity.getName();
+            returnString += " ";
         }
         return returnString;
     }
 }
-
-
