@@ -11,17 +11,19 @@ import java.util.logging.Logger;
 public class Login {
 
     final String fileName = "Logins.txt";
-
-    public Login() {
-
+    private Controller c;
+    
+    public Login(Controller c) {
+        this.c = c;
     }
 
-    public boolean Authenticate(String username, String password) {
+    public boolean authenticate(String username, String password) {
         Citizen citizen = null;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
             while (true) {
                 citizen = (Citizen) inputStream.readObject();
                 if (username.equalsIgnoreCase(citizen.getName()) && citizen.AuthenticateCPR(password)) {
+                    c.setCurrentUser(citizen);
                     return true;
                 }
             }

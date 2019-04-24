@@ -13,7 +13,9 @@ import javafx.scene.control.Label;
  * @author joakim
  */
 public class ScheduleController implements Initializable {
-    Planlægningsværktøj pl = new Planlægningsværktøj();
+
+    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
+    
     @FXML
     private Label displayName;
 
@@ -23,7 +25,7 @@ public class ScheduleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void mondayBtnHandle(ActionEvent event) {
@@ -64,5 +66,5 @@ public class ScheduleController implements Initializable {
     private void goBackButtonHandle(ActionEvent event) {
         pl.changeScene("SOSUMain.fxml");
     }
-    
+
 }

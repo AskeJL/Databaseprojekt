@@ -1,6 +1,7 @@
 package domain;
 
 import domain.users.Citizen;
+import domain.users.User;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -13,12 +14,23 @@ import java.util.UUID;
 
 public class Controller implements IController {
 
-    ArrayList<Citizen> tempList = new ArrayList<>();
+    ArrayList<Citizen> tempList;
+    Login login;
+    User currentUser;
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 
     public void addActivity(Citizen citizen, String name, String description, int startTime, int endTime, String pictogram, int day) {
         if (tempList.contains(citizen)) {
             citizen.getSchedule().addActivity(new Activity(name, description, startTime, endTime, pictogram, day));
         }
+    }
+
+    public Controller() {
+        login = new Login(this);
+        tempList = new ArrayList<>();
     }
 
     public static void main(String[] args) {
@@ -42,9 +54,7 @@ public class Controller implements IController {
         controller.addActivity(lars, "onanisecond", "at onanere", 700, 1200, null, 6);
         System.out.println(controller.tempList.get(0).getSchedule().toString());
 
-        Login login = new Login();
-        System.out.println(login.Authenticate("Anders And", "5678"));
-
+        //System.out.println(login.authenticate("Anders And", "5678"));
     }
 
     private Citizen getCitizen(UUID userID) {
@@ -94,5 +104,15 @@ public class Controller implements IController {
     @Override
     public String getPictogramPath(UUID userID, UUID activityID) {
         return getActivity(userID, activityID).getPictogramPath();
+    }
+
+    @Override
+    public boolean authenticate(String name, String CPR) {
+        return login.authenticate(name, CPR);
+    }
+
+    @Override
+    public UUID getUserID() {
+        return currentUser.getId();
     }
 }

@@ -5,6 +5,8 @@ import java.util.UUID;
 
 public interface IController {
 
+    UUID getUserID();
+
     ArrayList<UUID> getSchedule(UUID userID);
 
     String getActivityName(UUID userID, UUID activityID);
@@ -16,5 +18,7 @@ public interface IController {
     int getActivityEndTime(UUID userID, UUID activityID);
 
     String getPictogramPath(UUID userID, UUID activityID);
+
+    boolean authenticate(String name, String CPR);
 
 }

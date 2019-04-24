@@ -8,7 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 
 public class CreateActivityController implements Initializable {
-    Planlægningsværktøj pl = new Planlægningsværktøj();
+
+    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
     @FXML
     private ListView<?> timeLv;
     @FXML
@@ -20,7 +21,7 @@ public class CreateActivityController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void addActivityButtonHandle(ActionEvent event) {
@@ -30,5 +31,5 @@ public class CreateActivityController implements Initializable {
     private void goBackButtonHandle(ActionEvent event) {
         pl.changeScene("SOSUActivities.fxml");
     }
-    
+
 }
