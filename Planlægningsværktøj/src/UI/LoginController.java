@@ -1,6 +1,7 @@
 package UI;
 
 import interfaces.IController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,6 +14,9 @@ import javafx.scene.text.Text;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import sun.java2d.loops.SurfaceType;
 
 public class LoginController implements Initializable {
 
