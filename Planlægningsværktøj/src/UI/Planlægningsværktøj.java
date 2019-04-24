@@ -3,31 +3,27 @@ package UI;
 import domain.Controller;
 import interfaces.IController;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.UUID;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Planlægningsværktøj extends Application {
 
     private static Planlægningsværktøj pl = new Planlægningsværktøj();
+    public static Stage stage;
+    private final IController iController = new Controller();
 
     public Planlægningsværktøj() {
     }
 
-    public static Stage stage;
-    private final IController iController = new Controller();
+    public static Planlægningsværktøj getInstance() {
+        return pl;
+    }
 
     public IController getiController() {
         return iController;
-    }
-
-    public static Planlægningsværktøj getInstance() {
-        return pl;
     }
 
     @Override
