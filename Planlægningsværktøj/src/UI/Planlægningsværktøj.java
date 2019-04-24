@@ -2,6 +2,7 @@ package UI;
 
 import domain.Controller;
 import interfaces.IController;
+import interfaces.IControllerDB;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
@@ -21,6 +22,7 @@ public class Planlægningsværktøj extends Application {
 
     public static Stage stage;
     private final IController iController = new Controller();
+    private final IControllerDB iControllerDB = new Controller();
 
     public IController getiController() {
         return iController;

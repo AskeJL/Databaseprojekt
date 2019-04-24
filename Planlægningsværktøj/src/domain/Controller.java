@@ -167,7 +167,7 @@ public class Controller implements IController, IControllerDB {
 
     @Override
     public int storeCitizen(Citizen citizen) {
-        final String SQL_SERIALIZE_OBJECT = "INSERT INTO serialized_java_objects(object_name, serialized_object) VALUES (?, ?)";
+        String SQL_SERIALIZE_OBJECT = "INSERT INTO serialized_java_objects(object_name, serialized_object) VALUES (?, ?)";
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectdb", "root", "");) {
             Class.forName("com.mysql.jdbc.Driver");
             PreparedStatement ps = connection.prepareStatement(SQL_SERIALIZE_OBJECT, Statement.RETURN_GENERATED_KEYS);

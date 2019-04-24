@@ -1,6 +1,7 @@
 package UI;
 
 import interfaces.IController;
+import interfaces.IControllerDB;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +23,8 @@ public class LoginController implements Initializable {
 
     Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
     IController controller;
+    IControllerDB controllerDB;
+    
     @FXML
     private Label label;
     @FXML
