@@ -5,6 +5,10 @@ import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,27 +19,26 @@ public class Login {
     
     public Login(Controller c) {
         this.c = c;
-    }
+}
+                
+//          ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+//            while (true) {
+//                citizen = (Citizen) inputStream.readObject();
+//                if (username.equalsIgnoreCase(citizen.getName()) && citizen.AuthenticateCPR(password)) {
+//                    c.setCurrentUser(citizen);
+//                    return true;
+//                }
+//            }
+//        } catch (EOFException eof) {
+//            System.out.println("Reading Done!" + eof);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return false;
+    
 
-    public boolean authenticate(String username, String password) {
-        Citizen citizen = null;
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-            while (true) {
-                citizen = (Citizen) inputStream.readObject();
-                if (username.equalsIgnoreCase(citizen.getName()) && citizen.AuthenticateCPR(password)) {
-                    c.setCurrentUser(citizen);
-                    return true;
-                }
-            }
-        } catch (EOFException eof) {
-            System.out.println("Reading Done!" + eof);
-        } catch (IOException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return false;
-    }
 
 }
