@@ -3,39 +3,33 @@ package UI;
 import domain.Controller;
 import interfaces.IController;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.UUID;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Planlægningsværktøj extends Application {
 
     private static Planlægningsværktøj pl = new Planlægningsværktøj();
-
-    public Planlægningsværktøj() {
-    }
-
     public static Stage stage;
     private final IController iController = new Controller();
 
-    public IController getiController() {
-        return iController;
+    public Planlægningsværktøj() {
     }
 
     public static Planlægningsværktøj getInstance() {
         return pl;
     }
 
+    public IController getiController() {
+        return iController;
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-
         Scene scene = new Scene(root);
-
         scene.getStylesheets().add(Planlægningsværktøj.class.getResource("StyleSheet.css").toExternalForm());
 
         stage.setScene(scene);
@@ -64,5 +58,4 @@ public class Planlægningsværktøj extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }
