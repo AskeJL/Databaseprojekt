@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public interface IController {
-    
+
     UUID getUserID();
 
     ArrayList<UUID> getSchedule(UUID userID);
@@ -19,7 +19,4 @@ public interface IController {
 
     String getPictogramPath(UUID userID, UUID activityID);
 
-    boolean authenticate(String name, String CPR);
-    
-    
 }

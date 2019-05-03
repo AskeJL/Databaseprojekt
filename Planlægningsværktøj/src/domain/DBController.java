@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.postgresql.util.PSQLException;
 
 /**
@@ -46,10 +49,11 @@ public class DBController implements IControllerDB {
         } catch (PSQLException e) {
             System.out.println("SQL-error !");
             e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     @Override
@@ -75,11 +79,15 @@ public class DBController implements IControllerDB {
             }
             connection.close();
         } catch (PSQLException e) {
-            System.out.println("Wrong username/password-combination, or some other SQL-error !");
+            System.out.println("Wrong username/password-combination, or some other PSQL-error !");
             e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Class not found!");
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("SQL-error");
         }
+        
         return false;
     }
 

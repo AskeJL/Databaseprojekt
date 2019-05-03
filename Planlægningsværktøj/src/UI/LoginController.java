@@ -44,13 +44,5 @@ public class LoginController implements Initializable {
 
     @FXML
     private void handleLoginBtn(ActionEvent event) {
-        RadioButton rb = (RadioButton) userType.getSelectedToggle();
-        if (rb.getText().equals("SOSU") && controller.authenticate(userName.getText(), passWord.getText())) {
-            pl.changeScene("SOSUMain.fxml");
-        } else if (rb.getText().equals("Borger") && controller.authenticate(userName.getText(), passWord.getText())) {
-            pl.changeScene("BorgerSchedule.fxml");
-        } else {
-            loginFail.setText("Ugyldigt kombination af Brugernavn og Kodeord!");
-        }
-    }
+}
 }

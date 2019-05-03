@@ -22,7 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.UUID;
 import jdk.nashorn.internal.codegen.CompilerConstants;
-import org.postgresql.util.PSQLException;
+
 
 public class Controller implements IController {
 
@@ -108,11 +108,6 @@ public class Controller implements IController {
 
     @Override
     public UUID getUserID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean authenticate(String name, String CPR) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    }
