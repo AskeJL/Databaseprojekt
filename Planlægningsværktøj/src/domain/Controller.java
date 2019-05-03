@@ -1,22 +1,39 @@
 package domain;
 
+import database.DBController;
 import domain.users.Citizen;
 import domain.users.User;
+import java.lang.Object;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import interfaces.IController;
+import interfaces.IControllerDB;
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.UUID;
+import jdk.nashorn.internal.codegen.CompilerConstants;
+
 
 public class Controller implements IController {
 
     ArrayList<Citizen> tempList;
     Login login;
     User currentUser;
+    private final IControllerDB DBController;
+    
+    //For database-connection:
+    Connection connection;
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
@@ -31,53 +48,40 @@ public class Controller implements IController {
     public Controller() {
         login = new Login(this);
         tempList = new ArrayList<>();
+        DBController = new DBController();
     }
 
     public static void main(String[] args) {
+        //Test-kode
         Controller controller = new Controller();
-        Citizen lars = new Citizen("Lars Lort", "1234", new Date());
-        Citizen anders = new Citizen("Anders And", "5678", new Date());
-        Citizen katrine = new Citizen("Katrine", "3456", new Date());
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(
-                new FileOutputStream("Logins.txt", true))) {
-
-            outputStream.writeObject(lars);
-            outputStream.writeObject(anders);
-            outputStream.writeObject(katrine);
-
-        } catch (IOException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        
+        Citizen james = new Citizen("james23", "james23", "1234", new Date());
+        controller.getDBController().storeCitizen(james, "jamesHotHot");
+        if (controller.getDBController().authenticate("james23", "jamesHotHot")){
+            System.out.println("Authenticated");
         }
-        controller.tempList.add(lars);
-        controller.addActivity(lars, "onani", "at onanere", 800, 1200, null, 6);
-        controller.addActivity(lars, "onanifirst", "at onanere", 800, 1200, null, 5);
-        controller.addActivity(lars, "onanisecond", "at onanere", 700, 1200, null, 6);
-        System.out.println(controller.tempList.get(0).getSchedule().toString());
-
-        //System.out.println(login.authenticate("Anders And", "5678"));
+        else{
+            System.out.println("NOT authenticated :/");
+        }
     }
-
-    private Citizen getCitizen(UUID userID) {
-        //TODO update for database
-        for (Citizen citizen : tempList) {
-            if (citizen.getId().equals(userID)) {
-                return citizen;
-            }
-        }
-        return null;
+    
+    public IControllerDB getDBController(){
+        return this.DBController;
     }
 
     private Activity getActivity(UUID userID, UUID activityID) {
-        return getCitizen(userID).getSchedule().getActivity(activityID);
+        //TODO update 
+        return null;
     }
 
     @Override
     public ArrayList<UUID> getSchedule(UUID userID) {
         ArrayList<UUID> returnSchedule = new ArrayList<>();
-        ArrayList<Activity> originalSchedule = getCitizen(userID).getSchedule().getSchedule();
-        for (Activity activity : originalSchedule) {
-            returnSchedule.add(activity.getActivityID());
-        }
+        //TODO Update
+        //ArrayList<Activity> originalSchedule = getCitizen(userID).getSchedule().getSchedule();
+        //for (Activity activity : originalSchedule) {
+        //   returnSchedule.add(activity.getActivityID());
+        //}
         return returnSchedule;
     }
 
@@ -107,12 +111,28 @@ public class Controller implements IController {
     }
 
     @Override
-    public boolean authenticate(String name, String CPR) {
-        return login.authenticate(name, CPR);
+    public UUID getUserID() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public UUID getUserID() {
-        return currentUser.getId();
+    public String getUserID(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-}
+
+    @Override
+    public void storeCitizen(Citizen citizen, String password) {
+        DBController.storeCitizen(citizen, password);
+    }
+
+    @Override
+    public Citizen retrieveCitizen(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean authenticate(String username, String password) {
+        return DBController.authenticate(username, password);
+    }
+   }
+

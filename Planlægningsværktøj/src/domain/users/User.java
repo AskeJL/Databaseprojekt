@@ -7,10 +7,12 @@ public abstract class User implements Serializable {
   
     private final UUID id;
     private String name;
+    private String username;
 
-    public User(String name) {
+    public User(String name, String username) {
         this.id = UUID.randomUUID();
         this.name = name;
+        this.username = username;
     }
 
     public UUID getId() {
@@ -23,6 +25,10 @@ public abstract class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
 }

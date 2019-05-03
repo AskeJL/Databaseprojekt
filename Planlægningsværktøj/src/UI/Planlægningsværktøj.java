@@ -2,6 +2,7 @@ package UI;
 
 import domain.Controller;
 import interfaces.IController;
+import interfaces.IControllerDB;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
@@ -14,9 +15,9 @@ import javafx.stage.Stage;
 
 public class Planlægningsværktøj extends Application {
 
-    private static Planlægningsværktøj pl = new Planlægningsværktøj();
+    private static Planlægningsværktøj pl = null;
 
-    public Planlægningsværktøj() {
+    private Planlægningsværktøj() {
     }
 
     public static Stage stage;
@@ -27,6 +28,9 @@ public class Planlægningsværktøj extends Application {
     }
 
     public static Planlægningsværktøj getInstance() {
+        if(pl == null){
+            pl = new Planlægningsværktøj();
+        }
         return pl;
     }
 

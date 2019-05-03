@@ -1,6 +1,7 @@
 package UI;
 
 import interfaces.IController;
+import interfaces.IControllerDB;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +23,7 @@ public class LoginController implements Initializable {
 
     Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
     IController controller;
+    
     @FXML
     private Label label;
     @FXML
@@ -38,18 +40,9 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = pl.getiController();
-
     }
 
     @FXML
     private void handleLoginBtn(ActionEvent event) {
-        RadioButton rb = (RadioButton) userType.getSelectedToggle();
-        if (rb.getText().equals("SOSU") && controller.authenticate(userName.getText(), passWord.getText())) {
-            pl.changeScene("SOSUMain.fxml");
-        } else if (rb.getText().equals("Borger") && controller.authenticate(userName.getText(), passWord.getText())) {
-            pl.changeScene("BorgerSchedule.fxml");
-        } else {
-            loginFail.setText("Ugyldigt kombination af Brugernavn og Kodeord!");
-        }
-    }
+}
 }

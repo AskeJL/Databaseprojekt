@@ -1,10 +1,11 @@
 package interfaces;
 
+import domain.users.Citizen;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public interface IController {
-    
+
     UUID getUserID();
 
     ArrayList<UUID> getSchedule(UUID userID);
@@ -18,8 +19,13 @@ public interface IController {
     int getActivityEndTime(UUID userID, UUID activityID);
 
     String getPictogramPath(UUID userID, UUID activityID);
+    
+    String getUserID(String username, String password);
+    
+    void storeCitizen(Citizen citizen, String password);
+    
+    Citizen retrieveCitizen(String username, String password);
+    
+    boolean authenticate(String username, String password);
 
-    boolean authenticate(String name, String CPR);
-    
-    
 }
