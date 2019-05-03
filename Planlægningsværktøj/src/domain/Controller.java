@@ -1,5 +1,6 @@
 package domain;
 
+import database.DBController;
 import domain.users.Citizen;
 import domain.users.User;
 import java.lang.Object;
@@ -31,7 +32,7 @@ public class Controller implements IController {
     User currentUser;
     private final IControllerDB DBController;
     
-    //For database-forbindelse:
+    //For database-connection:
     Connection connection;
 
     public void setCurrentUser(User currentUser) {
@@ -109,6 +110,26 @@ public class Controller implements IController {
     @Override
     public UUID getUserID() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getUserID(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void storeCitizen(Citizen citizen, String password) {
+        DBController.storeCitizen(citizen, password);
+    }
+
+    @Override
+    public Citizen retrieveCitizen(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean authenticate(String username, String password) {
+        return DBController.authenticate(username, password);
     }
    }
 

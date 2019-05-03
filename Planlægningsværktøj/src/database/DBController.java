@@ -1,5 +1,5 @@
 
-package domain;
+package database;
 
 import domain.users.Citizen;
 import interfaces.IControllerDB;
