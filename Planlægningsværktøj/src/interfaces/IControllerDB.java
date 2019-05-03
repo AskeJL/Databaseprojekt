@@ -1,6 +1,7 @@
 package interfaces;
 
 import domain.users.Citizen;
+import java.sql.Connection;
 
 /**
  *
@@ -10,9 +11,9 @@ public interface IControllerDB {
     
     String getUserID(String username, String password);
     
-    int storeCitizen(Citizen citizen);
+    void storeCitizen(Citizen citizen, String password);
     
-    Citizen retrieveCitizen(int serialized_id);
+    Citizen retrieveCitizen(String username, String password);
     
     boolean authenticate(String username, String password);
 }

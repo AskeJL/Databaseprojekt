@@ -6,13 +6,13 @@ public class SOSU extends User {
 
     private ArrayList<Citizen> citizens;
 
-    public SOSU(String name) {
-        super(name);
+    public SOSU(String name, String username) {
+        super(name, username);
         citizens = new ArrayList<>();
     }
 
-    public SOSU(String name, ArrayList<Citizen> citizens) {
-        super(name);
+    public SOSU(String name, String username, ArrayList<Citizen> citizens) {
+        super(name, username);
         this.citizens = citizens;
     }
 

@@ -23,7 +23,6 @@ public class LoginController implements Initializable {
 
     Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
     IController controller;
-    IControllerDB controllerDB;
     
     @FXML
     private Label label;
@@ -41,7 +40,6 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = pl.getiController();
-
     }
 
     @FXML
