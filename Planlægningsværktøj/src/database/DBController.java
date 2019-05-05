@@ -90,5 +90,34 @@ public class DBController implements IControllerDB {
         
         return false;
     }
+    
+    
+    @Override
+    public String getCitizen(String username, String name) {
+        try(Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");){
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT users.name "
+                    + "FROM users "
+                    + "WHERE users.username = ? AND users.name = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, name);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()){
+            return rs.getString(1);
+            }
+            else{
+                return "Could not find match";
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            return null;
+    }
 
 }

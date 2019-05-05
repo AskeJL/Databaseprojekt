@@ -55,14 +55,15 @@ public class Controller implements IController {
         //Test-kode
         Controller controller = new Controller();
         
-        Citizen james = new Citizen("james23", "james23", "1234", new Date());
-        controller.getDBController().storeCitizen(james, "jamesHotHot");
+//        Citizen james = new Citizen("james23", "james23", "1234", new Date());
+//        controller.getDBController().storeCitizen(james, "jamesHotHot");
         if (controller.getDBController().authenticate("james23", "jamesHotHot")){
             System.out.println("Authenticated");
         }
         else{
             System.out.println("NOT authenticated :/");
         }
+        System.out.println(controller.getDBController().getCitizen("james23", "james23"));
     }
     
     public IControllerDB getDBController(){
