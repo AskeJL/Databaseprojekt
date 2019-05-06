@@ -3,13 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/UI/Planlægningsværktøj.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/UI/BorgerActivitiesController.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/database/DBController.java</file>
             <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/users/Citizen.java</file>
-            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/Activity.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/interfaces/IControllerDB.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/UI/BorgerScheduleController.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/UI/ScheduleController.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/UI/Planlægningsværktøj.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/UI/SOSUActivitiesController.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/UI/CreateActivityController.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/UI/StyleSheet.css</file>
             <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/Controller.java</file>
-            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/Login.java</file>
             <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/Schedule.java</file>
-            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/domain/users/User.java</file>
+            <file>file:/C:/Users/askel/OneDrive/Databaseprojekt/Planlægningsværktøj/src/UI/SOSUMainController.java</file>
         </group>
     </open-files>
 </project-private>

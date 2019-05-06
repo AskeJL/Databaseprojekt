@@ -14,13 +14,13 @@ public class Controller implements IController {
 
     ArrayList<Citizen> tempList;
     Login login;
-    User currentUser;
+    UUID currentUser;
     private final IControllerDB DBController;
     
     //For database-connection:
     Connection connection;
 
-    public void setCurrentUser(User currentUser) {
+    public void setCurrentUser(UUID currentUser) {
         this.currentUser = currentUser;
     }
 
