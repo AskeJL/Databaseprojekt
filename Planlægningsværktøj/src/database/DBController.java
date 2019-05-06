@@ -19,11 +19,27 @@ public class DBController implements IControllerDB {
     Connection connection;
 
     @Override
-    public String getUserID(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getUserID(String username) {
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT user_id "+
+                      "FROM users "+
+                      "WHERE username =?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getString(1);
+    }   catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
     }
 
-    //Denne metode er tiltænkt en administrator. For systemets normale brugere er det vigtigt, at vi primært
+    //Denne metode er tiltænkt en administrator. For systemets normale brug er det vigtigt, at vi primært
     //arbejder i simple typer.
     @Override
     public void storeCitizen(Citizen citizen, String password) {

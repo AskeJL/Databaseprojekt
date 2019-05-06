@@ -20,7 +20,7 @@ public interface IController {
 
     String getPictogramPath(UUID userID, UUID activityID);
     
-    String getUserID(String username, String password);
+    String getUserID(String username);
     
     void storeCitizen(Citizen citizen, String password);
     
