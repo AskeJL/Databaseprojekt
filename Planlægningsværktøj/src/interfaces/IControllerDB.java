@@ -9,7 +9,7 @@ import java.sql.Connection;
  */
 public interface IControllerDB {
     
-    String getUserID(String username, String password);
+    String getUserID(String username);
     
     void storeCitizen(Citizen citizen, String password);
     

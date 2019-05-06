@@ -3,26 +3,11 @@ package domain;
 import database.DBController;
 import domain.users.Citizen;
 import domain.users.User;
-import java.lang.Object;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import interfaces.IController;
 import interfaces.IControllerDB;
-import java.io.ByteArrayInputStream;
-import java.io.ObjectInputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.UUID;
-import jdk.nashorn.internal.codegen.CompilerConstants;
 
 
 public class Controller implements IController {
@@ -64,6 +49,8 @@ public class Controller implements IController {
             System.out.println("NOT authenticated :/");
         }
         System.out.println(controller.getDBController().getCitizen("james23", "james23"));
+        System.out.println(controller.getUserID("james23"));
+        
     }
     
     public IControllerDB getDBController(){
@@ -117,8 +104,8 @@ public class Controller implements IController {
     }
 
     @Override
-    public String getUserID(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getUserID(String username) {
+        return DBController.getUserID(username);
     }
 
     @Override
