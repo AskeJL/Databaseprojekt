@@ -39,6 +39,9 @@ public class Controller implements IController {
     public static void main(String[] args) {
         //Test-kode
         Controller controller = new Controller();
+        
+        Citizen james = new Citizen("james23", "james23", "1234", new Date());
+        controller.getDBController().storeCitizen(james, "jamesHotHot");
         if (controller.getDBController().authenticate("james23", "jamesHotHot")){
             System.out.println("Authenticated");
         }
