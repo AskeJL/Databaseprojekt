@@ -19,5 +19,5 @@ public interface IControllerDB {
     Citizen retrieveCitizen(String username);
     
     //Evt String / type ud, så den selv finder login-type
-    boolean authenticate(String username, String password);
+    int authenticate(String username, String password);
 }

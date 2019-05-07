@@ -11,14 +11,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-
 public class Controller implements IController {
 
     ArrayList<Citizen> tempList;
     Login login;
     User currentUser;
     private final IControllerDB DBController;
-    
+
     //For database-connection:
     Connection connection;
 
@@ -41,21 +40,22 @@ public class Controller implements IController {
     public static void main(String[] args) {
         //Test-kode
         Controller controller = new Controller();
-        SOSU sosu = new SOSU("sosu", "sosu_test");
-        controller.storeSOSU(sosu, "sosutest");
-        Citizen james = new Citizen("james23", "james23", "1234", new Date());
-        sosu.addCitizen(james);
-        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
-//        if (controller.getDBController().authenticate("james23", "jamesHotHot")){
-//            System.out.println("Authenticated");
-//        }
-//        else{
-//            System.out.println("NOT authenticated :/");
-//        }
-        
+//        SOSU sosu = new SOSU("sosu", "sosu");
+//        controller.storeSOSU(sosu, "sosutest");
+//        Citizen james = new Citizen("james23", "james23", "1234", new Date());
+//        sosu.addCitizen(james);
+//        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
+        int auth = controller.getDBController().authenticate("james23", "jamesHotHot");
+        if (auth == 1 || auth == 2) {   //TODO finish
+            System.out.println("Authenticated");
+        } else if (auth == -1) {
+            System.out.println("NOT authenticated :/");
+        }
+
+     
     }
-    
-    public IControllerDB getDBController(){
+
+    public IControllerDB getDBController() {
         return this.DBController;
     }
 
@@ -121,7 +121,7 @@ public class Controller implements IController {
     }
 
     @Override
-    public boolean authenticate(String username, String password) {
+    public int authenticate(String username, String password) {
         return DBController.authenticate(username, password);
     }
 
@@ -129,5 +129,4 @@ public class Controller implements IController {
     public void storeSOSU(SOSU sosu, String password) {
         DBController.storeSOSU(sosu, password);
     }
-   }
-
+}

@@ -29,6 +29,6 @@ public interface IController {
     
     Citizen retrieveCitizen(String username, String password);
     
-    boolean authenticate(String username, String password);
+    int authenticate(String username, String password);
 
 }

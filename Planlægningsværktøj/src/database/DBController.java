@@ -74,43 +74,8 @@ public class DBController implements IControllerDB {
     }
 
     @Override
-    public Citizen retrieveCitizen(String username) {
-        return null;
-    }
-
-    @Override
-    public boolean authenticate(String username, String password) {
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");) {
-            Class.forName("org.postgresql.Driver");
-            String sql
-                    = "SELECT * "
-                    + "FROM users, user_passwords "
-                    + "WHERE users.user_id = user_passwords.user_id "
-                    + "AND users.username =? AND user_passwords.password =?;";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
-            ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()) {
-                return true;
-            }
-            connection.close();
-        } catch (PSQLException e) {
-            System.out.println("Wrong username/password-combination, or some other PSQL-error !");
-            e.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Class not found!");
-            ex.printStackTrace();
-        } catch (SQLException ex) {
-            System.out.println("SQL-error");
-        }
-
-        return false;
-    }
-
-    @Override
     public void storeSOSU(SOSU sosu, String password) {
-        
+
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
@@ -135,6 +100,44 @@ public class DBController implements IControllerDB {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public Citizen retrieveCitizen(String username) {
+        return null;
+    }
+
+    @Override
+    public int authenticate(String username, String password) {
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT user_type "
+                    + "FROM "
+                    + "(select citizen_id AS user_id , username from citizens "
+                    + "union "
+                    + "select sosu_id AS user_id, username from sosu) AS users "
+                    + "natural join user_passwords "
+                    + "WHERE users.username =? AND user_passwords.password =?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            connection.close();
+        } catch (PSQLException e) {
+            System.out.println("Wrong username/password-combination, or some other PSQL-error !");
+            e.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Class not found!");
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("SQL-error");
+        }
+
+        return -1;
     }
 
 }
