@@ -17,7 +17,7 @@ public class Planlægningsværktøj extends Application {
 
     private static Planlægningsværktøj pl = null;
 
-    private Planlægningsværktøj() {
+    public Planlægningsværktøj() {
     }
 
     public static Stage stage;

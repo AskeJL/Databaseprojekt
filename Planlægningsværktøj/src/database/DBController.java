@@ -1,4 +1,3 @@
-
 package database;
 
 import domain.users.Citizen;
@@ -12,10 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.postgresql.util.PSQLException;
 
-/**
- * @author Joachim
- */
 public class DBController implements IControllerDB {
+
     Connection connection;
 
     @Override
@@ -23,15 +20,15 @@ public class DBController implements IControllerDB {
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
-                    = "SELECT user_id "+
-                      "FROM users "+
-                      "WHERE username =?";
+                    = "SELECT user_id "
+                    + "FROM users "
+                    + "WHERE username =?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             return rs.getString(1);
-    }   catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
@@ -47,11 +44,11 @@ public class DBController implements IControllerDB {
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
-                    = "INSERT INTO users " +
-                      "VALUES (CAST(? AS uuid), CAST(? AS int),?,?); " +
-                      "INSERT INTO user_passwords "+
-                      "VALUES (CAST(? AS uuid), ?);";
-        
+                    = "INSERT INTO users "
+                    + "VALUES (CAST(? AS uuid), CAST(? AS int),?,?); "
+                    + "INSERT INTO user_passwords "
+                    + "VALUES (CAST(? AS uuid), ?);";
+
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, citizen.getId().toString());
             preparedStatement.setString(2, Integer.toString(2));
@@ -103,7 +100,7 @@ public class DBController implements IControllerDB {
         } catch (SQLException ex) {
             System.out.println("SQL-error");
         }
-        
+
         return false;
     }
 
