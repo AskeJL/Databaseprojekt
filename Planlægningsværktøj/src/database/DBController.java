@@ -13,9 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.postgresql.util.PSQLException;
 
-/**
- * @author Joachim
- */
 public class DBController implements IControllerDB {
 
     Connection connection;
