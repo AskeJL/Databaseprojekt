@@ -2,11 +2,13 @@ package domain;
 
 import database.DBController;
 import domain.users.Citizen;
+import domain.users.SOSU;
 import domain.users.User;
 import interfaces.IController;
 import interfaces.IControllerDB;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -39,16 +41,17 @@ public class Controller implements IController {
     public static void main(String[] args) {
         //Test-kode
         Controller controller = new Controller();
-        
+        SOSU sosu = new SOSU("sosu", "sosu_test");
+        controller.storeSOSU(sosu, "sosutest");
         Citizen james = new Citizen("james23", "james23", "1234", new Date());
-        controller.getDBController().storeCitizen(james, "jamesHotHot");
-        if (controller.getDBController().authenticate("james23", "jamesHotHot")){
-            System.out.println("Authenticated");
-        }
-        else{
-            System.out.println("NOT authenticated :/");
-        }
-        System.out.println(controller.getUserID("james23"));
+        sosu.addCitizen(james);
+        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
+//        if (controller.getDBController().authenticate("james23", "jamesHotHot")){
+//            System.out.println("Authenticated");
+//        }
+//        else{
+//            System.out.println("NOT authenticated :/");
+//        }
         
     }
     
@@ -108,8 +111,8 @@ public class Controller implements IController {
     }
 
     @Override
-    public void storeCitizen(Citizen citizen, String password) {
-        DBController.storeCitizen(citizen, password);
+    public void storeCitizen(Citizen citizen, String password, SOSU sosu) {
+        DBController.storeCitizen(citizen, password, sosu);
     }
 
     @Override
@@ -120,6 +123,11 @@ public class Controller implements IController {
     @Override
     public boolean authenticate(String username, String password) {
         return DBController.authenticate(username, password);
+    }
+
+    @Override
+    public void storeSOSU(SOSU sosu, String password) {
+        DBController.storeSOSU(sosu, password);
     }
    }
 

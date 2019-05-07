@@ -21,6 +21,10 @@ public class Citizen extends User implements Serializable {
     public Date getBirthday() {
         return birthday;
     }
+    
+    public String getCPR(){
+        return this.CPR;
+    }
 
     public Schedule getSchedule() {
         return schedule;
