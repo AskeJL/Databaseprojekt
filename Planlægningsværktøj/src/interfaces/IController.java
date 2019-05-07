@@ -1,6 +1,7 @@
 package interfaces;
 
 import domain.users.Citizen;
+import domain.users.SOSU;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -22,10 +23,12 @@ public interface IController {
     
     String getUserID(String username);
     
-    void storeCitizen(Citizen citizen, String password);
+    void storeCitizen(Citizen citizen, String password, SOSU sosu);
+    
+    void storeSOSU(SOSU sosu, String password);
     
     Citizen retrieveCitizen(String username, String password);
     
-    boolean authenticate(String username, String password);
+    int authenticate(String username, String password);
 
 }

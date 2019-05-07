@@ -2,13 +2,14 @@ package domain;
 
 import database.DBController;
 import domain.users.Citizen;
+import domain.users.SOSU;
 import domain.users.User;
 import interfaces.IController;
 import interfaces.IControllerDB;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
-
 
 public class Controller implements IController {
 
@@ -16,7 +17,7 @@ public class Controller implements IController {
     Login login;
     UUID currentUser;
     private final IControllerDB DBController;
-    
+
     //For database-connection:
     Connection connection;
 
@@ -39,21 +40,21 @@ public class Controller implements IController {
     public static void main(String[] args) {
         //Test-kode
         Controller controller = new Controller();
-        
+//        SOSU sosu = new SOSU("sosu", "sosu");
+//        controller.storeSOSU(sosu, "sosutest");
 //        Citizen james = new Citizen("james23", "james23", "1234", new Date());
-//        controller.getDBController().storeCitizen(james, "jamesHotHot");
-        if (controller.getDBController().authenticate("james23", "jamesHotHot")){
+//        sosu.addCitizen(james);
+//        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
+        int auth = controller.getDBController().authenticate("james23", "jamesHotHot");
+        if (auth == 1 || auth == 2) {   //TODO finish
             System.out.println("Authenticated");
-        }
-        else{
+        } else if (auth == -1) {
             System.out.println("NOT authenticated :/");
         }
-        System.out.println(controller.getDBController().getCitizen("james23", "james23"));
-        System.out.println(controller.getUserID("james23"));
-        
+       
     }
-    
-    public IControllerDB getDBController(){
+
+    public IControllerDB getDBController() {
         return this.DBController;
     }
 
@@ -109,8 +110,8 @@ public class Controller implements IController {
     }
 
     @Override
-    public void storeCitizen(Citizen citizen, String password) {
-        DBController.storeCitizen(citizen, password);
+    public void storeCitizen(Citizen citizen, String password, SOSU sosu) {
+        DBController.storeCitizen(citizen, password, sosu);
     }
 
     @Override
@@ -119,8 +120,12 @@ public class Controller implements IController {
     }
 
     @Override
-    public boolean authenticate(String username, String password) {
+    public int authenticate(String username, String password) {
         return DBController.authenticate(username, password);
     }
-   }
 
+    @Override
+    public void storeSOSU(SOSU sosu, String password) {
+        DBController.storeSOSU(sosu, password);
+    }
+}

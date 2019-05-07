@@ -1,6 +1,7 @@
 package interfaces;
 
 import domain.users.Citizen;
+import domain.users.SOSU;
 import java.sql.Connection;
 
 /**
@@ -11,11 +12,12 @@ public interface IControllerDB {
     
     String getUserID(String username);
     
-    void storeCitizen(Citizen citizen, String password);
+    void storeCitizen(Citizen citizen, String password, SOSU sosu);
     
-    Citizen retrieveCitizen(String username, String password);
+    void storeSOSU(SOSU sosu, String password);
     
-    boolean authenticate(String username, String password);
+    Citizen retrieveCitizen(String username);
     
-    public String getCitizen(String username, String name);
+    //Evt String / type ud, så den selv finder login-type
+    int authenticate(String username, String password);
 }
