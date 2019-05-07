@@ -30,5 +30,10 @@ public class Citizen extends User implements Serializable {
         return this.CPR.equals(CPR);
 
     }
+    
+    @Override
+    public String toString(){
+        return this.getName();
+    }
 
 }

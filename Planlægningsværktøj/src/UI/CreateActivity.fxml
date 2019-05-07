@@ -2,8 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.RadioMenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -35,21 +35,21 @@
          </font>
       </Text>
       <Button fx:id="addPicture" layoutX="14.0" layoutY="438.0" mnemonicParsing="false" onAction="#addPictureHandler" text="Tilføj billede" />
-      <SplitMenuButton fx:id="weekdayDropdownMenu" layoutX="85.0" layoutY="389.0" mnemonicParsing="false" text="Dag">
+      <Text layoutX="14.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg dag:" wrappingWidth="70.39998435974121" />
+      <MenuButton fx:id="weekdayDropdownMenu" layoutX="84.0" layoutY="388.0" mnemonicParsing="false" text="Dag">
         <items>
-            <RadioMenuItem fx:id="mandagMenuButton" mnemonicParsing="false" selected="true" text="Mandag">
+            <RadioMenuItem fx:id="mandagMenuButton" mnemonicParsing="false" onAction="#changeNameMandag" selected="true" text="Mandag">
                <toggleGroup>
                   <ToggleGroup fx:id="dagToggle" />
                </toggleGroup>
             </RadioMenuItem>
-            <RadioMenuItem fx:id="tirsdagMenuButton" mnemonicParsing="false" text="Tirsdag" toggleGroup="$dagToggle" />
-            <RadioMenuItem fx:id="onsdagMenuButton" mnemonicParsing="false" text="Onsdag" toggleGroup="$dagToggle" />
-            <RadioMenuItem fx:id="torsdagMenuButton" mnemonicParsing="false" text="Torsdag" toggleGroup="$dagToggle" />
-            <RadioMenuItem fx:id="fredagMenuButton" mnemonicParsing="false" text="Fredag" toggleGroup="$dagToggle" />
-            <RadioMenuItem fx:id="lørdagMenuButton" mnemonicParsing="false" text="Lørdag" toggleGroup="$dagToggle" />
-            <RadioMenuItem fx:id="søndagMenuButton" mnemonicParsing="false" text="Søndag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="tirsdagMenuButton" mnemonicParsing="false" onAction="#changeNameTirsdag" text="Tirsdag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="onsdagMenuButton" mnemonicParsing="false" onAction="#changeNameOnsdag" text="Onsdag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="torsdagMenuButton" mnemonicParsing="false" onAction="#changeNameTorsdag" text="Torsdag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="fredagMenuButton" mnemonicParsing="false" onAction="#changeNameFredag" text="Fredag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="lørdagMenuButton" mnemonicParsing="false" onAction="#changeNameLørdag" text="Lørdag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="søndagMenuButton" mnemonicParsing="false" onAction="#changeNameSøndag" text="Søndag" toggleGroup="$dagToggle" />
         </items>
-      </SplitMenuButton>
-      <Text layoutX="14.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg dag:" wrappingWidth="70.39998435974121" />
+      </MenuButton>
    </children>
 </AnchorPane>

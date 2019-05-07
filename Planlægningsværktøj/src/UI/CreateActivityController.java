@@ -6,6 +6,7 @@ import domain.users.Citizen;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextArea;
@@ -41,7 +43,7 @@ public class CreateActivityController implements Initializable {
     @FXML
     private Button addPicture;
     @FXML
-    private SplitMenuButton weekdayDropdownMenu;
+    private MenuButton weekdayDropdownMenu;
     @FXML
     private RadioMenuItem mandagMenuButton;
     @FXML
@@ -68,15 +70,18 @@ public class CreateActivityController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Controller c = new Controller();
         ArrayList<Citizen> cit = new ArrayList<>();
+        Citizen Lars = new Citizen("hej","hej","lol",new Date());
+        cit.add(Lars);
         ObservableList<Citizen> obsCit = FXCollections.observableArrayList(cit);
         borgerList.setItems(obsCit);
-        mandagMenuButton.getToggleGroup().setUserData(0);
-        tirsdagMenuButton.getToggleGroup().setUserData(1);
-        onsdagMenuButton.getToggleGroup().setUserData(2);
-        torsdagMenuButton.getToggleGroup().setUserData(3);
-        fredagMenuButton.getToggleGroup().setUserData(4);
-        lørdagMenuButton.getToggleGroup().setUserData(5);
-        søndagMenuButton.getToggleGroup().setUserData(6);
+        
+        mandagMenuButton.setUserData(0);
+        tirsdagMenuButton.setUserData(1);
+        onsdagMenuButton.setUserData(2);
+        torsdagMenuButton.setUserData(3);
+        fredagMenuButton.setUserData(4);
+        lørdagMenuButton.setUserData(5);
+        søndagMenuButton.setUserData(6);
 
     }
 
@@ -86,7 +91,7 @@ public class CreateActivityController implements Initializable {
         String description = descriptionArea.getText();
         int sTime = Integer.parseInt(startTime.getText());
         int eTime = Integer.parseInt(endTime.getText());
-        int day =(int) dagToggle.getSelectedToggle().getUserData();
+        int day = (int) dagToggle.getSelectedToggle().getUserData();
         Activity activity = new Activity(name, description, sTime, eTime, path, day);
         borgerList.getSelectionModel().getSelectedItem().getSchedule().addActivity(activity);
     }
@@ -101,6 +106,41 @@ public class CreateActivityController implements Initializable {
         FileChooser chooser = new FileChooser();
         path = chooser.showOpenDialog(null).getAbsolutePath();
         
+    }
+
+    @FXML
+    private void changeNameMandag(ActionEvent event) {
+        weekdayDropdownMenu.setText("Mandag");
+    }
+
+    @FXML
+    private void changeNameTirsdag(ActionEvent event) {
+        weekdayDropdownMenu.setText("Tirsdag");
+    }
+
+    @FXML
+    private void changeNameOnsdag(ActionEvent event) {
+        weekdayDropdownMenu.setText("Onsdag");
+    }
+
+    @FXML
+    private void changeNameTorsdag(ActionEvent event) {
+        weekdayDropdownMenu.setText("Torsdag");
+    }
+
+    @FXML
+    private void changeNameFredag(ActionEvent event) {
+        weekdayDropdownMenu.setText("Fredag");
+    }
+
+    @FXML
+    private void changeNameLørdag(ActionEvent event) {
+        weekdayDropdownMenu.setText("Lørdag");
+    }
+
+    @FXML
+    private void changeNameSøndag(ActionEvent event) {
+        weekdayDropdownMenu.setText("Søndag");
     }
 
 }
