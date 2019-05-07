@@ -15,14 +15,27 @@ public class Controller implements IController {
 
     ArrayList<Citizen> tempList;
     Login login;
-    UUID currentUser;
+    Citizen currentUser;
+    SOSU currentSosu;
     private final IControllerDB DBController;
 
     //For database-connection:
     Connection connection;
 
-    public void setCurrentUser(UUID currentUser) {
+    public void setCurrentUser(Citizen currentUser) {
         this.currentUser = currentUser;
+    }
+    
+    public void setCurrentSosu(SOSU currentSosu){
+        this.currentSosu = currentSosu;
+    }
+    
+    public Citizen getCurrentUser(){
+        return this.currentUser;
+    }
+    
+    public SOSU getCurrentSosu(){
+        return this.currentSosu;
     }
 
     public void addActivity(Citizen citizen, String name, String description, int startTime, int endTime, String pictogram, int day) {

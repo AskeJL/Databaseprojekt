@@ -60,7 +60,7 @@ public class CreateActivityController implements Initializable {
     private RadioMenuItem lørdagMenuButton;
     @FXML
     private RadioMenuItem søndagMenuButton;
-    
+
     private String path;
 
     /**
@@ -69,12 +69,9 @@ public class CreateActivityController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Controller c = new Controller();
-        ArrayList<Citizen> cit = new ArrayList<>();
-        Citizen Lars = new Citizen("hej","hej","lol",new Date());
-        cit.add(Lars);
-        ObservableList<Citizen> obsCit = FXCollections.observableArrayList(cit);
+        ObservableList<Citizen> obsCit = FXCollections.observableArrayList(c.getCurrentSosu().getCitizens());
         borgerList.setItems(obsCit);
-        
+
         mandagMenuButton.setUserData(0);
         tirsdagMenuButton.setUserData(1);
         onsdagMenuButton.setUserData(2);
@@ -105,7 +102,7 @@ public class CreateActivityController implements Initializable {
     private void addPictureHandler(ActionEvent event) {
         FileChooser chooser = new FileChooser();
         path = chooser.showOpenDialog(null).getAbsolutePath();
-        
+
     }
 
     @FXML

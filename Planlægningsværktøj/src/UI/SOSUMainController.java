@@ -29,11 +29,13 @@ public class SOSUMainController implements Initializable {
     @FXML
     private TextField searchField;
     @FXML
-    private Button updateBtn;
-    @FXML
     private Button createActivityBtn;
     
     ObservableList<Citizen> obsCit = null;
+    
+    Planlægningsværktøj pv;
+    @FXML
+    private Button updateButton;
 
     /**
      * Initializes the controller class.
@@ -41,10 +43,7 @@ public class SOSUMainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Controller c = new Controller();
-        ArrayList<Citizen> cit = new ArrayList<>();
-        Citizen Lars = new Citizen("hej","hej","lol",new Date());
-        cit.add(Lars);
-        obsCit = FXCollections.observableArrayList(cit);
+        obsCit = FXCollections.observableArrayList(c.getCurrentSosu().getCitizens());
         citizenLv.setItems(obsCit);
     }    
 
