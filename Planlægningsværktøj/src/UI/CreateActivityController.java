@@ -68,8 +68,7 @@ public class CreateActivityController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Controller c = new Controller();
-        ObservableList<Citizen> obsCit = FXCollections.observableArrayList(c.getCurrentSosu().getCitizens());
+        ObservableList<Citizen> obsCit = FXCollections.observableArrayList(pl.getiController().getCurrentSosu().getCitizens());
         borgerList.setItems(obsCit);
 
         mandagMenuButton.setUserData(0);

@@ -58,7 +58,7 @@ public class Planlægningsværktøj extends Application {
             stage.show();
 
         } catch (IOException e) {
-            System.out.println("Can't load window");
+            System.out.println("Can't load window" + e);
         }
     }
 

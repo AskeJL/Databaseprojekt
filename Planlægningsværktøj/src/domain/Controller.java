@@ -22,22 +22,7 @@ public class Controller implements IController {
     //For database-connection:
     Connection connection;
 
-    public void setCurrentUser(Citizen currentUser) {
-        this.currentUser = currentUser;
-    }
     
-    public void setCurrentSosu(SOSU currentSosu){
-        this.currentSosu = currentSosu;
-    }
-    
-    public Citizen getCurrentUser(){
-        return this.currentUser;
-    }
-    
-    public SOSU getCurrentSosu(){
-        return this.currentSosu;
-    }
-
     public void addActivity(Citizen citizen, String name, String description, int startTime, int endTime, String pictogram, int day) {
         if (tempList.contains(citizen)) {
             citizen.getSchedule().addActivity(new Activity(name, description, startTime, endTime, pictogram, day));
@@ -140,5 +125,25 @@ public class Controller implements IController {
     @Override
     public void storeSOSU(SOSU sosu, String password) {
         DBController.storeSOSU(sosu, password);
+    }
+    
+    @Override
+    public void setCurrentUser(Citizen currentUser) {
+        this.currentUser = currentUser;
+    }
+    
+    @Override
+    public void setCurrentSosu(SOSU currentSosu){
+        this.currentSosu = currentSosu;
+    }
+    
+    @Override
+    public Citizen getCurrentUser(){
+        return this.currentUser;
+    }
+    
+    @Override
+    public SOSU getCurrentSosu(){
+        return this.currentSosu;
     }
 }

@@ -44,6 +44,6 @@ public class LoginController implements Initializable {
 
     @FXML
     private void handleLoginBtn(ActionEvent event) {
-        pl.changeScene("SOSUMain.fxml");
+        pl.changeScene("Schedule.fxml");
 }
 }

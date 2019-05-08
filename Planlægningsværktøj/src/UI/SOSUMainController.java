@@ -42,8 +42,7 @@ public class SOSUMainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Controller c = new Controller();
-        obsCit = FXCollections.observableArrayList(c.getCurrentSosu().getCitizens());
+        obsCit = FXCollections.observableArrayList(pl.getiController().getCurrentSosu().getCitizens());
         citizenLv.setItems(obsCit);
     }    
 

@@ -30,5 +30,14 @@ public interface IController {
     Citizen retrieveCitizen(String username, String password);
     
     int authenticate(String username, String password);
+    
+     public void setCurrentUser(Citizen currentUser);
+    
+    
+    public void setCurrentSosu(SOSU currentSosu);
+    
+    public Citizen getCurrentUser();
+    
+    public SOSU getCurrentSosu();
 
 }
