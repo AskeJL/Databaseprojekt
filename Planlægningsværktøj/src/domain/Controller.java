@@ -12,6 +12,27 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Controller implements IController {
+    
+       //Main til test af kode
+        public static void main(String[] args) {
+        Controller controller = new Controller();
+//        SOSU sosu = new SOSU("sosu", "sosu");
+//        controller.storeSOSU(sosu, "sosutest");
+//        Citizen james = new Citizen("james23", "james23", "1234", new Date());
+//        sosu.addCitizen(james);
+//        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
+        int auth = controller.getDBController().authenticate("james23", "jamesHotHot");
+        if (auth == 1 || auth == 2) {   //TODO finish
+            System.out.println("Authenticated");
+        } else if (auth == -1) {
+            System.out.println("NOT authenticated :/");
+        }
+            System.out.println(controller.retrieveCitizenID("james23").toString());
+            System.out.println(controller.retrieveCitizenBirthday("james23").toString());
+            System.out.println(controller.retrieveSOSUName("sosu_test"));
+            System.out.println(controller.retrieveCitizenCPR("james23"));
+       
+    }
 
     ArrayList<Citizen> tempList;
     Login login;
@@ -33,23 +54,6 @@ public class Controller implements IController {
         login = new Login(this);
         tempList = new ArrayList<>();
         DBController = new DBController();
-    }
-
-    public static void main(String[] args) {
-        //Test-kode
-        Controller controller = new Controller();
-//        SOSU sosu = new SOSU("sosu", "sosu");
-//        controller.storeSOSU(sosu, "sosutest");
-//        Citizen james = new Citizen("james23", "james23", "1234", new Date());
-//        sosu.addCitizen(james);
-//        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
-        int auth = controller.getDBController().authenticate("james23", "jamesHotHot");
-        if (auth == 1 || auth == 2) {   //TODO finish
-            System.out.println("Authenticated");
-        } else if (auth == -1) {
-            System.out.println("NOT authenticated :/");
-        }
-       
     }
 
     public IControllerDB getDBController() {
@@ -98,24 +102,10 @@ public class Controller implements IController {
     }
 
     @Override
-    public UUID getUserID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getUserID(String username) {
-        return DBController.getUserID(username);
-    }
-
-    @Override
     public void storeCitizen(Citizen citizen, String password, SOSU sosu) {
         DBController.storeCitizen(citizen, password, sosu);
     }
 
-    @Override
-    public Citizen retrieveCitizen(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public int authenticate(String username, String password) {
@@ -145,5 +135,30 @@ public class Controller implements IController {
     @Override
     public SOSU getCurrentSosu(){
         return this.currentSosu;
+    }
+
+    @Override
+    public String retrieveCitizenCPR(String username) {
+        return DBController.retrieveCitizenCPR(username);
+    }
+
+    @Override
+    public Date retrieveCitizenBirthday(String username) {
+        return DBController.retrieveCitizenBirthday(username);
+    }
+
+    @Override
+    public UUID retrieveCitizenID(String username) {
+        return DBController.retrieveCitizenID(username);
+    }
+
+    @Override
+    public String retrieveCitizenName(String username) {
+        return DBController.retrieveCitizenName(username);
+    }
+
+    @Override
+    public String retrieveSOSUName(String username) {
+        return DBController.retrieveSOSUName(username);
     }
 }

@@ -3,6 +3,8 @@ package interfaces;
 import domain.users.Citizen;
 import domain.users.SOSU;
 import java.sql.Connection;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  *
@@ -10,14 +12,26 @@ import java.sql.Connection;
  */
 public interface IControllerDB {
     
-    String getUserID(String username);
-    
+    //Admin-metoder:
+
     void storeCitizen(Citizen citizen, String password, SOSU sosu);
-    
+
     void storeSOSU(SOSU sosu, String password);
     
-    Citizen retrieveCitizen(String username);
-    
-    //Evt String / type ud, så den selv finder login-type
+    //System-metoder:
     int authenticate(String username, String password);
+
+    String retrieveCitizenCPR(String username);
+
+    Date retrieveCitizenBirthday(String username);
+
+    UUID retrieveCitizenID(String username);
+    
+    String retrieveCitizenName(String username);
+    
+    String retrieveSOSUName(String username);
+    
+    
+    
+    
 }

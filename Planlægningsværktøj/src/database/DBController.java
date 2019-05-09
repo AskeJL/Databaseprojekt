@@ -9,6 +9,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.postgresql.util.PSQLException;
@@ -16,27 +19,7 @@ import org.postgresql.util.PSQLException;
 public class DBController implements IControllerDB {
 
     Connection connection;
-
-    @Override
-    public String getUserID(String username) {
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");) {
-            Class.forName("org.postgresql.Driver");
-            String sql
-                    = "SELECT user_id "
-                    + "FROM users "
-                    + "WHERE username =?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username);
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-            return rs.getString(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "";
-    }
+    String url = "jdbc:postgresql://localhost:5432/userdatabase";
 
     //Denne metode er tiltænkt en administrator. For systemets normale brug er det vigtigt, at vi primært
     //arbejder i simple typer.
@@ -44,7 +27,7 @@ public class DBController implements IControllerDB {
     @Override
     public void storeCitizen(Citizen citizen, String password, SOSU sosu) {
         String id = citizen.getId().toString();
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
                     = "INSERT INTO citizens "
@@ -76,7 +59,7 @@ public class DBController implements IControllerDB {
     @Override
     public void storeSOSU(SOSU sosu, String password) {
 
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
                     = "INSERT INTO sosu "
@@ -94,7 +77,6 @@ public class DBController implements IControllerDB {
             connection.close();
         } catch (PSQLException e) {
             System.out.println("SQL-error !");
-            e.printStackTrace();
         } catch (SQLException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -103,13 +85,8 @@ public class DBController implements IControllerDB {
     }
 
     @Override
-    public Citizen retrieveCitizen(String username) {
-        return null;
-    }
-
-    @Override
     public int authenticate(String username, String password) {
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userdatabase", "postgres", "postgres");) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
                     = "SELECT user_type "
@@ -129,15 +106,114 @@ public class DBController implements IControllerDB {
             connection.close();
         } catch (PSQLException e) {
             System.out.println("Wrong username/password-combination, or some other PSQL-error !");
-            e.printStackTrace();
         } catch (ClassNotFoundException ex) {
             System.out.println("Class not found!");
-            ex.printStackTrace();
         } catch (SQLException ex) {
             System.out.println("SQL-error");
         }
 
         return -1;
     }
-  
+
+    @Override
+    public String retrieveCitizenCPR(String username) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT cpr "
+                    + "FROM citizens "
+                    + "WHERE username =?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getString(1);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public Date retrieveCitizenBirthday(String username) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT birthday "
+                    + "FROM citizens "
+                    + "WHERE username =?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getDate(1);
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public UUID retrieveCitizenID(String username) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT citizen_id "
+                    + "FROM citizens "
+                    + "WHERE username =?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return UUID.fromString(rs.getString(1));
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public String retrieveCitizenName(String username) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT name "
+                    + "FROM citizens "
+                    + "WHERE username =?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getString(1);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public String retrieveSOSUName(String username) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT name "
+                    + "FROM sosu "
+                    + "WHERE username =?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getString(1);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }
