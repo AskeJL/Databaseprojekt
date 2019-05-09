@@ -20,11 +20,11 @@ public interface IController {
 
     String getPictogramPath(UUID userID, UUID activityID);
 
-    public void setCurrentUser(Citizen currentUser);
+    public void setCurrentCitizen(Citizen currentUser);
 
     public void setCurrentSosu(SOSU currentSosu);
 
-    public Citizen getCurrentUser();
+    public Citizen getCurrentCitizen();
 
     public SOSU getCurrentSosu();
 

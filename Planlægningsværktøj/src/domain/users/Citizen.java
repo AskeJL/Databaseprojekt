@@ -17,6 +17,13 @@ public class Citizen extends User implements Serializable {
         this.birthday = birthday;
         schedule = new Schedule();
     }
+    public Citizen(String name, String username, String CPR, Date birthday, Schedule schedule) {
+        super(name, username);
+        this.CPR = CPR;
+        this.birthday = birthday;
+        this.schedule = schedule;
+        
+    }
 
     public Date getBirthday() {
         return birthday;

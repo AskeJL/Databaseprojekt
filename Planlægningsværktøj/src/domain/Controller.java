@@ -36,10 +36,9 @@ public class Controller implements IController {
 
     ArrayList<Citizen> tempList;
     Login login;
-    Citizen currentUser;
+    Citizen currentCitizen;
     SOSU currentSosu;
     private final IControllerDB DBController;
-
     //For database-connection:
     Connection connection;
 
@@ -54,6 +53,8 @@ public class Controller implements IController {
         login = new Login(this);
         tempList = new ArrayList<>();
         DBController = new DBController();
+        currentCitizen = null;
+        currentSosu = null;
     }
 
     public IControllerDB getDBController() {
@@ -118,8 +119,8 @@ public class Controller implements IController {
     }
     
     @Override
-    public void setCurrentUser(Citizen currentUser) {
-        this.currentUser = currentUser;
+    public void setCurrentCitizen(Citizen currentUser) {
+        this.currentCitizen = currentUser;
     }
     
     @Override
@@ -128,8 +129,8 @@ public class Controller implements IController {
     }
     
     @Override
-    public Citizen getCurrentUser(){
-        return this.currentUser;
+    public Citizen getCurrentCitizen(){
+        return this.currentCitizen;
     }
     
     @Override

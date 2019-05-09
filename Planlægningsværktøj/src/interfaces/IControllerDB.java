@@ -3,6 +3,7 @@ package interfaces;
 import domain.users.Citizen;
 import domain.users.SOSU;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -31,7 +32,7 @@ public interface IControllerDB {
     
     String retrieveSOSUName(String username);
     
-    
+    ArrayList<String[]> retrieveCitizenActivies(UUID userID);
     
     
 }

@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -216,4 +217,27 @@ public class DBController implements IControllerDB {
         return null;
     }
 
-}
+    @Override
+    public ArrayList<String[]> retrieveCitizenActivies(UUID userID) {
+        ArrayList<String[]> toBeReturned = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT name, description, start_time, stop_time, day, pictogram_path "
+                    + "FROM activities "
+                    + "WHERE username = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            //rs.setString
+            rs.next();
+            //return
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+   }
+
+
+

@@ -1,9 +1,11 @@
 package UI;
 
+import domain.users.Citizen;
 import interfaces.IController;
 import interfaces.IControllerDB;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,6 +46,21 @@ public class LoginController implements Initializable {
 
     @FXML
     private void handleLoginBtn(ActionEvent event) {
-        pl.changeScene("Schedule.fxml");
+        int type = controller.authenticate(userName.getText(), passWord.getText());
+        //SOSU login
+        if (type == 1) {
+            
+        }
+        //Citizen login
+        else if(type == 2){
+            String name = controller.retrieveCitizenName(null);
+            String cpr = controller.retrieveCitizenCPR(name);
+            Date birthday = controller.retrieveCitizenBirthday(name);
+            //TODO set current citizen
+        }
+        
+        else {
+            
+        }
 }
 }
