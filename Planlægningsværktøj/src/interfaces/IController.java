@@ -40,7 +40,7 @@ public interface IController {
 
     Date retrieveCitizenBirthday(UUID citizenID);
 
-    UUID retrieveCitizenID(UUID citizenID);
+    UUID retrieveCitizenID(String username);
 
     String retrieveCitizenName(UUID citizenID);
 

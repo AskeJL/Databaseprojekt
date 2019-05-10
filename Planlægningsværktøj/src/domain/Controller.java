@@ -142,13 +142,13 @@ public class Controller implements IController {
     }
 
     @Override
-    public String retrieveCitizenCPR(String username) {
-        return DBController.retrieveCitizenCPR(username);
+    public String retrieveCitizenCPR(UUID citizenID) {
+        return DBController.retrieveCitizenCPR(citizenID);
     }
 
     @Override
-    public Date retrieveCitizenBirthday(String username) {
-        return DBController.retrieveCitizenBirthday(username);
+    public Date retrieveCitizenBirthday(UUID citizenID) {
+        return DBController.retrieveCitizenBirthday(citizenID);
     }
 
     @Override
@@ -157,13 +157,13 @@ public class Controller implements IController {
     }
 
     @Override
-    public String retrieveCitizenName(String username) {
-        return DBController.retrieveCitizenName(username);
+    public String retrieveCitizenName(UUID citizenID) {
+        return DBController.retrieveCitizenName(citizenID);
     }
 
     @Override
-    public String retrieveSOSUName(String username) {
-        return DBController.retrieveSOSUName(username);
+    public String retrieveSOSUName(UUID citizenID) {
+        return DBController.retrieveSOSUName(citizenID);
     }
 
     @Override

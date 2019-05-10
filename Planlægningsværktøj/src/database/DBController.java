@@ -154,15 +154,15 @@ public class DBController implements IControllerDB {
     }
 
     @Override
-    public UUID retrieveCitizenID(UUID id) {
+    public UUID retrieveCitizenID(String username) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
                     = "SELECT citizen_id "
                     + "FROM citizens "
-                    + "WHERE citizen_id = CAST(? AS uuid)";
+                    + "WHERE username = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, id.toString());
+            preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             return UUID.fromString(rs.getString(1));
