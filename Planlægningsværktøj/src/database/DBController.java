@@ -113,15 +113,15 @@ public class DBController implements IControllerDB {
     }
 
     @Override
-    public String retrieveCitizenCPR(String username) {
+    public String retrieveCitizenCPR(UUID id) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
                     = "SELECT cpr "
                     + "FROM citizens "
-                    + "WHERE username =?";
+                    + "WHERE citizen_id = CAST(? AS uuid)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username);
+            preparedStatement.setString(1, id.toString());
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             return rs.getString(1);
@@ -133,16 +133,16 @@ public class DBController implements IControllerDB {
     }
 
     @Override
-    public Date retrieveCitizenBirthday(String username) {
+    public Date retrieveCitizenBirthday(UUID id) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
 
             Class.forName("org.postgresql.Driver");
             String sql
                     = "SELECT birthday "
                     + "FROM citizens "
-                    + "WHERE username =?";
+                    + "WHERE citizen_id = CAST(? AS uuid)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username);
+            preparedStatement.setString(1, id.toString());
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             return rs.getDate(1);
@@ -154,15 +154,15 @@ public class DBController implements IControllerDB {
     }
 
     @Override
-    public UUID retrieveCitizenID(String username) {
+    public UUID retrieveCitizenID(UUID id) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
                     = "SELECT citizen_id "
                     + "FROM citizens "
-                    + "WHERE username =?";
+                    + "WHERE citizen_id = CAST(? AS uuid)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username);
+            preparedStatement.setString(1, id.toString());
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             return UUID.fromString(rs.getString(1));
