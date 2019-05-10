@@ -88,8 +88,10 @@ public class CreateActivityController implements Initializable {
         int sTime = Integer.parseInt(startTime.getText());
         int eTime = Integer.parseInt(endTime.getText());
         int day = (int) dagToggle.getSelectedToggle().getUserData();
-        Activity activity = new Activity(name, description, sTime, eTime, path, day);
-        borgerList.getSelectionModel().getSelectedItem().getSchedule().addActivity(activity);
+        
+        //Use controller method instead
+        //Activity activity = new Activity(name, description, sTime, eTime, path, day);
+        //borgerList.getSelectionModel().getSelectedItem().getSchedule().addActivity(activity);
     }
 
     @FXML

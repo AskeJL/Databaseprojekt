@@ -12,13 +12,12 @@ import java.util.UUID;
  * @author Joachim
  */
 public interface IControllerDB {
-    
-    //Admin-metoder:
 
+    //Admin-metoder:
     void storeCitizen(Citizen citizen, String password, SOSU sosu);
 
     void storeSOSU(SOSU sosu, String password);
-    
+
     //System-metoder:
     int authenticate(String username, String password);
 
@@ -27,12 +26,13 @@ public interface IControllerDB {
     Date retrieveCitizenBirthday(String username);
 
     UUID retrieveCitizenID(String username);
-    
+
     String retrieveCitizenName(String username);
-    
+
     String retrieveSOSUName(String username);
-    
-    ArrayList<String[]> retrieveCitizenActivies(UUID userID);
-    
-    
+
+    String[][] retrieveCitizenActivities(UUID userID);
+
+    void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
+
 }

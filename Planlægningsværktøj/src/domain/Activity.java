@@ -13,7 +13,7 @@ public class Activity implements Serializable, Comparable<Activity> {
     private final UUID activityID;
     private int dayOfTheWeek;
 
-    public Activity(String name, String description, int startTime, int endTime, String pictogramPath, int day) {
+    public Activity(String name, String description, int startTime, int endTime,int day, String pictogramPath) {
         this.name = name;
         this.description = description;
         this.startTime = startTime;

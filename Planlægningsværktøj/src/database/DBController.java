@@ -59,7 +59,6 @@ public class DBController implements IControllerDB {
 
     @Override
     public void storeSOSU(SOSU sosu, String password) {
-
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
@@ -139,7 +138,7 @@ public class DBController implements IControllerDB {
     @Override
     public Date retrieveCitizenBirthday(String username) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
-            
+
             Class.forName("org.postgresql.Driver");
             String sql
                     = "SELECT birthday "
@@ -150,7 +149,7 @@ public class DBController implements IControllerDB {
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             return rs.getDate(1);
-            
+
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -218,26 +217,76 @@ public class DBController implements IControllerDB {
     }
 
     @Override
-    public ArrayList<String[]> retrieveCitizenActivies(UUID userID) {
-        ArrayList<String[]> toBeReturned = new ArrayList<>();
+    public String[][] retrieveCitizenActivities(UUID userID) {
+        String[][] toBeReturned = null;
+        int arraySize;
+        int activityParameterCount = 6;
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql1
+                    = "SELECT COUNT(name) "
+                    + "FROM activities "
+                    + "WHERE citizen_id = CAST(? AS uuid)";
+            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
+            preparedStatement1.setString(1, userID.toString());
+            ResultSet rs1 = preparedStatement1.executeQuery();
+            rs1.next();
+            arraySize = rs1.getInt(1);
+            toBeReturned = new String[arraySize][activityParameterCount];
+            String sql2
+                    = "SELECT name, description, start_time, stop_time, day, pictogram_path "
+                    + "FROM activities "
+                    + "WHERE citizen_id = CAST(? AS uuid)";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+            preparedStatement2.setString(1, userID.toString());
+            ResultSet rs2 = preparedStatement2.executeQuery();
+
+            int counter = 0;
+            while (rs2.next()) {
+                for (int j = 0; j < activityParameterCount; j++) {
+                    //SQL-kolonne-referencer begynder ved 1, og ikke 0.
+                    toBeReturned[counter][j] = (String) rs2.getString(j + 1);
+                }
+                counter++;
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return toBeReturned;
+    }
+
+    @Override
+    public void storeActivity(UUID ActivityID, UUID userID, String name, String description, int start, int stop, int day, String pictogramPath) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
-                    = "SELECT name, description, start_time, stop_time, day, pictogram_path "
-                    + "FROM activities "
-                    + "WHERE username = ?";
+                    = "INSERT INTO activities "
+                    + "VALUES (CAST(? AS uuid),CAST(? AS uuid), ?, ?, CAST(? AS integer),"
+                    + "CAST(? AS integer),CAST(? AS integer),?);";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet rs = preparedStatement.executeQuery();
-            //rs.setString
-            rs.next();
-            //return
-
-        } catch (SQLException | ClassNotFoundException ex) {
+            preparedStatement.setString(1, ActivityID.toString());
+            preparedStatement.setString(2, userID.toString());
+            preparedStatement.setString(3, name);
+            preparedStatement.setString(4, description);
+            preparedStatement.setString(5, String.valueOf(start));
+            preparedStatement.setString(6, String.valueOf(stop));
+            preparedStatement.setString(7, String.valueOf(day));
+            preparedStatement.setString(8, pictogramPath);
+            int result = preparedStatement.executeUpdate();
+            System.out.println(result);
+            connection.close();
+        } catch (PSQLException e) {
+            System.out.println("SQL-error !");
+            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+
+        {
+
+        }
     }
-   }
-
-
-
+}

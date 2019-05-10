@@ -1,6 +1,7 @@
 package domain.users;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class SOSU extends User {
 
@@ -10,11 +11,16 @@ public class SOSU extends User {
         super(name, username);
         citizens = new ArrayList<>();
     }
-
-    public SOSU(String name, String username, ArrayList<Citizen> citizens) {
-        super(name, username);
-        this.citizens = citizens;
+    
+    public SOSU(String name, String username, UUID uuid) {
+        super(name, username, uuid);
+        citizens = new ArrayList<>();
     }
+
+//    public SOSU(String name, String username, ArrayList<Citizen> citizens) {
+//        super(name, username);
+//        this.citizens = citizens;
+//    }
 
     public ArrayList<Citizen> getCitizens() {
         return citizens;

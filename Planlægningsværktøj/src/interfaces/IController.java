@@ -35,14 +35,17 @@ public interface IController {
     void storeSOSU(SOSU sosu, String password);
 
     int authenticate(String username, String password);
-    
+
     String retrieveCitizenCPR(String username);
 
     Date retrieveCitizenBirthday(String username);
 
     UUID retrieveCitizenID(String username);
-    
+
     String retrieveCitizenName(String username);
-    
+
     String retrieveSOSUName(String username);
+
+    void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
+
 }
