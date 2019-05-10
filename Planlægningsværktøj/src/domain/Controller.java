@@ -3,7 +3,6 @@ package domain;
 import database.DBController;
 import domain.users.Citizen;
 import domain.users.SOSU;
-import domain.users.User;
 import interfaces.IController;
 import interfaces.IControllerDB;
 import java.sql.Connection;
@@ -19,17 +18,17 @@ public class Controller implements IController {
         Controller controller = new Controller();
         SOSU sosutest = new SOSU("sosutest", "sosutest");
         controller.storeSOSU(sosutest, "sosutest");
-        
-        Citizen test2 = new Citizen("test2", "test2", "198112", new Date());
-        
-        controller.DBController.storeCitizen(test2, "test2", sosutest);
-        
-        Activity activity = new Activity("test", "test", 1200, 1400, 1, "loltrain.com");
-        controller.DBController.storeActivity(activity.getActivityID(), test2.getId(), activity.getName(), activity.getDescription()
-                , activity.getStartTime(), activity.getEndTime(), activity.getDayOfTheWeek(), activity.getPictogramPath());
 
-        System.out.println("Activity info: \n"+Arrays.deepToString(controller.DBController.retrieveCitizenActivities(test2.getId())));
-        
+        Citizen test2 = new Citizen("test2", "test2", "198112", new Date());
+
+        controller.DBController.storeCitizen(test2, "test2", sosutest);
+
+        Activity activity = new Activity("test", "test", 1200, 1400, 1, "loltrain.com");
+        controller.DBController.storeActivity(activity.getActivityID(), test2.getId(), activity.getName(), activity.getDescription(),
+                 activity.getStartTime(), activity.getEndTime(), activity.getDayOfTheWeek(), activity.getPictogramPath());
+
+        System.out.println("Activity info: \n" + Arrays.deepToString(controller.DBController.retrieveCitizenActivities(test2.getId())));
+
 //        sosu.addCitizen(james);
 //        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
 //        int auth = controller.getDBController().authenticate("james23", "jamesHotHot");
@@ -38,7 +37,6 @@ public class Controller implements IController {
 //        } else if (auth == -1) {
 //            System.out.println("NOT authenticated :/");
 //        }
-
     }
 
     ArrayList<Citizen> tempList;
@@ -170,6 +168,6 @@ public class Controller implements IController {
 
     @Override
     public void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath) {
-       DBController.storeActivity(activityID, userID, name, description, start, top, day, pictogramPath);
+        DBController.storeActivity(activityID, userID, name, description, start, top, day, pictogramPath);
     }
 }

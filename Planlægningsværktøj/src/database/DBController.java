@@ -1,6 +1,5 @@
 package database;
 
-import domain.Activity;
 import domain.users.Citizen;
 import domain.users.SOSU;
 import interfaces.IControllerDB;
@@ -9,8 +8,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -283,10 +280,6 @@ public class DBController implements IControllerDB {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        {
-
         }
     }
 }
