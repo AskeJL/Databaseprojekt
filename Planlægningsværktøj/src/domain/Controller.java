@@ -21,13 +21,13 @@ public class Controller implements IController {
 
         Citizen test2 = new Citizen("test2", "test2", "198112", new Date());
 
-        controller.DBController.storeCitizen(test2, "test2", sosutest);
+        controller.controllerDB.storeCitizen(test2, "test2", sosutest);
 
         Activity activity = new Activity("test", "test", 1200, 1400, 1, "loltrain.com");
-        controller.DBController.storeActivity(activity.getActivityID(), test2.getId(), activity.getName(), activity.getDescription(),
-                 activity.getStartTime(), activity.getEndTime(), activity.getDayOfTheWeek(), activity.getPictogramPath());
+        controller.controllerDB.storeActivity(activity.getActivityID(), test2.getId(), activity.getName(), activity.getDescription(),
+                activity.getStartTime(), activity.getEndTime(), activity.getDayOfTheWeek(), activity.getPictogramPath());
 
-        System.out.println("Activity info: \n" + Arrays.deepToString(controller.DBController.retrieveCitizenActivities(test2.getId())));
+        System.out.println("Activity info: \n" + Arrays.deepToString(controller.controllerDB.retrieveCitizenActivities(test2.getId())));
 
 //        sosu.addCitizen(james);
 //        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
@@ -43,7 +43,7 @@ public class Controller implements IController {
     Login login;
     Citizen currentCitizen;
     SOSU currentSosu;
-    private final IControllerDB DBController;
+    private final IControllerDB controllerDB;
     //For database-connection:
     Connection connection;
 
@@ -56,13 +56,13 @@ public class Controller implements IController {
     public Controller() {
         login = new Login(this);
         tempList = new ArrayList<>();
-        DBController = new DBController();
+        controllerDB = new DBController();
         currentCitizen = null;
         currentSosu = null;
     }
 
     public IControllerDB getDBController() {
-        return this.DBController;
+        return this.controllerDB;
     }
 
     private Activity getActivity(UUID userID, UUID activityID) {
@@ -108,22 +108,27 @@ public class Controller implements IController {
 
     @Override
     public void storeCitizen(Citizen citizen, String password, SOSU sosu) {
-        DBController.storeCitizen(citizen, password, sosu);
+        controllerDB.storeCitizen(citizen, password, sosu);
     }
 
     @Override
     public int authenticate(String username, String password) {
-        return DBController.authenticate(username, password);
+        return controllerDB.authenticate(username, password);
     }
 
     @Override
     public void storeSOSU(SOSU sosu, String password) {
-        DBController.storeSOSU(sosu, password);
+        controllerDB.storeSOSU(sosu, password);
     }
 
     @Override
-    public void setCurrentCitizen(Citizen currentUser) {
-        this.currentCitizen = currentUser;
+    public void setCurrentCitizen(UUID id, String username) {
+        Schedule schedule = new Schedule();
+        String[][] activities = controllerDB.retrieveCitizenActivities(id);
+        for (String[] a : activities) {
+            schedule.addActivity(new Activity(a[0], a[1], Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]), a[5]));
+        }
+        this.currentCitizen = new Citizen(retrieveCitizenName(id), username, retrieveCitizenCPR(id), retrieveCitizenBirthday(id), id, schedule);
     }
 
     @Override
@@ -143,31 +148,31 @@ public class Controller implements IController {
 
     @Override
     public String retrieveCitizenCPR(UUID citizenID) {
-        return DBController.retrieveCitizenCPR(citizenID);
+        return controllerDB.retrieveCitizenCPR(citizenID);
     }
 
     @Override
     public Date retrieveCitizenBirthday(UUID citizenID) {
-        return DBController.retrieveCitizenBirthday(citizenID);
+        return controllerDB.retrieveCitizenBirthday(citizenID);
     }
 
     @Override
     public UUID retrieveCitizenID(String username) {
-        return DBController.retrieveCitizenID(username);
+        return controllerDB.retrieveCitizenID(username);
     }
 
     @Override
     public String retrieveCitizenName(UUID citizenID) {
-        return DBController.retrieveCitizenName(citizenID);
+        return controllerDB.retrieveCitizenName(citizenID);
     }
 
     @Override
     public String retrieveSOSUName(UUID citizenID) {
-        return DBController.retrieveSOSUName(citizenID);
+        return controllerDB.retrieveSOSUName(citizenID);
     }
 
     @Override
     public void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath) {
-        DBController.storeActivity(activityID, userID, name, description, start, top, day, pictogramPath);
+        controllerDB.storeActivity(activityID, userID, name, description, start, top, day, pictogramPath);
     }
 }

@@ -19,19 +19,19 @@ public class Citizen extends User implements Serializable {
         schedule = new Schedule();
     }
 
-    public Citizen(String name, String username, String CPR, Date birthday, UUID uuid) {
+//    public Citizen(String name, String username, String CPR, Date birthday, UUID uuid) {
+//        super(name, username, uuid);
+//        this.CPR = CPR;
+//        this.birthday = birthday;
+//        schedule = new Schedule();
+//    }
+
+    public Citizen(String name, String username, String CPR, Date birthday, UUID uuid, Schedule schedule) {
         super(name, username, uuid);
         this.CPR = CPR;
         this.birthday = birthday;
-        schedule = new Schedule();
+        this.schedule = schedule;
     }
-
-//    public Citizen(String name, String username, String CPR, Date birthday, Schedule schedule) {
-//        super(name, username);
-//        this.CPR = CPR;
-//        this.birthday = birthday;
-//        this.schedule = schedule;
-//    }
 
     public Date getBirthday() {
         return birthday;

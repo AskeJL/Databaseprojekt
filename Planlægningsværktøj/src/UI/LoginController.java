@@ -20,6 +20,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import sun.java2d.loops.SurfaceType;
+import java.util.UUID;
 
 public class LoginController implements Initializable {
 
@@ -53,9 +54,10 @@ public class LoginController implements Initializable {
         }
         //Citizen login
         else if(type == 2){
-            String name = controller.retrieveCitizenName(null);
-            String cpr = controller.retrieveCitizenCPR(name);
-            Date birthday = controller.retrieveCitizenBirthday(name);
+            UUID id = controller.retrieveCitizenID(userName.getText());
+            controller.setCurrentCitizen(id, userName.getText());
+            System.out.println(controller.getCurrentCitizen().getName());
+            pl.changeScene("BorgerSchedule.fxml");
             //TODO set current citizen
         }
         
