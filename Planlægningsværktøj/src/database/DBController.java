@@ -19,9 +19,9 @@ public class DBController implements IControllerDB {
     Connection connection;
     String url = "jdbc:postgresql://localhost:5432/userdatabase";
 
-    //Denne metode er tiltænkt en administrator. For systemets normale brug er det vigtigt, at vi primært
+    //Følgende to metoder er tiltænkt en administrator. For systemets normale brug er det vigtigt, at vi primært
     //arbejder i simple typer.
-    //Citizens i databases user_password-table har typen "2"
+    //Citizens i databases user_password-table har typen "2", SOSU har typen "1"
     @Override
     public void storeCitizen(Citizen citizen, String password, SOSU sosu) {
         String id = citizen.getId().toString();
@@ -194,7 +194,7 @@ public class DBController implements IControllerDB {
     }
 
     @Override
-    public String retrieveSOSUName(UUID citizenID) {
+    public String retrieveSosuName(UUID citizenID) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
@@ -281,5 +281,68 @@ public class DBController implements IControllerDB {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public UUID retrieveSosuId(String username) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT sosu_id "
+                    + "FROM sosu "
+                    + "WHERE username = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return UUID.fromString(rs.getString(1));
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public UUID[] retrieveCitizenIdsForSosu(UUID sosuID) {
+        UUID[] array;
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql1
+                    = "SELECT count(Citizen_id) "
+                    + "FROM citizens "
+                    + "WHERE citizens.sosu_id IN "
+                    + "(SELECT sosu_id "
+                    + "FROM sosu "
+                    + "WHERE sosu_id = CAST(? AS UUID));";
+            
+            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
+            preparedStatement1.setString(1, sosuID.toString());
+            ResultSet rs1 = preparedStatement1.executeQuery();
+            rs1.next();
+            int arraySize = rs1.getInt(1);
+            array = new UUID[arraySize];
+            
+            String sql2
+                    = "SELECT Citizen_id "
+                    + "FROM citizens "
+                    + "WHERE citizens.sosu_id IN "
+                    + "(SELECT sosu_id "
+                    + "FROM sosu "
+                    + "WHERE sosu_id = CAST(? AS UUID));";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+            preparedStatement2.setString(1, sosuID.toString());
+            ResultSet rs2 = preparedStatement2.executeQuery();
+            int counter = 0;
+            while (rs2.next()){
+                array[counter] = UUID.fromString(rs2.getString(1));
+                counter++;
+            }
+            return array;
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

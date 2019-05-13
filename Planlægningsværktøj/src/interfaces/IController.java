@@ -1,3 +1,4 @@
+
 package interfaces;
 
 import domain.users.Citizen;
@@ -44,8 +45,11 @@ public interface IController {
 
     String retrieveCitizenName(UUID citizenID);
 
-    String retrieveSOSUName(UUID citizenID);
+    String retrieveSosuName(UUID citizenID);
 
     void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
 
+    UUID retrieveSosuId(String username);
+    
+    UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
 }

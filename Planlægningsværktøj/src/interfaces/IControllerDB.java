@@ -27,10 +27,17 @@ public interface IControllerDB {
 
     String retrieveCitizenName(UUID citizenID);
 
-    String retrieveSOSUName(UUID citizenID);
-
     String[][] retrieveCitizenActivities(UUID citizenID);
+    
+     void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
+    
+    //(delete) methods for retrieving a sosu-object, to be set as currentSOSU
+    UUID retrieveSosuId (String username);
+    
+    String retrieveSosuName(UUID citizenID);
+    
+    UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
 
-    void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
+   
 
 }

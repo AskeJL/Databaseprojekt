@@ -16,18 +16,20 @@ public class Controller implements IController {
     //Main til test af kode
     public static void main(String[] args) {
         Controller controller = new Controller();
-        SOSU sosutest = new SOSU("sosutest", "sosutest");
-        controller.storeSOSU(sosutest, "sosutest");
+        UUID[] array = controller.retrieveCitizenIdsForSosu(UUID.fromString("7a88db07-3cad-43f5-9e18-bb277aa21ef8"));
+        for (UUID uuid : array){
+            System.out.println(uuid.toString());
+        }
+//        SOSU sosutest = new SOSU("sosutest", "sosutest");
+//        controller.storeSOSU(sosutest, "sosutest");
+//        Citizen test2 = new Citizen("test2", "test2", "198112", new Date());
 
-        Citizen test2 = new Citizen("test2", "test2", "198112", new Date());
-
-        controller.controllerDB.storeCitizen(test2, "test2", sosutest);
-
-        Activity activity = new Activity("test", "test", 1200, 1400, 1, "loltrain.com");
-        controller.controllerDB.storeActivity(activity.getActivityID(), test2.getId(), activity.getName(), activity.getDescription(),
-                activity.getStartTime(), activity.getEndTime(), activity.getDayOfTheWeek(), activity.getPictogramPath());
-
-        System.out.println("Activity info: \n" + Arrays.deepToString(controller.controllerDB.retrieveCitizenActivities(test2.getId())));
+//        controller.controllerDB.storeCitizen(test2, "test2", sosutest);
+//        Activity activity = new Activity("test", "test", 1200, 1400, 1, "loltrain.com");
+//        controller.controllerDB.storeActivity(activity.getActivityID(), test2.getId(), activity.getName(), activity.getDescription(),
+//                activity.getStartTime(), activity.getEndTime(), activity.getDayOfTheWeek(), activity.getPictogramPath());
+//
+//        System.out.println("Activity info: \n" + Arrays.deepToString(controller.controllerDB.retrieveCitizenActivities(test2.getId())));
 
 //        sosu.addCitizen(james);
 //        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
@@ -167,12 +169,22 @@ public class Controller implements IController {
     }
 
     @Override
-    public String retrieveSOSUName(UUID citizenID) {
-        return controllerDB.retrieveSOSUName(citizenID);
+    public String retrieveSosuName(UUID citizenID) {
+        return controllerDB.retrieveSosuName(citizenID);
     }
 
     @Override
     public void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath) {
         controllerDB.storeActivity(activityID, userID, name, description, start, top, day, pictogramPath);
+    }
+
+    @Override
+    public UUID retrieveSosuId(String username) {
+        return controllerDB.retrieveSosuId(username);
+    }
+
+    @Override
+    public UUID[] retrieveCitizenIdsForSosu(UUID sosuID) {
+        return controllerDB.retrieveCitizenIdsForSosu(sosuID);
     }
 }

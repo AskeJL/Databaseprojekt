@@ -51,14 +51,14 @@ public class LoginController implements Initializable {
         //SOSU login
         if (type == 1) {
             
+            
         }
         //Citizen login
         else if(type == 2){
             UUID id = controller.retrieveCitizenID(userName.getText());
             controller.setCurrentCitizen(id, userName.getText());
-            System.out.println(controller.getCurrentCitizen().getName());
+            System.out.println(controller.getCurrentCitizen().getSchedule().toString());
             pl.changeScene("BorgerSchedule.fxml");
-            //TODO set current citizen
         }
         
         else {
