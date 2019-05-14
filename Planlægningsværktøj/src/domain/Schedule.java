@@ -13,6 +13,10 @@ public class Schedule implements Serializable {
     public Schedule() {
         schedule = new ArrayList();
     }
+    public Schedule(ArrayList<Activity> schedule){
+        this.schedule = schedule;
+    }
+            
 
     public ArrayList<Activity> getSchedule() {
         return schedule;

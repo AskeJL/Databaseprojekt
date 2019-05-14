@@ -4,6 +4,7 @@ import domain.Activity;
 import domain.Schedule;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 public class Citizen extends User implements Serializable {
 
@@ -18,8 +19,26 @@ public class Citizen extends User implements Serializable {
         schedule = new Schedule();
     }
 
+//    public Citizen(String name, String username, String CPR, Date birthday, UUID uuid) {
+//        super(name, username, uuid);
+//        this.CPR = CPR;
+//        this.birthday = birthday;
+//        schedule = new Schedule();
+//    }
+
+    public Citizen(String name, String username, String CPR, Date birthday, UUID uuid, Schedule schedule) {
+        super(name, username, uuid);
+        this.CPR = CPR;
+        this.birthday = birthday;
+        this.schedule = schedule;
+    }
+
     public Date getBirthday() {
         return birthday;
+    }
+
+    public String getCPR() {
+        return this.CPR;
     }
 
     public Schedule getSchedule() {
@@ -29,6 +48,11 @@ public class Citizen extends User implements Serializable {
     public boolean AuthenticateCPR(String CPR) {
         return this.CPR.equals(CPR);
 
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 
 }

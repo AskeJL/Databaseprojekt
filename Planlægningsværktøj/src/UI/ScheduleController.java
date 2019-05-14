@@ -7,15 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-/**
- * FXML Controller class
- *
- * @author joakim
- */
 public class ScheduleController implements Initializable {
 
-    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
-    
+    Planlægningsværktøj pl;
+
     @FXML
     private Label displayName;
 
@@ -24,7 +19,7 @@ public class ScheduleController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        pl = Planlægningsværktøj.getInstance();
     }
 
     @FXML

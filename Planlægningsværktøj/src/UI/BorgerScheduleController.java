@@ -6,10 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 
 public class BorgerScheduleController implements Initializable {
 
-    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
+    Planlægningsværktøj pl;
     @FXML
     private Label displayName;
 
@@ -18,47 +19,55 @@ public class BorgerScheduleController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        pl = Planlægningsværktøj.getInstance();
     }
 
     @FXML
     private void mondayBtnHandle(ActionEvent event) {
+        pl.setCurrentDay(1);
         pl.changeScene("BorgerActivities.fxml");
 
     }
 
     @FXML
     private void tuesdayBtnHandle(ActionEvent event) {
+        pl.setCurrentDay(2);
         pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void wednesdayBtnHandle(ActionEvent event) {
+        pl.setCurrentDay(3);
         pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void thursdayBtnHandle(ActionEvent event) {
+        pl.setCurrentDay(4);
         pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void fridayBtnHandle(ActionEvent event) {
+        pl.setCurrentDay(5);
         pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void saturdayBtnHandle(ActionEvent event) {
+        pl.setCurrentDay(6);
         pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void sundayBtnHandle(ActionEvent event) {
+        pl.setCurrentDay(7);
         pl.changeScene("BorgerActivities.fxml");
     }
 
     @FXML
     private void logOffButtonHandle(ActionEvent event) {
+        pl.getiController().setCurrentCitizen(null, null);
         pl.changeScene("Login.fxml");
     }
 

@@ -2,26 +2,23 @@ package UI;
 
 import domain.Controller;
 import interfaces.IController;
-import interfaces.IControllerDB;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.UUID;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Planlægningsværktøj extends Application {
 
     private static Planlægningsværktøj pl = null;
 
-    private Planlægningsværktøj() {
+    public Planlægningsværktøj() {
     }
 
     public static Stage stage;
     private final IController iController = new Controller();
+    int currentDay;
 
     public IController getiController() {
         return iController;
@@ -58,9 +55,18 @@ public class Planlægningsværktøj extends Application {
             stage.show();
 
         } catch (IOException e) {
-            System.out.println("Can't load window");
+            System.out.println("Can't load window" + e);
         }
     }
+
+    public int getCurrentDay() {
+        return currentDay;
+    }
+
+    public void setCurrentDay(int currentDay) {
+        this.currentDay = currentDay;
+    }
+    
 
     /**
      * @param args the command line arguments

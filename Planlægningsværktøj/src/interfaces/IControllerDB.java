@@ -1,19 +1,45 @@
 package interfaces;
 
 import domain.users.Citizen;
-import java.sql.Connection;
+import domain.users.SOSU;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  *
  * @author Joachim
  */
 public interface IControllerDB {
+
+    //Admin-metoder:
+    void storeCitizen(Citizen citizen, String password, SOSU sosu);
+
+    void storeSOSU(SOSU sosu, String password);
+
+    //System-metoder:
+    int authenticate(String username, String password);
+
+    String retrieveCitizenCPR(UUID citizenID);
+
+    Date retrieveCitizenBirthday(UUID citizenID);
+
+    UUID retrieveCitizenID(String username);
+
+    String retrieveCitizenName(UUID citizenID);
+
+    String[][] retrieveCitizenActivities(UUID citizenID);
     
-    String getUserID(String username, String password);
+     void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
     
-    void storeCitizen(Citizen citizen, String password);
+    //(delete) methods for retrieving a sosu-object, to be set as currentSOSU
+    UUID retrieveSosuId (String username);
     
-    Citizen retrieveCitizen(String username, String password);
+    String retrieveSosuName(UUID sosuID);
     
-    boolean authenticate(String username, String password);
+    String retrieveSosuUsername(UUID sosuID);
+    
+    UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
+
+   
+
 }

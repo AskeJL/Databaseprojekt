@@ -8,12 +8,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.BorgerScheduleController">
    <children>
-      <Text layoutX="259.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hej">
+      <Text fx:id="welcomeTextField" layoutX="259.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hej">
          <font>
             <Font name="Comic Sans MS" size="48.0" />
          </font>
       </Text>
-      <Label fx:id="displayName" alignment="CENTER" layoutX="278.0" layoutY="81.0" text="Default" />
+      <Label fx:id="displayNameTxtField" alignment="CENTER" layoutX="278.0" layoutY="81.0" text="Default" />
       <Button layoutX="27.0" layoutY="117.0" mnemonicParsing="false" onAction="#mondayBtnHandle" prefHeight="66.0" prefWidth="182.0" text="Mandag">
          <font>
             <Font size="34.0" />

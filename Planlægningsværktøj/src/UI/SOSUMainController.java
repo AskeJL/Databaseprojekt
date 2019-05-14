@@ -1,7 +1,10 @@
 package UI;
 
+import domain.users.Citizen;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,30 +14,35 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class SOSUMainController implements Initializable {
-    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
+
+    Planlægningsværktøj pl;
     @FXML
     private Label displayName;
     @FXML
-    private ListView<?> citizenLv;
-    @FXML
-    private TextField search;
-    @FXML
-    private Button seeCitizensBtn;
+    private ListView<Citizen> citizenLv;
     @FXML
     private Button seeScheduleBtn;
     @FXML
     private Button logOffBtn;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private Button createActivityBtn;
+
+    ObservableList<Citizen> obsCit = null;
+
+    Planlægningsværktøj pv;
+    @FXML
+    private Button updateButton;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
-    @FXML
-    private void seeCitizensBtnHandle(ActionEvent event) {
+        pl = Planlægningsværktøj.getInstance();
+        obsCit = FXCollections.observableArrayList(pl.getiController().getCurrentSosu().getCitizens());
+        citizenLv.setItems(obsCit);
     }
 
     @FXML
@@ -46,5 +54,15 @@ public class SOSUMainController implements Initializable {
     private void logOffBtnHandle(ActionEvent event) {
         pl.changeScene("Login.fxml");
     }
-    
+
+    @FXML
+    private void updateBtnHandler(ActionEvent event) {
+        citizenLv.setItems(obsCit);
+    }
+
+    @FXML
+    private void createActivityBtnHandler(ActionEvent event) {
+        pl.changeScene("CreateActivity.fxml");
+    }
+
 }
