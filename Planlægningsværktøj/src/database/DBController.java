@@ -346,7 +346,7 @@ public class DBController implements IControllerDB {
         return null;
     }
 
-    //KASTER EN PSQL EXCEPTION FOR RS NOT POSITIONEN PROPERLY, WTF, WHY?
+    //KASTER EN PSQL EXCEPTION FOR RS NOT POSITIONEN PROPERLY, WTF, WHY?s
     @Override
     public String retrieveSosuUsername(UUID sosuID) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {

@@ -131,7 +131,6 @@ public class Controller implements IController {
         }
         this.currentCitizen = new Citizen(retrieveCitizenName(id), username, retrieveCitizenCPR(id), retrieveCitizenBirthday(id), id, schedule);
     }
-
     @Override
     public void setCurrentSosu(UUID id) {
         SOSU sosu = new SOSU(controllerDB.retrieveSosuName(id), controllerDB.retrieveSosuUsername(id), id);
