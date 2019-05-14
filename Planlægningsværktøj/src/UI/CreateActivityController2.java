@@ -66,6 +66,15 @@ public class CreateActivityController2 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
+        nameLabel.setText(pl.getiController().getCurrentCitizen().getName());
+        
+         mandagMenuButton.setUserData(0);
+        tirsdagMenuButton.setUserData(1);
+        onsdagMenuButton.setUserData(2);
+        torsdagMenuButton.setUserData(3);
+        fredagMenuButton.setUserData(4);
+        lørdagMenuButton.setUserData(5);
+        søndagMenuButton.setUserData(6);
         
     }    
     @FXML

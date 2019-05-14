@@ -3,6 +3,7 @@ package UI;
 import domain.users.Citizen;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +20,7 @@ public class SOSUMainController implements Initializable {
     @FXML
     private Label displayName;
     @FXML
-    private ListView<Citizen> citizenLv;
+    private ListView<String> citizenLv;
     @FXML
     private Button seeScheduleBtn;
     @FXML
@@ -27,9 +28,10 @@ public class SOSUMainController implements Initializable {
     @FXML
     private Button createActivityBtn;
 
-    ObservableList<Citizen> obsCit = null;
+    ObservableList<UUID> obsUUID;
+    
+    ObservableList<String> obsString;
 
-    Planlægningsværktøj pv;
     @FXML
     private Button updateButton;
     @FXML
@@ -41,8 +43,15 @@ public class SOSUMainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
-        obsCit = FXCollections.observableArrayList(pl.getiController().getCurrentSosu().getCitizens());
-        citizenLv.setItems(obsCit);
+        obsUUID = FXCollections.observableArrayList();
+        for (int i = 0; i < pl.getiController().getCurrentSosu().getCitizens().size(); i++) {
+            obsUUID.add(pl.getiController().getCurrentSosu().getCitizens().get(i).getId());
+        }
+        obsString = FXCollections.observableArrayList();
+        for (UUID i : obsUUID) {
+            obsString.add(pl.getiController().retrieveCitizenName(i));
+        }
+        citizenLv.setItems(obsString);
     }
 
     @FXML
@@ -52,11 +61,25 @@ public class SOSUMainController implements Initializable {
 
     @FXML
     private void updateBtnHandler(ActionEvent event) {
-        citizenLv.setItems(obsCit);
+        obsUUID.clear();
+        obsString.clear();
+        obsUUID = FXCollections.observableArrayList();
+        for (int i = 0; i < pl.getiController().getCurrentSosu().getCitizens().size(); i++) {
+            obsUUID.add(pl.getiController().getCurrentSosu().getCitizens().get(i).getId());
+        }
+        obsString = FXCollections.observableArrayList();
+        for (UUID i : obsUUID) {
+            obsString.add(pl.getiController().retrieveCitizenName(i));
+        }
+        
+        citizenLv.setItems(obsString);
     }
 
     @FXML
     private void createActivityBtnHandler(ActionEvent event) {
+        UUID citID = obsUUID.get(citizenLv.getSelectionModel().getSelectedIndex());
+        String username = pl.getiController().retrieveCitizenUsername(obsUUID.get(citizenLv.getSelectionModel().getSelectedIndex()));
+        pl.getiController().setCurrentCitizen(citID, username);
         pl.changeScene("CreateActivity2.fxml");
     }
 
