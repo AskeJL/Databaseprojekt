@@ -52,14 +52,12 @@ public class LoginController implements Initializable {
         if (type == 1) {
             UUID id = controller.retrieveSosuId(userName.getText());
             controller.setCurrentSosu(id);
-            System.out.println(controller.getCurrentSosu().toString());
             pl.changeScene("SOSUMain.fxml");
         }
         //Citizen login
         else if(type == 2){
             UUID id = controller.retrieveCitizenID(userName.getText());
-            controller.setCurrentCitizen(id, userName.getText());
-            System.out.println(controller.getCurrentCitizen().getSchedule().toString());
+            controller.setCurrentCitizen(id, userName.getText());System.out.println(controller.getCurrentCitizen().getSchedule().toString());
             pl.changeScene("BorgerSchedule.fxml");
         }
         
