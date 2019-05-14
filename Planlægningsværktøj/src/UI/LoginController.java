@@ -1,11 +1,7 @@
 package UI;
 
-import domain.users.Citizen;
 import interfaces.IController;
-import interfaces.IControllerDB;
-import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,18 +11,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import sun.java2d.loops.SurfaceType;
 import java.util.UUID;
 
 public class LoginController implements Initializable {
 
-    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
+    Planlægningsværktøj pl;
     IController controller;
-    
+
     @FXML
     private Label label;
     @FXML
@@ -42,8 +35,9 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        pl = Planlægningsværktøj.getInstance();
         controller = pl.getiController();
-        
+
         passWord.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
                 handleLoginBtn(new ActionEvent());
@@ -60,17 +54,14 @@ public class LoginController implements Initializable {
             controller.setCurrentSosu(id);
             System.out.println(controller.getCurrentSosu().toString());
             pl.changeScene("SOSUMain.fxml");
-        }
-        //Citizen login
-        else if(type == 2){
+        } //Citizen login
+        else if (type == 2) {
             UUID id = controller.retrieveCitizenID(userName.getText());
             controller.setCurrentCitizen(id, userName.getText());
             System.out.println(controller.getCurrentCitizen().getSchedule().toString());
             pl.changeScene("BorgerSchedule.fxml");
+        } else {
+
         }
-        
-        else {
-            
-        }
-}
+    }
 }

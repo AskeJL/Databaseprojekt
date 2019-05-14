@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 
 public class SOSUActivitiesController implements Initializable {
 
-    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
+    Planlægningsværktøj pl;
     @FXML
     private Label dayLabel;
     @FXML
@@ -32,7 +32,7 @@ public class SOSUActivitiesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        pl = Planlægningsværktøj.getInstance();
     }
 
     @FXML

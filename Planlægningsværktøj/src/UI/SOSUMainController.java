@@ -1,10 +1,7 @@
 package UI;
 
-import domain.Controller;
 import domain.users.Citizen;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +14,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class SOSUMainController implements Initializable {
-    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
+
+    Planlægningsværktøj pl;
     @FXML
     private Label displayName;
     @FXML
@@ -30,9 +28,9 @@ public class SOSUMainController implements Initializable {
     private TextField searchField;
     @FXML
     private Button createActivityBtn;
-    
+
     ObservableList<Citizen> obsCit = null;
-    
+
     Planlægningsværktøj pv;
     @FXML
     private Button updateButton;
@@ -42,10 +40,10 @@ public class SOSUMainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        pl = Planlægningsværktøj.getInstance();
         obsCit = FXCollections.observableArrayList(pl.getiController().getCurrentSosu().getCitizens());
         citizenLv.setItems(obsCit);
-    }    
-
+    }
 
     @FXML
     private void seeScheduleBtnHandle(ActionEvent event) {
@@ -66,5 +64,5 @@ public class SOSUMainController implements Initializable {
     private void createActivityBtnHandler(ActionEvent event) {
         pl.changeScene("CreateActivity.fxml");
     }
-    
+
 }
