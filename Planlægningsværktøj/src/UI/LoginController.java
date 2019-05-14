@@ -37,8 +37,6 @@ public class LoginController implements Initializable {
     private Text loginFail;
     @FXML
     private Button loginBtn;
-    @FXML
-    private ToggleGroup userType;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
