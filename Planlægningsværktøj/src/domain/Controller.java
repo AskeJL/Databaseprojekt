@@ -20,6 +20,7 @@ public class Controller implements IController {
         for (UUID uuid : array) {
             System.out.println(uuid.toString());
         }
+        
 //        SOSU sosutest = new SOSU("sosutest", "sosutest");
 //        controller.storeSOSU(sosutest, "sosutest");
 //        Citizen test2 = new Citizen("test2", "test2", "198112", new Date());

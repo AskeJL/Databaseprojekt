@@ -18,6 +18,7 @@ public class Planlægningsværktøj extends Application {
 
     public static Stage stage;
     private final IController iController = new Controller();
+    int currentDay;
 
     public IController getiController() {
         return iController;
@@ -57,6 +58,15 @@ public class Planlægningsværktøj extends Application {
             System.out.println("Can't load window" + e);
         }
     }
+
+    public int getCurrentDay() {
+        return currentDay;
+    }
+
+    public void setCurrentDay(int currentDay) {
+        this.currentDay = currentDay;
+    }
+    
 
     /**
      * @param args the command line arguments
