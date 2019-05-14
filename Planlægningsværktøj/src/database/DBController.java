@@ -1,5 +1,6 @@
 package database;
 
+import domain.Activity;
 import domain.users.Citizen;
 import domain.users.SOSU;
 import interfaces.IControllerDB;
@@ -217,7 +218,7 @@ public class DBController implements IControllerDB {
     public String[][] retrieveCitizenActivities(UUID userID) {
         String[][] toBeReturned = null;
         int arraySize;
-        int activityParameterCount = 6;
+        int activityParameterCount = 7;
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql1
@@ -231,7 +232,7 @@ public class DBController implements IControllerDB {
             arraySize = rs1.getInt(1);
             toBeReturned = new String[arraySize][activityParameterCount];
             String sql2
-                    = "SELECT name, description, start_time, stop_time, day, pictogram_path "
+                    = "SELECT name, description, start_time, stop_time, day, pictogram_path, activity_id "
                     + "FROM activities "
                     + "WHERE citizen_id = CAST(? AS uuid)";
             PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
@@ -315,14 +316,14 @@ public class DBController implements IControllerDB {
                     + "(SELECT sosu_id "
                     + "FROM sosu "
                     + "WHERE sosu_id = CAST(? AS UUID));";
-            
+
             PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
             preparedStatement1.setString(1, sosuID.toString());
             ResultSet rs1 = preparedStatement1.executeQuery();
             rs1.next();
             int arraySize = rs1.getInt(1);
             array = new UUID[arraySize];
-            
+
             String sql2
                     = "SELECT Citizen_id "
                     + "FROM citizens "
@@ -334,7 +335,7 @@ public class DBController implements IControllerDB {
             preparedStatement2.setString(1, sosuID.toString());
             ResultSet rs2 = preparedStatement2.executeQuery();
             int counter = 0;
-            while (rs2.next()){
+            while (rs2.next()) {
                 array[counter] = UUID.fromString(rs2.getString(1));
                 counter++;
             }
@@ -345,8 +346,6 @@ public class DBController implements IControllerDB {
         }
         return null;
     }
-
-    //KASTER EN PSQL EXCEPTION FOR RS NOT POSITIONEN PROPERLY, WTF, WHY?s
     @Override
     public String retrieveSosuUsername(UUID sosuID) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
@@ -358,10 +357,56 @@ public class DBController implements IControllerDB {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, sosuID.toString());
             ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-            return rs.getString(1);
+            if (rs.next()) {
+                return rs.getString(1);
+            }
 
         } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public UUID[] retrieveCitizenActivityIds(UUID citizenId) {
+        UUID[] array;
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql1
+                    = "SELECT count(activity_id) "
+                    + "FROM activities "
+                    + "WHERE activities.citizen_id IN "
+                    + "(SELECT citizen_id "
+                    + "FROM citizens "
+                    + "WHERE citizen_id = CAST(? AS UUID));";
+
+            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
+            preparedStatement1.setString(1, citizenId.toString());
+            ResultSet rs1 = preparedStatement1.executeQuery();
+            rs1.next();
+            int arraySize = rs1.getInt(1);
+            array = new UUID[arraySize];
+
+            String sql2
+                    = "SELECT activity_id "
+                    + "FROM activities "
+                    + "WHERE activities.citizen_id IN "
+                    + "(SELECT citizen_id "
+                    + "FROM citizens "
+                    + "WHERE citizen_id = CAST(? AS UUID));";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+            preparedStatement2.setString(1, citizenId.toString());
+            ResultSet rs2 = preparedStatement2.executeQuery();
+            int counter = 0;
+            while (rs2.next()) {
+                array[counter] = UUID.fromString(rs2.getString(1));
+                counter++;
+            }
+            return array;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

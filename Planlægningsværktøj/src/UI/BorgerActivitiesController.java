@@ -1,7 +1,11 @@
 package UI;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.UUID;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,11 +20,15 @@ public class BorgerActivitiesController implements Initializable {
     @FXML
     private Label dayLabel;
     @FXML
-    private ListView<?> activitiesLv;
+    private ListView<String> activitiesLv;
     @FXML
     private ImageView pictogramIv;
     @FXML
     private TextArea pictogramTa;
+
+    int chosenDay;
+
+    ObservableList<String> obsAct;
 
     /**
      * Initializes the controller class.
@@ -28,11 +36,26 @@ public class BorgerActivitiesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
+        dayLabel.setText(pl.dayArray[pl.getCurrentDay()]);
+        chosenDay = pl.getCurrentDay();
+        //TODO, show only the activities of a certain day
+        obsAct = FXCollections.observableArrayList(translateAcitivtyIds(pl.getiController().retrieveCitizenActivityIds(pl.getiController().getCurrentCitizen().getId())));
+        activitiesLv.setItems(obsAct);
     }
 
     @FXML
     private void goBackButtonHandle(ActionEvent event) {
         pl.changeScene("BorgerSchedule.fxml");
+    }
+
+    public ArrayList<String> translateAcitivtyIds(UUID[] ids) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        UUID[] toTranslate = pl.getiController().retrieveCitizenActivityIds(pl.getiController().getCurrentCitizen().getId());
+        for (UUID id : toTranslate) {
+            arrayList.add(pl.getiController().getActivityName(pl.getiController().getCurrentCitizen().getId(), id));
+        }
+        System.out.println(arrayList);
+        return arrayList;
     }
 
 }
