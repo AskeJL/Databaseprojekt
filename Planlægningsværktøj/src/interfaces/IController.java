@@ -21,9 +21,9 @@ public interface IController {
 
     String getPictogramPath(UUID userID, UUID activityID);
 
-    public void setCurrentCitizen(UUID currentUser, String username);
+    void setCurrentCitizen(UUID currentUser, String username);
 
-    public void setCurrentSosu(SOSU currentSosu);
+    void setCurrentSosu(UUID id);
 
     public Citizen getCurrentCitizen();
 

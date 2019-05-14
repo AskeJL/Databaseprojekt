@@ -34,7 +34,9 @@ public interface IControllerDB {
     //(delete) methods for retrieving a sosu-object, to be set as currentSOSU
     UUID retrieveSosuId (String username);
     
-    String retrieveSosuName(UUID citizenID);
+    String retrieveSosuName(UUID sosuID);
+    
+    String retrieveSosuUsername(UUID sosuID);
     
     UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
 

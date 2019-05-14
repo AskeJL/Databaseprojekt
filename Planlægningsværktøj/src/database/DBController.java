@@ -194,15 +194,15 @@ public class DBController implements IControllerDB {
     }
 
     @Override
-    public String retrieveSosuName(UUID citizenID) {
+    public String retrieveSosuName(UUID sosuID) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
                     = "SELECT name "
                     + "FROM sosu "
-                    + "WHERE citizen_id = CAST(? AS uuid)";
+                    + "WHERE sosu_id = CAST(? AS uuid)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, citizenID.toString());
+            preparedStatement.setString(1, sosuID.toString());
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             return rs.getString(1);
@@ -339,6 +339,27 @@ public class DBController implements IControllerDB {
                 counter++;
             }
             return array;
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    //KASTER EN PSQL EXCEPTION FOR RS NOT POSITIONEN PROPERLY, WTF, WHY?
+    @Override
+    public String retrieveSosuUsername(UUID sosuID) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT username "
+                    + "FROM sosu "
+                    + "WHERE sosu_id = CAST(? AS uuid)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, sosuID.toString());
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getString(1);
 
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);

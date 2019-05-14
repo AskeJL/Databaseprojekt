@@ -50,8 +50,10 @@ public class LoginController implements Initializable {
         int type = controller.authenticate(userName.getText(), passWord.getText());
         //SOSU login
         if (type == 1) {
-            
-            
+            UUID id = controller.retrieveSosuId(userName.getText());
+            controller.setCurrentSosu(id);
+            System.out.println(controller.getCurrentSosu().toString());
+            pl.changeScene("SOSUMain.fxml");
         }
         //Citizen login
         else if(type == 2){

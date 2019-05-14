@@ -35,4 +35,8 @@ public class SOSU extends User {
         //TODO check if exists
         citizens.remove(citizen);
     }
+    @Override
+    public String toString(){
+        return getName()+" "+getUsername();
+    }
 }

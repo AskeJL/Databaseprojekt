@@ -17,7 +17,7 @@ public class Controller implements IController {
     public static void main(String[] args) {
         Controller controller = new Controller();
         UUID[] array = controller.retrieveCitizenIdsForSosu(UUID.fromString("7a88db07-3cad-43f5-9e18-bb277aa21ef8"));
-        for (UUID uuid : array){
+        for (UUID uuid : array) {
             System.out.println(uuid.toString());
         }
 //        SOSU sosutest = new SOSU("sosutest", "sosutest");
@@ -30,7 +30,6 @@ public class Controller implements IController {
 //                activity.getStartTime(), activity.getEndTime(), activity.getDayOfTheWeek(), activity.getPictogramPath());
 //
 //        System.out.println("Activity info: \n" + Arrays.deepToString(controller.controllerDB.retrieveCitizenActivities(test2.getId())));
-
 //        sosu.addCitizen(james);
 //        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
 //        int auth = controller.getDBController().authenticate("james23", "jamesHotHot");
@@ -134,8 +133,18 @@ public class Controller implements IController {
     }
 
     @Override
-    public void setCurrentSosu(SOSU currentSosu) {
-        this.currentSosu = currentSosu;
+    public void setCurrentSosu(UUID id) {
+        SOSU sosu = new SOSU(controllerDB.retrieveSosuName(id), controllerDB.retrieveSosuUsername(id), id);
+        UUID[] citizenIds = controllerDB.retrieveCitizenIdsForSosu(id);
+        for (UUID cID : citizenIds) {
+            Schedule schedule = new Schedule();
+            String[][] activities = controllerDB.retrieveCitizenActivities(cID);
+            for (String[] a : activities) {
+                schedule.addActivity(new Activity(a[0], a[1], Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]), a[5]));
+            }
+            sosu.addCitizen(new Citizen(controllerDB.retrieveCitizenName(cID), controllerDB.retrieveSosuUsername(cID), retrieveCitizenCPR(cID), retrieveCitizenBirthday(cID), cID, schedule));
+        }
+        this.currentSosu = sosu;
     }
 
     @Override
