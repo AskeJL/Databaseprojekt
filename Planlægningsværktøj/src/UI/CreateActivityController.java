@@ -57,6 +57,8 @@ public class CreateActivityController implements Initializable {
 
     private String path;
 
+    ObservableList<UUID> obsUUID;
+
     /**
      * Initializes the controller class.
      */
@@ -64,17 +66,16 @@ public class CreateActivityController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
 
-        ObservableList<UUID> obsUUID = FXCollections.observableArrayList();
+        obsUUID = FXCollections.observableArrayList();
         for (int i = 0; i < pl.getiController().getCurrentSosu().getCitizens().size(); i++) {
             obsUUID.add(pl.getiController().getCurrentSosu().getCitizens().get(i).getId());
         }
-         ObservableList<String> obsString = FXCollections.observableArrayList();
-         for (UUID i : obsUUID){
-             obsString.add(pl.getiController().retrieveCitizenName(i));
-         }
-        
+        ObservableList<String> obsString = FXCollections.observableArrayList();
+        for (UUID i : obsUUID) {
+            obsString.add(pl.getiController().retrieveCitizenName(i));
+        }
+
         borgerList.setItems(obsString);
-        
 
         mandagMenuButton.setUserData(0);
         tirsdagMenuButton.setUserData(1);
@@ -88,13 +89,13 @@ public class CreateActivityController implements Initializable {
 
     @FXML
     private void addActivityButtonHandler(ActionEvent event) {
-            String name = activityNameField.getText();
-            String description = descriptionArea.getText();
-            int sTime = Integer.parseInt(startTime.getText());
-            int eTime = Integer.parseInt(endTime.getText());
-            int day = (int) dagToggle.getSelectedToggle().getUserData();
-            //Get Citizen form listview
-            pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
+        pl.getiController().setCurrentCitizen(obsUUID.get(borgerList.getSelectionModel().getSelectedIndex()), borgerList.getSelectionModel().getSelectedItem());
+        String name = activityNameField.getText();
+        String description = descriptionArea.getText();
+        int sTime = Integer.parseInt(startTime.getText());
+        int eTime = Integer.parseInt(endTime.getText());
+        int day = (int) dagToggle.getSelectedToggle().getUserData();
+        pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
     }
 
     @FXML
