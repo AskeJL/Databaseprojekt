@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 
 public class BorgerScheduleController implements Initializable {
 
-    Planlægningsværktøj pl = Planlægningsværktøj.getInstance();
+    Planlægningsværktøj pl;
     @FXML
     private Label displayName;
 
@@ -18,7 +18,7 @@ public class BorgerScheduleController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        pl = Planlægningsværktøj.getInstance();
     }
 
     @FXML
