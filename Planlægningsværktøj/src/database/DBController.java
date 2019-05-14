@@ -117,7 +117,7 @@ public class DBController implements IControllerDB {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
-                    = "SELECT cpr "
+                    = "SELECT CPR "
                     + "FROM citizens "
                     + "WHERE citizen_id = CAST(? AS uuid)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -378,8 +378,9 @@ public class DBController implements IControllerDB {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, sosuID.toString());
             ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
+            if(rs.next()){
             return rs.getString(1);
+            }
 
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
