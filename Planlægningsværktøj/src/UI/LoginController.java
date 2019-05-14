@@ -43,6 +43,12 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = pl.getiController();
+        
+        passWord.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                handleLoginBtn(new ActionEvent());
+            }
+        });
     }
 
     @FXML
