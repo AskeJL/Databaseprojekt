@@ -89,7 +89,9 @@ public class CreateActivityController implements Initializable {
 
     @FXML
     private void addActivityButtonHandler(ActionEvent event) {
-        pl.getiController().setCurrentCitizen(obsUUID.get(borgerList.getSelectionModel().getSelectedIndex()), borgerList.getSelectionModel().getSelectedItem());
+        UUID citID = obsUUID.get(borgerList.getSelectionModel().getSelectedIndex());
+        String username = pl.getiController().retrieveCitizenUsername(obsUUID.get(borgerList.getSelectionModel().getSelectedIndex()));
+        pl.getiController().setCurrentCitizen(citID, username);
         String name = activityNameField.getText();
         String description = descriptionArea.getText();
         int sTime = Integer.parseInt(startTime.getText());

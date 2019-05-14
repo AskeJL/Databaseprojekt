@@ -26,6 +26,8 @@ public interface IControllerDB {
     UUID retrieveCitizenID(String username);
 
     String retrieveCitizenName(UUID citizenID);
+    
+    public String retrieveCitizenUsername(UUID citizenID);
 
     String[][] retrieveCitizenActivities(UUID citizenID);
     

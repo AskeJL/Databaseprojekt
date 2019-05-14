@@ -192,6 +192,26 @@ public class DBController implements IControllerDB {
         }
         return null;
     }
+    
+    @Override
+    public String retrieveCitizenUsername(UUID citizenID) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "SELECT username "
+                    + "FROM citizens "
+                    + "WHERE citizen_id = CAST(? AS uuid)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, citizenID.toString());
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getString(1);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     @Override
     public String retrieveSosuName(UUID sosuID) {

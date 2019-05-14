@@ -52,4 +52,6 @@ public interface IController {
     UUID retrieveSosuId(String username);
     
     UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
+    
+    public String retrieveCitizenUsername(UUID citizenID);
 }

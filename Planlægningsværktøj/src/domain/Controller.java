@@ -176,6 +176,11 @@ public class Controller implements IController {
     public String retrieveCitizenName(UUID citizenID) {
         return controllerDB.retrieveCitizenName(citizenID);
     }
+    
+    @Override
+    public String retrieveCitizenUsername(UUID citizenID){
+        return controllerDB.retrieveCitizenUsername(citizenID);
+    }
 
     @Override
     public String retrieveSosuName(UUID citizenID) {
