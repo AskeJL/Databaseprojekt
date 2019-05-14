@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Planlægningsværktøj extends Application {
 
@@ -19,6 +20,7 @@ public class Planlægningsværktøj extends Application {
     public static Stage stage;
     private final IController iController = new Controller();
     int currentDay;
+    Scene scene;
 
     public IController getiController() {
         return iController;
@@ -35,7 +37,7 @@ public class Planlægningsværktøj extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
 
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
 
         scene.getStylesheets().add(Planlægningsværktøj.class.getResource("StyleSheet.css").toExternalForm());
 
@@ -49,7 +51,7 @@ public class Planlægningsværktøj extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(s));
             Parent root1 = (Parent) loader.load();
             Stage stage = Planlægningsværktøj.stage;
-            Scene scene = new Scene(root1);
+            scene = new Scene(root1);
             scene.getStylesheets().add(Planlægningsværktøj.class.getResource("StyleSheet.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
@@ -66,7 +68,6 @@ public class Planlægningsværktøj extends Application {
     public void setCurrentDay(int currentDay) {
         this.currentDay = currentDay;
     }
-    
 
     /**
      * @param args the command line arguments

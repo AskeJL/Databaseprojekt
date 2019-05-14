@@ -50,13 +50,13 @@ public class LoginController implements Initializable {
         if (type == 1) {
             UUID id = controller.retrieveSosuId(userName.getText());
             controller.setCurrentSosu(id);
-            pl.changeScene("SOSUMain.fxml");
+            pl.changeScene("SosuMainPage.fxml");
         } //Citizen login
         else if (type == 2) {
             UUID id = controller.retrieveCitizenID(userName.getText());
             controller.setCurrentCitizen(id, userName.getText());
             System.out.println(controller.getCurrentCitizen().getSchedule().toString());
-            pl.changeScene("BorgerSchedule.fxml");
+            pl.changeScene("CitizenMainPage.fxml");
         } else if (type == -1) {
             loginFail.setText("Ugyldig login.");
         }

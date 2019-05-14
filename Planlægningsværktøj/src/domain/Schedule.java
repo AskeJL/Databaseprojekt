@@ -50,4 +50,9 @@ public class Schedule implements Serializable {
             schedule.remove(activity);
         }
     }
+
+    public void addActivity(String name, String description, int sTime, int eTime, int day, String path) {
+        Activity activity = new Activity(name, description, sTime, eTime, day, path);
+        this.addActivity(activity);
+    }
 }

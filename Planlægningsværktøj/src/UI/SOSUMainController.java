@@ -23,8 +23,6 @@ public class SOSUMainController implements Initializable {
     @FXML
     private Button seeScheduleBtn;
     @FXML
-    private Button logOffBtn;
-    @FXML
     private TextField searchField;
     @FXML
     private Button createActivityBtn;
@@ -34,6 +32,8 @@ public class SOSUMainController implements Initializable {
     Planlægningsværktøj pv;
     @FXML
     private Button updateButton;
+    @FXML
+    private Button backBtn;
 
     /**
      * Initializes the controller class.
@@ -51,18 +51,18 @@ public class SOSUMainController implements Initializable {
     }
 
     @FXML
-    private void logOffBtnHandle(ActionEvent event) {
-        pl.changeScene("Login.fxml");
-    }
-
-    @FXML
     private void updateBtnHandler(ActionEvent event) {
         citizenLv.setItems(obsCit);
     }
 
     @FXML
     private void createActivityBtnHandler(ActionEvent event) {
-        pl.changeScene("CreateActivity.fxml");
+        pl.changeScene("CreateActivity2.fxml");
+    }
+
+    @FXML
+    private void backBtnHandler(ActionEvent event) {
+        pl.changeScene("SosuMainPage.fxml");
     }
 
 }

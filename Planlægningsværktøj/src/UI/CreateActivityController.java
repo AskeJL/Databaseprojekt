@@ -1,8 +1,8 @@
 package UI;
 
-import domain.users.Citizen;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,7 +31,7 @@ public class CreateActivityController implements Initializable {
     @FXML
     private TextField endTime;
     @FXML
-    private ListView<Citizen> borgerList;
+    private ListView<String> borgerList;
     @FXML
     private TextArea descriptionArea;
     @FXML
@@ -64,8 +64,17 @@ public class CreateActivityController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
 
-        ObservableList<Citizen> obsCit = FXCollections.observableArrayList(pl.getiController().getCurrentSosu().getCitizens());
-        borgerList.setItems(obsCit);
+        ObservableList<UUID> obsUUID = FXCollections.observableArrayList();
+        for (int i = 0; i < pl.getiController().getCurrentSosu().getCitizens().size(); i++) {
+            obsUUID.add(pl.getiController().getCurrentSosu().getCitizens().get(i).getId());
+        }
+         ObservableList<String> obsString = FXCollections.observableArrayList();
+         for (UUID i : obsUUID){
+             obsString.add(pl.getiController().retrieveCitizenName(i));
+         }
+        
+        borgerList.setItems(obsString);
+        
 
         mandagMenuButton.setUserData(0);
         tirsdagMenuButton.setUserData(1);
@@ -78,21 +87,19 @@ public class CreateActivityController implements Initializable {
     }
 
     @FXML
-    private void addActivityButtonHandle(ActionEvent event) {
-        String name = activityNameField.getText();
-        String description = descriptionArea.getText();
-        int sTime = Integer.parseInt(startTime.getText());
-        int eTime = Integer.parseInt(endTime.getText());
-        int day = (int) dagToggle.getSelectedToggle().getUserData();
-
-        //Use controller method instead
-        //Activity activity = new Activity(name, description, sTime, eTime, path, day);
-        //borgerList.getSelectionModel().getSelectedItem().getSchedule().addActivity(activity);
+    private void addActivityButtonHandler(ActionEvent event) {
+            String name = activityNameField.getText();
+            String description = descriptionArea.getText();
+            int sTime = Integer.parseInt(startTime.getText());
+            int eTime = Integer.parseInt(endTime.getText());
+            int day = (int) dagToggle.getSelectedToggle().getUserData();
+            //Get Citizen form listview
+            pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
     }
 
     @FXML
     private void goBackButtonHandle(ActionEvent event) {
-        pl.changeScene("SOSUActivities.fxml");
+        pl.changeScene("SOSUMain.fxml");
     }
 
     @FXML
