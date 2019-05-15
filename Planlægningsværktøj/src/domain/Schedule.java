@@ -13,10 +13,10 @@ public class Schedule implements Serializable {
     public Schedule() {
         schedule = new ArrayList();
     }
-    public Schedule(ArrayList<Activity> schedule){
+
+    public Schedule(ArrayList<Activity> schedule) {
         this.schedule = schedule;
     }
-            
 
     public ArrayList<Activity> getSchedule() {
         return schedule;
@@ -31,6 +31,15 @@ public class Schedule implements Serializable {
         for (Activity activity : schedule) {
             if (activity.getActivityID().equals(activityID)) {
                 return activity;
+            }
+        }
+        return null;
+    }
+
+    public UUID getActivityId(String name) {
+        for (Activity activity : schedule) {
+            if (activity.getName().equals(name)) {
+                return activity.getActivityID();
             }
         }
         return null;

@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class BorgerActivitiesController implements Initializable {
 
@@ -61,6 +62,13 @@ public class BorgerActivitiesController implements Initializable {
         }
         System.out.println(arrayList);
         return arrayList;
+    }
+
+    @FXML
+    private void handleLvMouseClickEvent(MouseEvent event) {
+        String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
+        UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
+        
     }
 
 }
