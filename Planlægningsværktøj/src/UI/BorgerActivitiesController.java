@@ -23,12 +23,16 @@ public class BorgerActivitiesController implements Initializable {
     private ListView<String> activitiesLv;
     @FXML
     private ImageView pictogramIv;
-    @FXML
-    private TextArea descriptionTa;
 
     int chosenDay;
 
     ObservableList<String> obsAct;
+    @FXML
+    private TextArea pictogramTa;
+    @FXML
+    private Label startTimeLabel;
+    @FXML
+    private Label endTimeLabel;
 
     /**
      * Initializes the controller class.
