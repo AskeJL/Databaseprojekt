@@ -13,7 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class SOSUActivitiesController implements Initializable {
 
@@ -25,8 +27,6 @@ public class SOSUActivitiesController implements Initializable {
     @FXML
     private ImageView pictogramIv;
     @FXML
-    private TextArea pictogramTa;
-    @FXML
     private Button removeActivityBtn;
     @FXML
     private Button createActivityBtn;
@@ -34,6 +34,18 @@ public class SOSUActivitiesController implements Initializable {
     int chosenDay;
 
     ObservableList<String> obsAct;
+    @FXML
+    private TextArea descriptionTa;
+    @FXML
+    private Button goBackBtn;
+    @FXML
+    private Button printActivityBtn;
+    @FXML
+    private Label activityTitelLbl;
+    @FXML
+    private Label startTimeLabel;
+    @FXML
+    private Label endTimeLabel;
 
     /**
      * Initializes the controller class.
@@ -44,7 +56,6 @@ public class SOSUActivitiesController implements Initializable {
         dayLabel.setText(pl.dayArray[pl.getCurrentDay()]);
         chosenDay = pl.getCurrentDay();
         System.out.println(chosenDay);
-        //TODO, show only the activities of a certain day
         obsAct = FXCollections.observableArrayList(translateAcitivtyIds(pl.getiController().retrieveCitizenActivityIdsForGivenDay(pl.getiController().getCurrentCitizen().getId(), chosenDay)));
         activitiesLv.setItems(obsAct);
     }
@@ -74,6 +85,18 @@ public class SOSUActivitiesController implements Initializable {
         }
         System.out.println(arrayList);
         return arrayList;
+    }
+
+    @FXML
+    private void lvClickedHandler(MouseEvent event) {
+        
+        if(activitiesLv.getSelectionModel().getSelectedItem() != null){
+            Image image = new Image("activity image path");
+            pictogramIv.setImage(image);
+            activityTitelLbl.setText("ListView selection navn");
+            descriptionTa.setText("list view selection description");
+            
+        }
     }
 
 }
