@@ -68,7 +68,10 @@ public class SOSUActivitiesController implements Initializable {
 
     @FXML
     private void removeActivityBtnHandle(ActionEvent event) {
-        pl.activitiesLv.getSelectionModel().getSelectedItem()
+        String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
+        UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
+        pl.getiController().getCurrentCitizen().getSchedule().removeActivity(activityId);
+        pl.getiController().deleteActivity(activityId);
     }
 
     @FXML

@@ -387,6 +387,21 @@ public class DBController implements IControllerDB {
         }
         return null;
     }
+    @Override
+    public void deleteActivity(UUID activityId) {
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql
+                    = "DELETE "
+                    + "FROM activities "
+                    + "WHERE activity_id = CAST(? AS UUID)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, activityId.toString());
+            preparedStatement.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 //    @Override
 //    public UUID[] retrieveCitizenActivityIds(UUID citizenId) {

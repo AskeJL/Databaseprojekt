@@ -37,4 +37,6 @@ public interface IControllerDB {
 
     UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
 
+    public void deleteActivity(UUID activityId);
+
 }

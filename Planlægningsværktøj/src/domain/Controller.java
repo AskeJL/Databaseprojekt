@@ -202,4 +202,9 @@ public class Controller implements IController {
     public UUID[] retrieveCitizenIdsForSosu(UUID sosuID) {
         return controllerDB.retrieveCitizenIdsForSosu(sosuID);
     }
+
+    @Override
+    public void deleteActivity(UUID activityId) {
+       controllerDB.deleteActivity(activityId);
+    }
 }

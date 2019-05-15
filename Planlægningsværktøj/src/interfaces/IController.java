@@ -56,4 +56,6 @@ public interface IController {
 
     public String retrieveCitizenUsername(UUID citizenID);
 
+    public void deleteActivity(UUID activityId);
+
 }

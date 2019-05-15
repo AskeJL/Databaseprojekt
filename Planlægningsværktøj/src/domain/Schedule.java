@@ -1,13 +1,14 @@
 package domain;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
 
-public class Schedule implements Serializable {
+public class Schedule {
 
     //TODO update sequence diagram for the usecase opretAktivitet
+    Controller controller = new Controller();
+    
     private ArrayList<Activity> schedule;
 
     public Schedule() {
@@ -49,11 +50,11 @@ public class Schedule implements Serializable {
         }
         return null;
     }
-    
-    public ArrayList<String> getActivityNamesOfday(int day){
+
+    public ArrayList<String> getActivityNamesOfday(int day) {
         ArrayList<String> al = new ArrayList<>();
-        for (Activity a : schedule){
-            if (a.getDayOfTheWeek() == day){
+        for (Activity a : schedule) {
+            if (a.getDayOfTheWeek() == day) {
                 al.add(a.getName());
             }
         }
@@ -69,9 +70,11 @@ public class Schedule implements Serializable {
         return returnString;
     }
 
-    public void removeActivity(Activity activity) {
-        if (schedule.contains(activity)) {
-            schedule.remove(activity);
+    public void removeActivity(UUID id) {
+        for (Activity activity : schedule) {
+            if (activity.getActivityID().equals(id)) {
+                schedule.remove(activity);
+            }
         }
     }
 
