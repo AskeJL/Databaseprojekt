@@ -46,7 +46,7 @@ public class SOSUActivitiesController implements Initializable {
 
     @FXML
     private void createActivityBtnHandle(ActionEvent event) {
-        pl.changeScene("CreateActivity.fxml");
+        pl.changeScene("CreateActivity2.fxml");
     }
 
     @FXML
