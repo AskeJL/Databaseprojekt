@@ -231,4 +231,9 @@ public class Controller implements IController {
     public UUID[] retrieveCitizenActivityIds(UUID citizenId) {
         return controllerDB.retrieveCitizenActivityIds(citizenId);
     }
+
+    @Override
+    public UUID[] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day) {
+        return controllerDB.retrieveCitizenActivityIdsForGivenDay(citizenId, day);
+    }
 }

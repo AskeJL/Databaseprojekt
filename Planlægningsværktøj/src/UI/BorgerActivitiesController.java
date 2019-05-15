@@ -24,7 +24,7 @@ public class BorgerActivitiesController implements Initializable {
     @FXML
     private ImageView pictogramIv;
     @FXML
-    private TextArea pictogramTa;
+    private TextArea descriptionTa;
 
     int chosenDay;
 
@@ -38,9 +38,11 @@ public class BorgerActivitiesController implements Initializable {
         pl = Planlægningsværktøj.getInstance();
         dayLabel.setText(pl.dayArray[pl.getCurrentDay()]);
         chosenDay = pl.getCurrentDay();
+        System.out.println(chosenDay);
         //TODO, show only the activities of a certain day
-        obsAct = FXCollections.observableArrayList(translateAcitivtyIds(pl.getiController().retrieveCitizenActivityIds(pl.getiController().getCurrentCitizen().getId())));
+        obsAct = FXCollections.observableArrayList(translateAcitivtyIds(pl.getiController().retrieveCitizenActivityIdsForGivenDay(pl.getiController().getCurrentCitizen().getId(), chosenDay)));
         activitiesLv.setItems(obsAct);
+        
     }
 
     @FXML
@@ -50,8 +52,7 @@ public class BorgerActivitiesController implements Initializable {
 
     public ArrayList<String> translateAcitivtyIds(UUID[] ids) {
         ArrayList<String> arrayList = new ArrayList<>();
-        UUID[] toTranslate = pl.getiController().retrieveCitizenActivityIds(pl.getiController().getCurrentCitizen().getId());
-        for (UUID id : toTranslate) {
+        for (UUID id : ids) {
             arrayList.add(pl.getiController().getActivityName(pl.getiController().getCurrentCitizen().getId(), id));
         }
         System.out.println(arrayList);

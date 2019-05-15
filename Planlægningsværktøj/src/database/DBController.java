@@ -411,4 +411,56 @@ public class DBController implements IControllerDB {
         }
         return null;
     }
+
+    @Override
+    public UUID[] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day) {
+        UUID[] array;
+        try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
+            Class.forName("org.postgresql.Driver");
+            String sql1
+                    = "SELECT count(activity_id) "
+                    + "FROM activities "
+                    + "WHERE activities.citizen_id IN "
+                    + "(SELECT citizen_id "
+                    + "FROM citizens "
+                    + "WHERE citizen_id = CAST(? AS UUID)) "
+                    + "AND activities.day = CAST(? AS integer);";
+
+            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
+            preparedStatement1.setString(1, citizenId.toString());
+            preparedStatement1.setString(2, String.valueOf(day));
+            ResultSet rs1 = preparedStatement1.executeQuery();
+            rs1.next();
+            int arraySize = rs1.getInt(1);
+            array = new UUID[arraySize];
+
+            String sql2
+                    = "SELECT activity_id "
+                    + "FROM activities "
+                    + "WHERE activities.citizen_id IN "
+                    + "(SELECT citizen_id "
+                    + "FROM citizens "
+                    + "WHERE citizen_id = CAST(? AS UUID)) "
+                    + "AND activities.day = CAST(? AS integer);";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+            preparedStatement2.setString(1, citizenId.toString());
+            preparedStatement2.setString(2, String.valueOf(day));
+            ResultSet rs2 = preparedStatement2.executeQuery();
+            int counter = 0;
+            while (rs2.next()) {
+                array[counter] = UUID.fromString(rs2.getString(1));
+                counter++;
+            }
+            for (UUID id : array){
+                System.out.println(id.toString());
+            }
+            return array;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

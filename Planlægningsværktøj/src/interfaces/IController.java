@@ -57,4 +57,7 @@ public interface IController {
     UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
     
     UUID[] retrieveCitizenActivityIds(UUID citizenId);
+    
+    UUID [] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day);
+    
 }

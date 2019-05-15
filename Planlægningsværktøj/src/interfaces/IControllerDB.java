@@ -43,6 +43,8 @@ public interface IControllerDB {
     
     UUID[] retrieveCitizenActivityIds(UUID citizenId);
     
+    UUID [] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day);
+    
 
    
 
