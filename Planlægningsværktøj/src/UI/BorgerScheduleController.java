@@ -68,7 +68,6 @@ public class BorgerScheduleController implements Initializable {
 
     @FXML
     private void logOffButtonHandle(ActionEvent event) {
-        pl.getiController().setCurrentCitizen(null, null);
         pl.changeScene("Login.fxml");
     }
 

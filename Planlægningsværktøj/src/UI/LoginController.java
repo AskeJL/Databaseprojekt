@@ -55,10 +55,9 @@ public class LoginController implements Initializable {
         else if (type == 2) {
             UUID id = controller.retrieveCitizenID(userName.getText());
             controller.setCurrentCitizen(id, userName.getText());
-            System.out.println(controller.getCurrentCitizen().getSchedule().toString());
             pl.changeScene("CitizenMainPage.fxml");
         } else if (type == -1) {
-            loginFail.setText("Ugyldig login.");
+            loginFail.setText("Ugyldigt login.");
         }
     }
 }

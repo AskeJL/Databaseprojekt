@@ -13,7 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class SOSUActivitiesController implements Initializable {
 
@@ -25,8 +27,6 @@ public class SOSUActivitiesController implements Initializable {
     @FXML
     private ImageView pictogramIv;
     @FXML
-    private TextArea pictogramTa;
-    @FXML
     private Button removeActivityBtn;
     @FXML
     private Button createActivityBtn;
@@ -34,6 +34,18 @@ public class SOSUActivitiesController implements Initializable {
     int chosenDay;
 
     ObservableList<String> obsAct;
+    @FXML
+    private TextArea descriptionTa;
+    @FXML
+    private Button goBackBtn;
+    @FXML
+    private Button printActivityBtn;
+    @FXML
+    private Label activityTitelLbl;
+    @FXML
+    private Label startTimeLabel;
+    @FXML
+    private Label endTimeLabel;
 
     /**
      * Initializes the controller class.
@@ -45,7 +57,7 @@ public class SOSUActivitiesController implements Initializable {
         chosenDay = pl.getCurrentDay();
         System.out.println(chosenDay);
         //TODO, show only the activities of a certain day
-        obsAct = FXCollections.observableArrayList(translateAcitivtyIds(pl.getiController().retrieveCitizenActivityIdsForGivenDay(pl.getiController().getCurrentCitizen().getId(), chosenDay)));
+        obsAct = FXCollections.observableArrayList(pl.getiController().getCurrentCitizen().getSchedule().getActivityNamesOfday(chosenDay));
         activitiesLv.setItems(obsAct);
     }
 
@@ -56,6 +68,10 @@ public class SOSUActivitiesController implements Initializable {
 
     @FXML
     private void removeActivityBtnHandle(ActionEvent event) {
+        String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
+        UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
+        pl.getiController().getCurrentCitizen().getSchedule().removeActivity(activityId);
+        pl.getiController().deleteActivity(activityId);
     }
 
     @FXML
@@ -66,14 +82,20 @@ public class SOSUActivitiesController implements Initializable {
     @FXML
     private void printActivityButtonHandle(ActionEvent event) {
     }
-    
-    public ArrayList<String> translateAcitivtyIds(UUID[] ids) {
-        ArrayList<String> arrayList = new ArrayList<>();
-        for (UUID id : ids) {
-            arrayList.add(pl.getiController().getActivityName(pl.getiController().getCurrentCitizen().getId(), id));
+
+    @FXML
+    private void lvClickedHandler(MouseEvent event) {
+        
+        if(activitiesLv.getSelectionModel().getSelectedItem() != null){
+            Image image = new Image("activity image path");
+            pictogramIv.setImage(image);
+            String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
+            UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
+            startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
+            endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
+            descriptionTa.setText(pl.getiController().getActivityDescription(activityId));
+            activityTitelLbl.setText(pl.getiController().getActivityName(activityId));
         }
-        System.out.println(arrayList);
-        return arrayList;
     }
 
 }
