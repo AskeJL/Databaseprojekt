@@ -44,6 +44,16 @@ public class Schedule implements Serializable {
         }
         return null;
     }
+    
+    public ArrayList<String> getActivityNamesOfday(int day){
+        ArrayList<String> al = new ArrayList<>();
+        for (Activity a : schedule){
+            if (a.getDayOfTheWeek() == day){
+                al.add(a.getName());
+            }
+        }
+        return al;
+    }
 
     public String toString() {      //TODO maybe delete or update
         String returnString = "";
