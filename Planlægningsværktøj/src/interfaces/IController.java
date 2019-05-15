@@ -1,6 +1,7 @@
 
 package interfaces;
 
+import domain.Activity;
 import domain.users.Citizen;
 import domain.users.SOSU;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public interface IController {
     public Citizen getCurrentCitizen();
 
     public SOSU getCurrentSosu();
+    
+    public String getCurrentCitizenName();
 
     //Databasereferencer
     // ----------------------------------
@@ -52,4 +55,11 @@ public interface IController {
     UUID retrieveSosuId(String username);
     
     UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
+    
+    public String retrieveCitizenUsername(UUID citizenID);
+    
+    UUID[] retrieveCitizenActivityIds(UUID citizenId);
+    
+    UUID [] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day);
+    
 }

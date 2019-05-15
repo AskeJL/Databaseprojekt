@@ -20,6 +20,7 @@ public class BorgerScheduleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
+        displayName.setText(pl.getiController().getCurrentCitizenName());
     }
 
     @FXML

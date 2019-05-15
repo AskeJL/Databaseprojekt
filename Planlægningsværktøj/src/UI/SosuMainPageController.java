@@ -1,0 +1,53 @@
+package UI;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
+/**
+ * FXML Controller class
+ *
+ * @author askel
+ */
+public class SosuMainPageController implements Initializable {
+
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Button seeCitizensBtn;
+    @FXML
+    private Button createActivityBtn;
+    @FXML
+    private Button logOffBtn;
+    
+    Planlægningsværktøj pl;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+         pl = Planlægningsværktøj.getInstance();
+         nameLabel.setText("Bruger: " + pl.getiController().getCurrentSosu().getName());
+    }
+
+    @FXML
+    private void seeCitizensBtnHandler(ActionEvent event) {
+        pl.changeScene("SOSUMain.fxml");
+    }
+
+    @FXML
+    private void createActivityBtnHandler(ActionEvent event) {
+        pl.changeScene("CreateActivity.fxml");
+    }
+
+    @FXML
+    private void logOffBtnHandler(ActionEvent event) {
+        pl.changeScene("Login.fxml");
+    }
+    
+}
