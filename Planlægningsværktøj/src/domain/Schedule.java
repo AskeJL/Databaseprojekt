@@ -13,10 +13,10 @@ public class Schedule implements Serializable {
     public Schedule() {
         schedule = new ArrayList();
     }
-    public Schedule(ArrayList<Activity> schedule){
+
+    public Schedule(ArrayList<Activity> schedule) {
         this.schedule = schedule;
     }
-            
 
     public ArrayList<Activity> getSchedule() {
         return schedule;
@@ -27,6 +27,11 @@ public class Schedule implements Serializable {
         Collections.sort(schedule);
     }
 
+    public void addActivity(String name, String description, int sTime, int eTime, int day, String path) {
+        Activity activity = new Activity(name, description, sTime, eTime, day, path);
+        this.addActivity(activity);
+    }
+
     public Activity getActivity(UUID activityID) {
         for (Activity activity : schedule) {
             if (activity.getActivityID().equals(activityID)) {
@@ -34,6 +39,25 @@ public class Schedule implements Serializable {
             }
         }
         return null;
+    }
+
+    public UUID getActivityId(String name) {
+        for (Activity activity : schedule) {
+            if (activity.getName().equals(name)) {
+                return activity.getActivityID();
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList<String> getActivityNamesOfday(int day){
+        ArrayList<String> al = new ArrayList<>();
+        for (Activity a : schedule){
+            if (a.getDayOfTheWeek() == day){
+                al.add(a.getName());
+            }
+        }
+        return al;
     }
 
     public String toString() {      //TODO maybe delete or update
@@ -51,8 +75,4 @@ public class Schedule implements Serializable {
         }
     }
 
-    public void addActivity(String name, String description, int sTime, int eTime, int day, String path) {
-        Activity activity = new Activity(name, description, sTime, eTime, day, path);
-        this.addActivity(activity);
-    }
 }
