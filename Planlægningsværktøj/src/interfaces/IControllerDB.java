@@ -1,5 +1,6 @@
 package interfaces;
 
+import domain.Activity;
 import domain.users.Citizen;
 import domain.users.SOSU;
 import java.util.Date;
@@ -15,6 +16,7 @@ public interface IControllerDB {
     void storeCitizen(Citizen citizen, String password, SOSU sosu);
 
     void storeSOSU(SOSU sosu, String password);
+
 
     //System-metoder:
     int authenticate(String username, String password);
@@ -32,8 +34,7 @@ public interface IControllerDB {
     String[][] retrieveCitizenActivities(UUID citizenID);
     
      void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
-    
-    //(delete) methods for retrieving a sosu-object, to be set as currentSOSU
+     
     UUID retrieveSosuId (String username);
     
     String retrieveSosuName(UUID sosuID);
@@ -41,6 +42,11 @@ public interface IControllerDB {
     String retrieveSosuUsername(UUID sosuID);
     
     UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
+    
+    UUID[] retrieveCitizenActivityIds(UUID citizenId);
+    
+    UUID [] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day);
+    
 
    
 

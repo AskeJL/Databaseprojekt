@@ -3,6 +3,8 @@ package UI;
 import domain.Controller;
 import interfaces.IController;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.UUID;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +23,7 @@ public class Planlægningsværktøj extends Application {
     private final IController iController = new Controller();
     int currentDay;
     Scene scene;
-
+    String[] dayArray = {"","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"};
     public IController getiController() {
         return iController;
     }
@@ -68,6 +70,11 @@ public class Planlægningsværktøj extends Application {
     public void setCurrentDay(int currentDay) {
         this.currentDay = currentDay;
     }
+    
+    public ArrayList<UUID> getAcitivitesForUserOnDay(UUID citizenId, int day){
+       return null;
+    }
+    
 
     /**
      * @param args the command line arguments

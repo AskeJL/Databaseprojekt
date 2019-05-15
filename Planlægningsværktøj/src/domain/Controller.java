@@ -16,15 +16,14 @@ public class Controller implements IController {
     //Main til test af kode
     public static void main(String[] args) {
         Controller controller = new Controller();
-        UUID[] array = controller.retrieveCitizenIdsForSosu(UUID.fromString("7a88db07-3cad-43f5-9e18-bb277aa21ef8"));
+        UUID[] array = controller.retrieveCitizenActivityIds(UUID.fromString("50586125-bfc9-4e3d-920c-95fa7bc433e5"));
         for (UUID uuid : array) {
             System.out.println(uuid.toString());
         }
-        
+
 //        SOSU sosutest = new SOSU("sosutest", "sosutest");
 //        controller.storeSOSU(sosutest, "sosutest");
 //        Citizen test2 = new Citizen("test2", "test2", "198112", new Date());
-
 //        controller.controllerDB.storeCitizen(test2, "test2", sosutest);
 //        Activity activity = new Activity("test", "test", 1200, 1400, 1, "loltrain.com");
 //        controller.controllerDB.storeActivity(activity.getActivityID(), test2.getId(), activity.getName(), activity.getDescription(),
@@ -67,9 +66,9 @@ public class Controller implements IController {
         return this.controllerDB;
     }
 
-    private Activity getActivity(UUID userID, UUID activityID) {
-        //TODO update 
-        return null;
+    @Override
+    public String getCurrentCitizenName() {
+        return getCurrentCitizen().getName();
     }
 
     @Override
@@ -85,27 +84,57 @@ public class Controller implements IController {
 
     @Override
     public String getActivityName(UUID userID, UUID activityID) {
-        return getActivity(userID, activityID).getName();
+        String[][] info = this.controllerDB.retrieveCitizenActivities(userID);
+        for (String[] a : info) {
+            if (a[6].equals(activityID.toString())) {
+                return a[0];
+            }
+        }
+        return "";
     }
 
     @Override
     public String getActivityDescription(UUID userID, UUID activityID) {
-        return getActivity(userID, activityID).getDescription();
+        String[][] info = this.controllerDB.retrieveCitizenActivities(userID);
+        for (String[] a : info) {
+            if (a[0].equals(activityID.toString())) {
+                return a[1];
+            }
+        }
+        return "";
     }
 
     @Override
     public int getActivityStartTime(UUID userID, UUID activityID) {
-        return getActivity(userID, activityID).getStartTime();
+        String[][] info = this.controllerDB.retrieveCitizenActivities(userID);
+        for (String[] a : info) {
+            if (a[0].equals(activityID.toString())) {
+                return Integer.parseInt(a[2]);
+            }
+        }
+        return 0;
     }
 
     @Override
     public int getActivityEndTime(UUID userID, UUID activityID) {
-        return getActivity(userID, activityID).getEndTime();
+        String[][] info = this.controllerDB.retrieveCitizenActivities(userID);
+        for (String[] a : info) {
+            if (a[0].equals(activityID.toString())) {
+                return Integer.parseInt(a[3]);
+            }
+        }
+        return 0;
     }
 
     @Override
     public String getPictogramPath(UUID userID, UUID activityID) {
-        return getActivity(userID, activityID).getPictogramPath();
+        String[][] info = this.controllerDB.retrieveCitizenActivities(userID);
+        for (String[] a : info) {
+            if (a[0].equals(activityID.toString())) {
+                return a[5];
+            }
+        }
+        return "";
     }
 
     @Override
@@ -132,6 +161,7 @@ public class Controller implements IController {
         }
         this.currentCitizen = new Citizen(retrieveCitizenName(id), username, retrieveCitizenCPR(id), retrieveCitizenBirthday(id), id, schedule);
     }
+
     @Override
     public void setCurrentSosu(UUID id) {
         SOSU sosu = new SOSU(controllerDB.retrieveSosuName(id), controllerDB.retrieveSosuUsername(id), id);
@@ -200,5 +230,15 @@ public class Controller implements IController {
     @Override
     public UUID[] retrieveCitizenIdsForSosu(UUID sosuID) {
         return controllerDB.retrieveCitizenIdsForSosu(sosuID);
+    }
+
+    @Override
+    public UUID[] retrieveCitizenActivityIds(UUID citizenId) {
+        return controllerDB.retrieveCitizenActivityIds(citizenId);
+    }
+
+    @Override
+    public UUID[] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day) {
+        return controllerDB.retrieveCitizenActivityIdsForGivenDay(citizenId, day);
     }
 }
