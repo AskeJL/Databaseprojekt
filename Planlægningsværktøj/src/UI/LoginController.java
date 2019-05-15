@@ -57,7 +57,7 @@ public class LoginController implements Initializable {
             controller.setCurrentCitizen(id, userName.getText());
             pl.changeScene("CitizenMainPage.fxml");
         } else if (type == -1) {
-            loginFail.setText("Ugyldig login.");
+            loginFail.setText("Ugyldigt login.");
         }
     }
 }

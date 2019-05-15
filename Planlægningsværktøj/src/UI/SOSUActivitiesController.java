@@ -68,7 +68,7 @@ public class SOSUActivitiesController implements Initializable {
 
     @FXML
     private void removeActivityBtnHandle(ActionEvent event) {
-        pl.activitiesLv.getSelectionModel().getSelectedItem()
+        //pl.activitiesLv.getSelectionModel().getSelectedItem()
     }
 
     @FXML
