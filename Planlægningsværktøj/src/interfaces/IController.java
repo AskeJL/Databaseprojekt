@@ -1,4 +1,3 @@
-
 package interfaces;
 
 import domain.Activity;
@@ -12,15 +11,15 @@ public interface IController {
 
     ArrayList<UUID> getSchedule(UUID userID);
 
-    String getActivityName(UUID userID, UUID activityID);
+    String getActivityName(UUID activityID);
 
-    String getActivityDescription(UUID userID, UUID activityID);
+    String getActivityDescription(UUID activityID);
 
-    int getActivityStartTime(UUID userID, UUID activityID);
+    int getActivityStartTime(UUID activityID);
 
-    int getActivityEndTime(UUID userID, UUID activityID);
+    int getActivityEndTime(UUID activityID);
 
-    String getPictogramPath(UUID userID, UUID activityID);
+    String getPictogramPath(UUID activityID);
 
     void setCurrentCitizen(UUID currentUser, String username);
 
@@ -29,7 +28,7 @@ public interface IController {
     public Citizen getCurrentCitizen();
 
     public SOSU getCurrentSosu();
-    
+
     public String getCurrentCitizenName();
 
     //Databasereferencer
@@ -53,13 +52,9 @@ public interface IController {
     void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
 
     UUID retrieveSosuId(String username);
-    
+
     UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
-    
+
     public String retrieveCitizenUsername(UUID citizenID);
-    
-    UUID[] retrieveCitizenActivityIds(UUID citizenId);
-    
-    UUID [] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day);
-    
+
 }

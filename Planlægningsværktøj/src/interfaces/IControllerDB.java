@@ -17,7 +17,6 @@ public interface IControllerDB {
 
     void storeSOSU(SOSU sosu, String password);
 
-
     //System-metoder:
     int authenticate(String username, String password);
 
@@ -28,26 +27,21 @@ public interface IControllerDB {
     UUID retrieveCitizenID(String username);
 
     String retrieveCitizenName(UUID citizenID);
-    
+
     public String retrieveCitizenUsername(UUID citizenID);
 
     String[][] retrieveCitizenActivities(UUID citizenID);
-    
-     void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
-     
-    UUID retrieveSosuId (String username);
-    
-    String retrieveSosuName(UUID sosuID);
-    
-    String retrieveSosuUsername(UUID sosuID);
-    
-    UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
-    
-    UUID[] retrieveCitizenActivityIds(UUID citizenId);
-    
-    UUID [] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day);
-    
 
-   
+    void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
+
+    UUID retrieveSosuId(String username);
+
+    String retrieveSosuName(UUID sosuID);
+
+    String retrieveSosuUsername(UUID sosuID);
+
+    UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
+
+//    UUID[] retrieveCitizenActivityIds(UUID citizenId);
 
 }
