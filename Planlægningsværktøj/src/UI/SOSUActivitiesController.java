@@ -45,7 +45,7 @@ public class SOSUActivitiesController implements Initializable {
         chosenDay = pl.getCurrentDay();
         System.out.println(chosenDay);
         //TODO, show only the activities of a certain day
-        obsAct = FXCollections.observableArrayList(translateAcitivtyIds(pl.getiController().retrieveCitizenActivityIdsForGivenDay(pl.getiController().getCurrentCitizen().getId(), chosenDay)));
+//        obsAct = FXCollections.observableArrayList(translateAcitivtyIds(pl.getiController().retrieveCitizenActivityIdsForGivenDay(pl.getiController().getCurrentCitizen().getId(), chosenDay)));
         activitiesLv.setItems(obsAct);
     }
 
@@ -70,7 +70,7 @@ public class SOSUActivitiesController implements Initializable {
     public ArrayList<String> translateAcitivtyIds(UUID[] ids) {
         ArrayList<String> arrayList = new ArrayList<>();
         for (UUID id : ids) {
-            arrayList.add(pl.getiController().getActivityName(pl.getiController().getCurrentCitizen().getId(), id));
+//            arrayList.add(pl.getiController().getActivityName(pl.getiController().getCurrentCitizen().getId(), id));
         }
         System.out.println(arrayList);
         return arrayList;

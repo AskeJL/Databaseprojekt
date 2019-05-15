@@ -16,10 +16,10 @@ public class Controller implements IController {
     //Main til test af kode
     public static void main(String[] args) {
         Controller controller = new Controller();
-        UUID[] array = controller.retrieveCitizenActivityIds(UUID.fromString("50586125-bfc9-4e3d-920c-95fa7bc433e5"));
-        for (UUID uuid : array) {
-            System.out.println(uuid.toString());
-        }
+//        UUID[] array = controller.retrieveCitizenActivityIds(UUID.fromString("50586125-bfc9-4e3d-920c-95fa7bc433e5"));
+//        for (UUID uuid : array) {
+//            System.out.println(uuid.toString());
+//        }
 
 //        SOSU sosutest = new SOSU("sosutest", "sosutest");
 //        controller.storeSOSU(sosutest, "sosutest");
@@ -73,6 +73,7 @@ public class Controller implements IController {
 
     @Override
     public ArrayList<UUID> getSchedule(UUID userID) {
+        
         ArrayList<UUID> returnSchedule = new ArrayList<>();
         //TODO Update
         //ArrayList<Activity> originalSchedule = getCitizen(userID).getSchedule().getSchedule();
@@ -83,58 +84,28 @@ public class Controller implements IController {
     }
 
     @Override
-    public String getActivityName(UUID userID, UUID activityID) {
-        String[][] info = this.controllerDB.retrieveCitizenActivities(userID);
-        for (String[] a : info) {
-            if (a[6].equals(activityID.toString())) {
-                return a[0];
-            }
-        }
-        return "";
+    public String getActivityName(UUID activityID) {
+        return currentCitizen.getSchedule().getActivity(activityID).getName();
     }
 
     @Override
-    public String getActivityDescription(UUID userID, UUID activityID) {
-        String[][] info = this.controllerDB.retrieveCitizenActivities(userID);
-        for (String[] a : info) {
-            if (a[0].equals(activityID.toString())) {
-                return a[1];
-            }
-        }
-        return "";
+    public String getActivityDescription(UUID activityID) {
+        return currentCitizen.getSchedule().getActivity(activityID).getDescription();
     }
 
     @Override
-    public int getActivityStartTime(UUID userID, UUID activityID) {
-        String[][] info = this.controllerDB.retrieveCitizenActivities(userID);
-        for (String[] a : info) {
-            if (a[0].equals(activityID.toString())) {
-                return Integer.parseInt(a[2]);
-            }
-        }
-        return 0;
+    public int getActivityStartTime(UUID activityID) {
+        return currentCitizen.getSchedule().getActivity(activityID).getStartTime();
     }
 
     @Override
-    public int getActivityEndTime(UUID userID, UUID activityID) {
-        String[][] info = this.controllerDB.retrieveCitizenActivities(userID);
-        for (String[] a : info) {
-            if (a[0].equals(activityID.toString())) {
-                return Integer.parseInt(a[3]);
-            }
-        }
-        return 0;
+    public int getActivityEndTime(UUID activityID) {
+        return currentCitizen.getSchedule().getActivity(activityID).getEndTime();
     }
 
     @Override
-    public String getPictogramPath(UUID userID, UUID activityID) {
-        String[][] info = this.controllerDB.retrieveCitizenActivities(userID);
-        for (String[] a : info) {
-            if (a[0].equals(activityID.toString())) {
-                return a[5];
-            }
-        }
-        return "";
+    public String getPictogramPath(UUID activityID) {
+        return currentCitizen.getSchedule().getActivity(activityID).getPictogramPath();
     }
 
     @Override
@@ -206,9 +177,9 @@ public class Controller implements IController {
     public String retrieveCitizenName(UUID citizenID) {
         return controllerDB.retrieveCitizenName(citizenID);
     }
-    
+
     @Override
-    public String retrieveCitizenUsername(UUID citizenID){
+    public String retrieveCitizenUsername(UUID citizenID) {
         return controllerDB.retrieveCitizenUsername(citizenID);
     }
 
@@ -230,15 +201,5 @@ public class Controller implements IController {
     @Override
     public UUID[] retrieveCitizenIdsForSosu(UUID sosuID) {
         return controllerDB.retrieveCitizenIdsForSosu(sosuID);
-    }
-
-    @Override
-    public UUID[] retrieveCitizenActivityIds(UUID citizenId) {
-        return controllerDB.retrieveCitizenActivityIds(citizenId);
-    }
-
-    @Override
-    public UUID[] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day) {
-        return controllerDB.retrieveCitizenActivityIdsForGivenDay(citizenId, day);
     }
 }
