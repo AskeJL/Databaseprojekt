@@ -49,6 +49,6 @@
             <Font size="34.0" />
          </font>
       </Button>
-      <Button layoutX="272.0" layoutY="359.0" mnemonicParsing="false" onAction="#logOffButtonHandle" text="Log af" />
+      <Button layoutX="272.0" layoutY="359.0" mnemonicParsing="false" onAction="#logOffButtonHandle" text="Tilbage" />
    </children>
 </AnchorPane>
