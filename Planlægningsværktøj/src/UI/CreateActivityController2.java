@@ -2,6 +2,7 @@ package UI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -85,6 +86,9 @@ public class CreateActivityController2 implements Initializable {
             int eTime = Integer.parseInt(endTime.getText());
             int day = (int) dagToggle.getSelectedToggle().getUserData();
             pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
+            UUID activityUUID = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(name);
+            UUID citID = pl.getiController().getCurrentCitizen().getId();
+            pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, day, day, path);
             
             
     }

@@ -98,6 +98,8 @@ public class CreateActivityController implements Initializable {
         int eTime = Integer.parseInt(endTime.getText());
         int day = (int) dagToggle.getSelectedToggle().getUserData();
         pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
+        UUID activityUUID = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(name);
+        pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, day, day, path);
     }
 
     @FXML
