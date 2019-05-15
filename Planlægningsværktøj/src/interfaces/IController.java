@@ -1,6 +1,5 @@
 package interfaces;
 
-import domain.Activity;
 import domain.users.Citizen;
 import domain.users.SOSU;
 import java.util.ArrayList;

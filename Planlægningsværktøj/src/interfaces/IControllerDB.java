@@ -1,15 +1,10 @@
 package interfaces;
 
-import domain.Activity;
 import domain.users.Citizen;
 import domain.users.SOSU;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- *
- * @author Joachim
- */
 public interface IControllerDB {
 
     //Admin-metoder:
@@ -41,7 +36,5 @@ public interface IControllerDB {
     String retrieveSosuUsername(UUID sosuID);
 
     UUID[] retrieveCitizenIdsForSosu(UUID sosuID);
-
-//    UUID[] retrieveCitizenActivityIds(UUID citizenId);
 
 }
