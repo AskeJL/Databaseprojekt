@@ -1,5 +1,6 @@
 package UI;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -61,7 +62,7 @@ public class BorgerActivitiesController implements Initializable {
         startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
         endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
         pictogramTa.setText(pl.getiController().getActivityDescription(activityId));
-        pictogramIv.setImage(new Image(pl.getiController().getPictogramPath(activityId)));
+        pictogramIv.setImage(new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString()));
     }
 
 }

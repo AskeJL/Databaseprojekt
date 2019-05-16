@@ -1,5 +1,6 @@
 package UI;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -89,8 +90,8 @@ public class SOSUActivitiesController implements Initializable {
         if(activitiesLv.getSelectionModel().getSelectedItem() != null){
             String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
             UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
-//            Image image = new Image(pl.getiController().getPictogramPath(activityId));
-//            pictogramIv.setImage(image);
+            Image image = new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString());
+            pictogramIv.setImage(image);
             startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
             endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
             descriptionTa.setText(pl.getiController().getActivityDescription(activityId));
