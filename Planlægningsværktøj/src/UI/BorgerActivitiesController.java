@@ -57,6 +57,7 @@ public class BorgerActivitiesController implements Initializable {
 
     @FXML
     private void handleLvMouseClickEvent(MouseEvent event) {
+        if(activitiesLv.getSelectionModel().getSelectedItem() != null){
         String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
         UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
         startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
@@ -64,5 +65,5 @@ public class BorgerActivitiesController implements Initializable {
         pictogramTa.setText(pl.getiController().getActivityDescription(activityId));
         pictogramIv.setImage(new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString()));
     }
-
+    }
 }
