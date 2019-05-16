@@ -87,10 +87,10 @@ public class SOSUActivitiesController implements Initializable {
     private void lvClickedHandler(MouseEvent event) {
         
         if(activitiesLv.getSelectionModel().getSelectedItem() != null){
-            Image image = new Image("activity image path");
-            pictogramIv.setImage(image);
             String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
             UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
+//            Image image = new Image(pl.getiController().getPictogramPath(activityId));
+//            pictogramIv.setImage(image);
             startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
             endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
             descriptionTa.setText(pl.getiController().getActivityDescription(activityId));

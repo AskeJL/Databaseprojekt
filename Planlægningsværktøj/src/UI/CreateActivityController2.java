@@ -69,13 +69,13 @@ public class CreateActivityController2 implements Initializable {
         pl = Planlægningsværktøj.getInstance();
         nameLabel.setText(pl.getiController().getCurrentCitizen().getName());
         
-         mandagMenuButton.setUserData(0);
-        tirsdagMenuButton.setUserData(1);
-        onsdagMenuButton.setUserData(2);
-        torsdagMenuButton.setUserData(3);
-        fredagMenuButton.setUserData(4);
-        lørdagMenuButton.setUserData(5);
-        søndagMenuButton.setUserData(6);
+         mandagMenuButton.setUserData(1);
+        tirsdagMenuButton.setUserData(2);
+        onsdagMenuButton.setUserData(3);
+        torsdagMenuButton.setUserData(4);
+        fredagMenuButton.setUserData(5);
+        lørdagMenuButton.setUserData(6);
+        søndagMenuButton.setUserData(7);
         
     }    
     @FXML
@@ -88,7 +88,7 @@ public class CreateActivityController2 implements Initializable {
             pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
             UUID activityUUID = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(name);
             UUID citID = pl.getiController().getCurrentCitizen().getId();
-            pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, day, day, path);
+            pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, eTime, day, path);
             
             
     }

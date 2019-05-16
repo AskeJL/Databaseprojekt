@@ -77,13 +77,13 @@ public class CreateActivityController implements Initializable {
 
         borgerList.setItems(obsString);
 
-        mandagMenuButton.setUserData(0);
-        tirsdagMenuButton.setUserData(1);
-        onsdagMenuButton.setUserData(2);
-        torsdagMenuButton.setUserData(3);
-        fredagMenuButton.setUserData(4);
-        lørdagMenuButton.setUserData(5);
-        søndagMenuButton.setUserData(6);
+        mandagMenuButton.setUserData(1);
+        tirsdagMenuButton.setUserData(2);
+        onsdagMenuButton.setUserData(3);
+        torsdagMenuButton.setUserData(4);
+        fredagMenuButton.setUserData(5);
+        lørdagMenuButton.setUserData(6);
+        søndagMenuButton.setUserData(7);
 
     }
 
@@ -99,7 +99,7 @@ public class CreateActivityController implements Initializable {
         int day = (int) dagToggle.getSelectedToggle().getUserData();
         pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
         UUID activityUUID = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(name);
-        pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, day, day, path);
+        pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, eTime, day, path);
     }
 
     @FXML
