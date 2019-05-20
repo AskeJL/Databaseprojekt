@@ -115,7 +115,7 @@ public class CreateActivityController implements Initializable {
 
     @FXML
     private void goBackButtonHandle(ActionEvent event) {
-        pl.changeScene("SOSUMainPage.fxml");
+        pl.changeScene("SosuMainPage.fxml");
     }
 
     @FXML
