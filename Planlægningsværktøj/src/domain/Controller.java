@@ -128,7 +128,7 @@ public class Controller implements IController {
         Schedule schedule = new Schedule();
         String[][] activities = controllerDB.retrieveCitizenActivities(id);
         for (String[] a : activities) {
-            schedule.addActivity(new Activity(a[0], a[1], Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]), a[5]));
+            schedule.addActivity(new Activity(a[0], a[1], Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]), a[5], UUID.fromString(a[6])));
         }
         this.currentCitizen = new Citizen(retrieveCitizenName(id), username, retrieveCitizenCPR(id), retrieveCitizenBirthday(id), id, schedule);
     }

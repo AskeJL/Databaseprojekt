@@ -57,7 +57,6 @@ public class SOSUActivitiesController implements Initializable {
         dayLabel.setText(pl.dayArray[pl.getCurrentDay()]);
         chosenDay = pl.getCurrentDay();
         System.out.println(chosenDay);
-        //TODO, show only the activities of a certain day
         obsAct = FXCollections.observableArrayList(pl.getiController().getCurrentCitizen().getSchedule().getActivityNamesOfday(chosenDay));
         activitiesLv.setItems(obsAct);
     }

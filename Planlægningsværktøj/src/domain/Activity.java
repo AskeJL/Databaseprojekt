@@ -20,11 +20,17 @@ public class Activity implements Serializable, Comparable<Activity> {
         this.endTime = endTime;
         this.activityID = UUID.randomUUID();
         this.dayOfTheWeek = day;
-        if (pictogramPath != null) {
-            this.pictogramPath = pictogramPath;
-        } else {
-//      TODO pictogram = generic
-        }
+        this.pictogramPath = pictogramPath;  
+    }
+    
+    public Activity(String name, String description, int startTime, int endTime,int day, String pictogramPath, UUID activityID) {
+        this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.dayOfTheWeek = day;
+        this.pictogramPath = pictogramPath;
+        this.activityID = activityID;
     }
 
     public UUID getActivityID() {
