@@ -70,8 +70,8 @@ public class SOSUActivitiesController implements Initializable {
     private void removeActivityBtnHandle(ActionEvent event) {
         String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
         UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
-        pl.getiController().getCurrentCitizen().getSchedule().removeActivity(activityId);
         pl.getiController().deleteActivity(activityId);
+        pl.getiController().getCurrentCitizen().getSchedule().removeActivity(activityId);
     }
 
     @FXML

@@ -71,11 +71,13 @@ public class Schedule {
     }
 
     public void removeActivity(UUID id) {
+        Activity aToRemove = null;
         for (Activity activity : schedule) {
             if (activity.getActivityID().equals(id)) {
-                schedule.remove(activity);
+               aToRemove = activity;
             }
         }
+        schedule.remove(aToRemove);
     }
 
 }
