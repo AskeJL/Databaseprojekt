@@ -2,13 +2,10 @@ package interfaces;
 
 import domain.users.Citizen;
 import domain.users.SOSU;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
 public interface IController {
-
-    ArrayList<UUID> getSchedule(UUID userID);
 
     String getActivityName(UUID activityID);
 

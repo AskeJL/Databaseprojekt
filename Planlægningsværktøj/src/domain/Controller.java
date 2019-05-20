@@ -40,21 +40,12 @@ public class Controller implements IController {
 //        }
     }
 
-    ArrayList<Citizen> tempList;
-    Citizen currentCitizen;
-    SOSU currentSosu;
+    
+    private Citizen currentCitizen;
+    private SOSU currentSosu;
     private final IControllerDB controllerDB;
-    //For database-connection:
-    Connection connection;
-
-    public void addActivity(Citizen citizen, String name, String description, int startTime, int endTime, String pictogram, int day) {
-        if (tempList.contains(citizen)) {
-            citizen.getSchedule().addActivity(new Activity(name, description, startTime, endTime, day, pictogram));
-        }
-    }
 
     public Controller() {
-        tempList = new ArrayList<>();
         controllerDB = new DBController();
         currentCitizen = null;
         currentSosu = null;
@@ -67,18 +58,6 @@ public class Controller implements IController {
     @Override
     public String getCurrentCitizenName() {
         return getCurrentCitizen().getName();
-    }
-
-    @Override
-    public ArrayList<UUID> getSchedule(UUID userID) {
-        
-        ArrayList<UUID> returnSchedule = new ArrayList<>();
-        //TODO Update
-        //ArrayList<Activity> originalSchedule = getCitizen(userID).getSchedule().getSchedule();
-        //for (Activity activity : originalSchedule) {
-        //   returnSchedule.add(activity.getActivityID());
-        //}
-        return returnSchedule;
     }
 
     @Override
