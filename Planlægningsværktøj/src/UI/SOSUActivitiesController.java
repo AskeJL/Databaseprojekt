@@ -57,7 +57,6 @@ public class SOSUActivitiesController implements Initializable {
         dayLabel.setText(pl.dayArray[pl.getCurrentDay()]);
         chosenDay = pl.getCurrentDay();
         System.out.println(chosenDay);
-        //TODO, show only the activities of a certain day
         obsAct = FXCollections.observableArrayList(pl.getiController().getCurrentCitizen().getSchedule().getActivityNamesOfday(chosenDay));
         activitiesLv.setItems(obsAct);
     }
@@ -71,8 +70,15 @@ public class SOSUActivitiesController implements Initializable {
     private void removeActivityBtnHandle(ActionEvent event) {
         String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
         UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
-        pl.getiController().getCurrentCitizen().getSchedule().removeActivity(activityId);
         pl.getiController().deleteActivity(activityId);
+        pl.getiController().getCurrentCitizen().getSchedule().removeActivity(activityId);
+        pictogramIv.setImage(null);
+        startTimeLabel.setText("");
+        endTimeLabel.setText("");
+        descriptionTa.setText("");
+        activityTitelLbl.setText("");
+        obsAct = FXCollections.observableArrayList(pl.getiController().getCurrentCitizen().getSchedule().getActivityNamesOfday(chosenDay));
+        activitiesLv.setItems(obsAct);
     }
 
     @FXML
@@ -90,8 +96,9 @@ public class SOSUActivitiesController implements Initializable {
         if(activitiesLv.getSelectionModel().getSelectedItem() != null){
             String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
             UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
+            if(!"NoPicture".equals(pl.getiController().getPictogramPath(activityId))){
             Image image = new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString());
-            pictogramIv.setImage(image);
+            pictogramIv.setImage(image);} else { pictogramIv.setImage(null);}
             startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
             endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
             descriptionTa.setText(pl.getiController().getActivityDescription(activityId));

@@ -63,7 +63,9 @@ public class BorgerActivitiesController implements Initializable {
         startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
         endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
         pictogramTa.setText(pl.getiController().getActivityDescription(activityId));
+        if(!"NoPicture".equals(pl.getiController().getPictogramPath(activityId))){
         pictogramIv.setImage(new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString()));
+        }else { pictogramIv.setImage(null);}
     }
     }
 }

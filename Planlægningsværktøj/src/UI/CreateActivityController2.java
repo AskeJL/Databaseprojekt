@@ -55,9 +55,9 @@ public class CreateActivityController2 implements Initializable {
     private RadioMenuItem søndagMenuButton;
     @FXML
     private Text nameLabel;
-
-    private String path;
-
+    
+    private String path = "NoPicture";
+    
     Planlægningsværktøj pl;
     @FXML
     private Button addActivityButton;
