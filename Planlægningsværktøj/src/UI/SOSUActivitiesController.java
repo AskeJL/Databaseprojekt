@@ -72,6 +72,13 @@ public class SOSUActivitiesController implements Initializable {
         UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
         pl.getiController().deleteActivity(activityId);
         pl.getiController().getCurrentCitizen().getSchedule().removeActivity(activityId);
+        pictogramIv.setImage(null);
+        startTimeLabel.setText("");
+        endTimeLabel.setText("");
+        descriptionTa.setText("");
+        activityTitelLbl.setText("");
+        obsAct = FXCollections.observableArrayList(pl.getiController().getCurrentCitizen().getSchedule().getActivityNamesOfday(chosenDay));
+        activitiesLv.setItems(obsAct);
     }
 
     @FXML
