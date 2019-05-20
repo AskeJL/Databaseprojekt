@@ -41,7 +41,6 @@ public class Controller implements IController {
     }
 
     ArrayList<Citizen> tempList;
-    Login login;
     Citizen currentCitizen;
     SOSU currentSosu;
     private final IControllerDB controllerDB;
@@ -55,7 +54,6 @@ public class Controller implements IController {
     }
 
     public Controller() {
-        login = new Login(this);
         tempList = new ArrayList<>();
         controllerDB = new DBController();
         currentCitizen = null;
@@ -189,8 +187,8 @@ public class Controller implements IController {
     }
 
     @Override
-    public void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath) {
-        controllerDB.storeActivity(activityID, userID, name, description, start, top, day, pictogramPath);
+    public boolean storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath) {
+        return controllerDB.storeActivity(activityID, userID, name, description, start, top, day, pictogramPath);
     }
 
     @Override

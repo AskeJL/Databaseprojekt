@@ -22,7 +22,7 @@ public class DBController implements IControllerDB {
 
     //Følgende to metoder er tiltænkt en administrator. For systemets normale brug er det vigtigt, at vi primært
     //arbejder i simple typer.
-    //Citizens i databases user_password-table har typen "2", SOSU har typen "1"
+    //Citizens i databasens user_password-table har typen "2", SOSU har typen "1"
     @Override
     public void storeCitizen(Citizen citizen, String password, SOSU sosu) {
         String id = citizen.getId().toString();
@@ -34,7 +34,7 @@ public class DBController implements IControllerDB {
                     + "INSERT INTO user_passwords "
                     + "VALUES (CAST(? AS uuid), ?, CAST(2 AS integer));";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, citizen.getId().toString());
+            preparedStatement.setString(1, id);
             preparedStatement.setString(2, citizen.getName());
             preparedStatement.setString(3, citizen.getUsername());
             preparedStatement.setString(4, citizen.getCPR());
@@ -43,7 +43,6 @@ public class DBController implements IControllerDB {
             preparedStatement.setString(7, citizen.getId().toString());
             preparedStatement.setString(8, password);
             int result = preparedStatement.executeUpdate();
-            System.out.println(result);
             connection.close();
         } catch (PSQLException e) {
             System.out.println("SQL-error !");
@@ -71,7 +70,6 @@ public class DBController implements IControllerDB {
             preparedStatement.setString(4, sosu.getId().toString());
             preparedStatement.setString(5, password);
             int result = preparedStatement.executeUpdate();
-            System.out.println(result);
             connection.close();
         } catch (PSQLException e) {
             System.out.println("SQL-error !");
@@ -99,7 +97,7 @@ public class DBController implements IControllerDB {
             preparedStatement.setString(2, password);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1);
+                return rs.getInt("user_type");
             }
             connection.close();
         } catch (PSQLException e) {
@@ -275,7 +273,8 @@ public class DBController implements IControllerDB {
     }
 
     @Override
-    public void storeActivity(UUID ActivityID, UUID userID, String name, String description, int start, int stop, int day, String pictogramPath) {
+    public boolean storeActivity(UUID ActivityID, UUID userID, String name, String description, int start, int stop, int day, String pictogramPath) {
+        int result = 0;
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
             Class.forName("org.postgresql.Driver");
             String sql
@@ -291,8 +290,10 @@ public class DBController implements IControllerDB {
             preparedStatement.setString(6, String.valueOf(stop));
             preparedStatement.setString(7, String.valueOf(day));
             preparedStatement.setString(8, pictogramPath);
-            int result = preparedStatement.executeUpdate();
-            System.out.println(result);
+            result = preparedStatement.executeUpdate();
+            if (result > 0){
+                return true;
+            }
             connection.close();
         } catch (PSQLException e) {
             System.out.println("SQL-error !");
@@ -302,6 +303,7 @@ public class DBController implements IControllerDB {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 
     @Override

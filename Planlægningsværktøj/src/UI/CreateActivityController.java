@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioMenuItem;
@@ -58,6 +59,8 @@ public class CreateActivityController implements Initializable {
     private String path;
 
     ObservableList<UUID> obsUUID;
+    @FXML
+    private Label confirmationLabel;
 
     /**
      * Initializes the controller class.
@@ -92,19 +95,27 @@ public class CreateActivityController implements Initializable {
         UUID citID = obsUUID.get(borgerList.getSelectionModel().getSelectedIndex());
         String username = pl.getiController().retrieveCitizenUsername(obsUUID.get(borgerList.getSelectionModel().getSelectedIndex()));
         pl.getiController().setCurrentCitizen(citID, username);
+        
         String name = activityNameField.getText();
         String description = descriptionArea.getText();
         int sTime = Integer.parseInt(startTime.getText());
         int eTime = Integer.parseInt(endTime.getText());
         int day = (int) dagToggle.getSelectedToggle().getUserData();
+        
         pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
         UUID activityUUID = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(name);
-        pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, eTime, day, path);
+        
+        if (pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, eTime, day, path)) {
+            confirmationLabel.setText("Aktiviteten blev tilføjet!");
+        } else {
+            confirmationLabel.setText("Noget gik galt.");
+        }
+        
     }
 
     @FXML
     private void goBackButtonHandle(ActionEvent event) {
-        pl.changeScene("SOSUMain.fxml");
+        pl.changeScene("SOSUMainPage.fxml");
     }
 
     @FXML

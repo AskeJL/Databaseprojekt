@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextArea;
@@ -22,8 +23,6 @@ import javafx.stage.FileChooser;
  */
 public class CreateActivityController2 implements Initializable {
 
-    @FXML
-    private Button addActivityButton2;
     @FXML
     private Button goBackButton;
     @FXML
@@ -56,10 +55,14 @@ public class CreateActivityController2 implements Initializable {
     private RadioMenuItem søndagMenuButton;
     @FXML
     private Text nameLabel;
-    
+
     private String path;
-    
+
     Planlægningsværktøj pl;
+    @FXML
+    private Button addActivityButton;
+    @FXML
+    private Label confirmationLabel;
 
     /**
      * Initializes the controller class.
@@ -68,29 +71,33 @@ public class CreateActivityController2 implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
         nameLabel.setText(pl.getiController().getCurrentCitizen().getName());
-        
-         mandagMenuButton.setUserData(1);
+
+        mandagMenuButton.setUserData(1);
         tirsdagMenuButton.setUserData(2);
         onsdagMenuButton.setUserData(3);
         torsdagMenuButton.setUserData(4);
         fredagMenuButton.setUserData(5);
         lørdagMenuButton.setUserData(6);
         søndagMenuButton.setUserData(7);
-        
-    }    
+
+    }
+
     @FXML
     private void addActivityButtonHandler(ActionEvent event) {
-            String name = activityNameField.getText();
-            String description = descriptionArea.getText();
-            int sTime = Integer.parseInt(startTime.getText());
-            int eTime = Integer.parseInt(endTime.getText());
-            int day = (int) dagToggle.getSelectedToggle().getUserData();
-            pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
-            UUID activityUUID = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(name);
-            UUID citID = pl.getiController().getCurrentCitizen().getId();
-            pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, eTime, day, path);
-            
-            
+        String name = activityNameField.getText();
+        String description = descriptionArea.getText();
+        int sTime = Integer.parseInt(startTime.getText());
+        int eTime = Integer.parseInt(endTime.getText());
+        int day = (int) dagToggle.getSelectedToggle().getUserData();
+        pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
+        UUID activityUUID = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(name);
+        UUID citID = pl.getiController().getCurrentCitizen().getId();
+        if (pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, eTime, day, path)) {
+            confirmationLabel.setText("Aktiviteten blev tilføjet!");
+        } else {
+            confirmationLabel.setText("Noget gik galt.");
+        }
+
     }
 
     @FXML
@@ -139,5 +146,5 @@ public class CreateActivityController2 implements Initializable {
     private void changeNameSøndag(ActionEvent event) {
         weekdayDropdownMenu.setText("Søndag");
     }
-    
+
 }

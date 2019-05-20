@@ -27,7 +27,7 @@ public interface IControllerDB {
 
     String[][] retrieveCitizenActivities(UUID citizenID);
 
-    void storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
+    boolean storeActivity(UUID activityID, UUID userID, String name, String description, int start, int top, int day, String pictogramPath);
 
     UUID retrieveSosuId(String username);
 
