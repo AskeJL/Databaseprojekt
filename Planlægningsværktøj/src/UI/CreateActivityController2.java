@@ -57,7 +57,7 @@ public class CreateActivityController2 implements Initializable {
     @FXML
     private Text nameLabel;
     
-    private String path;
+    private String path = "NoPicture";
     
     Planlægningsværktøj pl;
 

@@ -55,7 +55,7 @@ public class CreateActivityController implements Initializable {
     @FXML
     private RadioMenuItem søndagMenuButton;
 
-    private String path;
+    private String path = "NoPicture";
 
     ObservableList<UUID> obsUUID;
 

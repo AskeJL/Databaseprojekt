@@ -90,8 +90,9 @@ public class SOSUActivitiesController implements Initializable {
         if(activitiesLv.getSelectionModel().getSelectedItem() != null){
             String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
             UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
+            if(!"NoPicture".equals(pl.getiController().getPictogramPath(activityId))){
             Image image = new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString());
-            pictogramIv.setImage(image);
+            pictogramIv.setImage(image);} else { pictogramIv.setImage(null);}
             startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
             endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
             descriptionTa.setText(pl.getiController().getActivityDescription(activityId));
