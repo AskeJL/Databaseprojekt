@@ -3,8 +3,6 @@ package UI;
 import domain.Controller;
 import interfaces.IController;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.UUID;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,9 +18,9 @@ public class Planlægningsværktøj extends Application {
 
     public static Stage stage;
     private final IController iController = new Controller();
-    int currentDay;
-    Scene scene;
-    String[] dayArray = {"", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"};
+    private int currentDay;
+    private Scene scene;
+    private final String[] dayArray = {"", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"};
 
     public IController getiController() {
         return iController;
@@ -71,13 +69,10 @@ public class Planlægningsværktøj extends Application {
         this.currentDay = currentDay;
     }
 
-    public ArrayList<UUID> getAcitivitesForUserOnDay(UUID citizenId, int day) {
-        return null;
+    public String[] getDayArray() {
+        return dayArray;
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }

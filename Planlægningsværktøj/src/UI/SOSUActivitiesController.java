@@ -49,7 +49,7 @@ public class SOSUActivitiesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
-        dayLabel.setText(pl.dayArray[pl.getCurrentDay()]);
+        dayLabel.setText(pl.getDayArray()[pl.getCurrentDay()]);
         chosenDay = pl.getCurrentDay();
         System.out.println(chosenDay);
         obsAct = FXCollections.observableArrayList(pl.getiController().getCurrentCitizen().getSchedule().getActivityNamesOfday(chosenDay));
