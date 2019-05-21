@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 
 public class SosuMainPageController implements Initializable {
 
+    private Planlægningsværktøj pl;
+
     @FXML
     private Label nameLabel;
     @FXML
@@ -18,8 +20,6 @@ public class SosuMainPageController implements Initializable {
     private Button createActivityBtn;
     @FXML
     private Button logOffBtn;
-
-    Planlægningsværktøj pl;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

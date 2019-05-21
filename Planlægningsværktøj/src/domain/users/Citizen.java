@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class Citizen extends User implements Serializable {
 
-    private final String CPR;
+    private String CPR;
     private Date birthday;
     private Schedule schedule;
 

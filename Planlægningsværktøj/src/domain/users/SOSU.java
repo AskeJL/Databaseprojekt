@@ -22,12 +22,10 @@ public class SOSU extends User {
     }
 
     public void addCitizen(Citizen citizen) {
-        //TODO check for duplicates
         citizens.add(citizen);
     }
 
     public void removeCitizen(Citizen citizen) {
-        //TODO check if exists
         citizens.remove(citizen);
     }
 

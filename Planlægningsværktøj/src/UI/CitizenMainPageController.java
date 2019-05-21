@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 
 public class CitizenMainPageController implements Initializable {
 
+    private Planlægningsværktøj pl;
+
     @FXML
     private Label nameLabel;
     @FXML
@@ -18,8 +20,6 @@ public class CitizenMainPageController implements Initializable {
     private Button seeScheduleBtn;
     @FXML
     private Button printBtn;
-
-    Planlægningsværktøj pl;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

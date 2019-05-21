@@ -60,16 +60,6 @@ public class Schedule {
         return al;
     }
 
-    @Override
-    public String toString() {      //TODO maybe delete or update
-        String returnString = "";
-        for (Activity activity : schedule) {
-            returnString += activity.getName();
-            returnString += " ";
-        }
-        return returnString;
-    }
-
     public void removeActivity(UUID id) {
         Activity aToRemove = null;
         for (Activity activity : schedule) {
@@ -80,4 +70,13 @@ public class Schedule {
         schedule.remove(aToRemove);
     }
 
+    @Override
+    public String toString() {
+        String returnString = "";
+        for (Activity activity : schedule) {
+            returnString += activity.getName();
+            returnString += " ";
+        }
+        return returnString;
+    }
 }

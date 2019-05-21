@@ -15,7 +15,10 @@ import javafx.scene.control.TextField;
 
 public class SOSUMainController implements Initializable {
 
-    Planlægningsværktøj pl;
+    private Planlægningsværktøj pl;
+    private ObservableList<UUID> obsUUID;
+    private ObservableList<String> obsString;
+
     @FXML
     private Label displayName;
     @FXML
@@ -26,11 +29,6 @@ public class SOSUMainController implements Initializable {
     private TextField searchField;
     @FXML
     private Button createActivityBtn;
-
-    ObservableList<UUID> obsUUID;
-
-    ObservableList<String> obsString;
-
     @FXML
     private Button updateButton;
     @FXML

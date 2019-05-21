@@ -9,7 +9,8 @@ import javafx.scene.control.Label;
 
 public class BorgerScheduleController implements Initializable {
 
-    Planlægningsværktøj pl;
+    private Planlægningsværktøj pl;
+
     @FXML
     private Label displayName;
 
@@ -23,7 +24,6 @@ public class BorgerScheduleController implements Initializable {
     private void mondayBtnHandle(ActionEvent event) {
         pl.setCurrentDay(1);
         pl.changeScene("BorgerActivities.fxml");
-
     }
 
     @FXML

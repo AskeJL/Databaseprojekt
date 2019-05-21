@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 
 public class ScheduleController implements Initializable {
 
-    Planlægningsværktøj pl;
+    private Planlægningsværktøj pl;
 
     @FXML
     private Label displayName;

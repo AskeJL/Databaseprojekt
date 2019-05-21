@@ -18,6 +18,9 @@ import javafx.stage.FileChooser;
 
 public class CreateActivityController2 implements Initializable {
 
+    private Planlægningsværktøj pl;
+    private String path = "NoPicture";
+
     @FXML
     private Button goBackButton;
     @FXML
@@ -50,10 +53,6 @@ public class CreateActivityController2 implements Initializable {
     private RadioMenuItem søndagMenuButton;
     @FXML
     private Text nameLabel;
-
-    private String path = "NoPicture";
-
-    Planlægningsværktøj pl;
     @FXML
     private Button addActivityButton;
     @FXML
@@ -89,7 +88,6 @@ public class CreateActivityController2 implements Initializable {
         } else {
             confirmationLabel.setText("Noget gik galt.");
         }
-
     }
 
     @FXML

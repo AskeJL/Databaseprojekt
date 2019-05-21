@@ -20,7 +20,10 @@ import javafx.stage.FileChooser;
 
 public class CreateActivityController implements Initializable {
 
-    Planlægningsværktøj pl;
+    private Planlægningsværktøj pl;
+    private String path = "NoPicture";
+    private ObservableList<UUID> obsUUID;
+
     @FXML
     private Button addActivityButton;
     @FXML
@@ -55,10 +58,6 @@ public class CreateActivityController implements Initializable {
     private RadioMenuItem lørdagMenuButton;
     @FXML
     private RadioMenuItem søndagMenuButton;
-
-    private String path = "NoPicture";
-
-    ObservableList<UUID> obsUUID;
     @FXML
     private Label confirmationLabel;
 

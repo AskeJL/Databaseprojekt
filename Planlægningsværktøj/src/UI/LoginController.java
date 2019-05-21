@@ -16,8 +16,8 @@ import java.util.UUID;
 
 public class LoginController implements Initializable {
 
-    Planlægningsværktøj pl;
-    IController controller;
+    private Planlægningsværktøj pl;
+    private IController controller;
 
     @FXML
     private Label label;

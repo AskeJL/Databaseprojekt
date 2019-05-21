@@ -19,7 +19,10 @@ import javafx.scene.input.MouseEvent;
 
 public class SOSUActivitiesController implements Initializable {
 
-    Planlægningsværktøj pl;
+    private Planlægningsværktøj pl;
+    private int chosenDay;
+    private ObservableList<String> obsAct;
+
     @FXML
     private Label dayLabel;
     @FXML
@@ -30,10 +33,6 @@ public class SOSUActivitiesController implements Initializable {
     private Button removeActivityBtn;
     @FXML
     private Button createActivityBtn;
-
-    int chosenDay;
-
-    ObservableList<String> obsAct;
     @FXML
     private TextArea descriptionTa;
     @FXML
