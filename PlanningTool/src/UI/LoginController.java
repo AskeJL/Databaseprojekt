@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class LoginController implements Initializable {
 
-    private Planlægningsværktøj pl;
+    private PlanningTool pl;
     private IController controller;
 
     @FXML
@@ -32,7 +32,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pl = Planlægningsværktøj.getInstance();
+        pl = PlanningTool.getInstance();
         controller = pl.getiController();
 
         passWord.setOnKeyPressed(e -> {

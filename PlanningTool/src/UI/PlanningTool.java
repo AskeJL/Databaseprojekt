@@ -9,11 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Planlægningsværktøj extends Application {
+public class PlanningTool extends Application {
 
-    private static Planlægningsværktøj pl = null;
+    private static PlanningTool pl = null;
 
-    public Planlægningsværktøj() {
+    public PlanningTool() {
     }
 
     public static Stage stage;
@@ -26,9 +26,9 @@ public class Planlægningsværktøj extends Application {
         return iController;
     }
 
-    public static Planlægningsværktøj getInstance() {
+    public static PlanningTool getInstance() {
         if (pl == null) {
-            pl = new Planlægningsværktøj();
+            pl = new PlanningTool();
         }
         return pl;
     }
@@ -39,7 +39,7 @@ public class Planlægningsværktøj extends Application {
 
         scene = new Scene(root);
 
-        scene.getStylesheets().add(Planlægningsværktøj.class.getResource("StyleSheet.css").toExternalForm());
+        scene.getStylesheets().add(PlanningTool.class.getResource("StyleSheet.css").toExternalForm());
 
         stage.setScene(scene);
         stage.show();
@@ -50,9 +50,9 @@ public class Planlægningsværktøj extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(s));
             Parent root1 = (Parent) loader.load();
-            Stage stage = Planlægningsværktøj.stage;
+            Stage stage = PlanningTool.stage;
             scene = new Scene(root1);
-            scene.getStylesheets().add(Planlægningsværktøj.class.getResource("StyleSheet.css").toExternalForm());
+            scene.getStylesheets().add(PlanningTool.class.getResource("StyleSheet.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
 

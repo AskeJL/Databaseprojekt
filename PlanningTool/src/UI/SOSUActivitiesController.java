@@ -19,7 +19,7 @@ import javafx.scene.input.MouseEvent;
 
 public class SOSUActivitiesController implements Initializable {
 
-    private Planlægningsværktøj pl;
+    private PlanningTool pl;
     private int chosenDay;
     private ObservableList<String> obsAct;
 
@@ -48,7 +48,7 @@ public class SOSUActivitiesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pl = Planlægningsværktøj.getInstance();
+        pl = PlanningTool.getInstance();
         dayLabel.setText(pl.getDayArray()[pl.getCurrentDay()]);
         chosenDay = pl.getCurrentDay();
         System.out.println(chosenDay);

@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 
 public class SosuMainPageController implements Initializable {
 
-    private Planlægningsværktøj pl;
+    private PlanningTool pl;
 
     @FXML
     private Label nameLabel;
@@ -23,7 +23,7 @@ public class SosuMainPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pl = Planlægningsværktøj.getInstance();
+        pl = PlanningTool.getInstance();
         nameLabel.setText("Bruger: " + pl.getiController().getCurrentSosu().getName());
     }
 

@@ -20,7 +20,7 @@ import javafx.stage.FileChooser;
 
 public class CreateActivityController implements Initializable {
 
-    private Planlægningsværktøj pl;
+    private PlanningTool pl;
     private String path = "NoPicture";
     private ObservableList<UUID> obsUUID;
 
@@ -63,7 +63,7 @@ public class CreateActivityController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pl = Planlægningsværktøj.getInstance();
+        pl = PlanningTool.getInstance();
 
         obsUUID = FXCollections.observableArrayList();
         for (int i = 0; i < pl.getiController().getCurrentSosu().getCitizens().size(); i++) {

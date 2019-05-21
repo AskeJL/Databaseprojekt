@@ -18,7 +18,7 @@ import javafx.stage.FileChooser;
 
 public class CreateActivityController2 implements Initializable {
 
-    private Planlægningsværktøj pl;
+    private PlanningTool pl;
     private String path = "NoPicture";
 
     @FXML
@@ -60,7 +60,7 @@ public class CreateActivityController2 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pl = Planlægningsværktøj.getInstance();
+        pl = PlanningTool.getInstance();
         nameLabel.setText(pl.getiController().getCurrentCitizen().getName());
 
         mandagMenuButton.setUserData(1);

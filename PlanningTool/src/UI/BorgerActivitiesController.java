@@ -18,7 +18,7 @@ import javafx.scene.input.MouseEvent;
 
 public class BorgerActivitiesController implements Initializable {
 
-    private Planlægningsværktøj pl;
+    private PlanningTool pl;
     private int chosenDay;
     private ObservableList<String> obsAct;
 
@@ -38,7 +38,7 @@ public class BorgerActivitiesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pl = Planlægningsværktøj.getInstance();
+        pl = PlanningTool.getInstance();
         dayLabel.setText(pl.getDayArray()[pl.getCurrentDay()]);
         chosenDay = pl.getCurrentDay();
         obsAct = FXCollections.observableArrayList(pl.getiController().getCurrentCitizen().getSchedule().getActivityNamesOfday(chosenDay));

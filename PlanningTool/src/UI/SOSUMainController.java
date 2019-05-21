@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 
 public class SOSUMainController implements Initializable {
 
-    private Planlægningsværktøj pl;
+    private PlanningTool pl;
     private ObservableList<UUID> obsUUID;
     private ObservableList<String> obsString;
 
@@ -36,7 +36,7 @@ public class SOSUMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pl = Planlægningsværktøj.getInstance();
+        pl = PlanningTool.getInstance();
         obsUUID = FXCollections.observableArrayList();
         for (int i = 0; i < pl.getiController().getCurrentSosu().getCitizens().size(); i++) {
             obsUUID.add(pl.getiController().getCurrentSosu().getCitizens().get(i).getId());
