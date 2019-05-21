@@ -50,7 +50,7 @@ public class SOSUMainController implements Initializable {
 
     @FXML
     private void seeScheduleBtnHandle(ActionEvent event) {
-        UUID citID = pl.getiController().retrieveCitizenID(citizenLv.getSelectionModel().getSelectedItem());
+        UUID citID = obsUUID.get(citizenLv.getSelectionModel().getSelectedIndex());
         String username = pl.getiController().retrieveCitizenUsername(citID);
         pl.getiController().setCurrentCitizen(citID, username);
         pl.changeScene("Schedule.fxml");

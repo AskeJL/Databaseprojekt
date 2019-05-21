@@ -12,8 +12,8 @@ import static org.junit.Assert.*;
 
 public class ControllerTest {
 
-    Controller controller;
-    Citizen citizen;
+    private Controller controller;
+    private Citizen citizen;
 
     public ControllerTest() {
     }

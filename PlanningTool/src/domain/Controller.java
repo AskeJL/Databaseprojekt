@@ -10,33 +10,6 @@ import java.util.UUID;
 
 public class Controller implements IController {
 
-    //Main til test af kode
-    public static void main(String[] args) {
-        Controller controller = new Controller();
-//        UUID[] array = controller.retrieveCitizenActivityIds(UUID.fromString("50586125-bfc9-4e3d-920c-95fa7bc433e5"));
-//        for (UUID uuid : array) {
-//            System.out.println(uuid.toString());
-//        }
-
-//        SOSU sosutest = new SOSU("sosutest", "sosutest");
-//        controller.storeSOSU(sosutest, "sosutest");
-//        Citizen test2 = new Citizen("test2", "test2", "198112", new Date());
-//        controller.controllerDB.storeCitizen(test2, "test2", sosutest);
-//        Activity activity = new Activity("test", "test", 1200, 1400, 1, "loltrain.com");
-//        controller.controllerDB.storeActivity(activity.getActivityID(), test2.getId(), activity.getName(), activity.getDescription(),
-//                activity.getStartTime(), activity.getEndTime(), activity.getDayOfTheWeek(), activity.getPictogramPath());
-//
-//        System.out.println("Activity info: \n" + Arrays.deepToString(controller.controllerDB.retrieveCitizenActivities(test2.getId())));
-//        sosu.addCitizen(james);
-//        controller.getDBController().storeCitizen(james, "jamesHotHot", sosu);
-//        int auth = controller.getDBController().authenticate("james23", "jamesHotHot");
-//        if (auth == 1 || auth == 2) {   //TODO finish
-//            System.out.println("Authenticated");
-//        } else if (auth == -1) {
-//            System.out.println("NOT authenticated :/");
-//        }
-    }
-
     private Citizen currentCitizen;
     private SOSU currentSosu;
     private final IControllerDB controllerDB;

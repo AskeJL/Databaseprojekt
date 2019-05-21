@@ -117,7 +117,7 @@ public class DBController implements IControllerDB {
             String sql
                     = "SELECT CPR "
                     + "FROM citizens "
-                    + "WHERE citizen_id = CAST(? AS uuid)";
+                    + "WHERE citizen_id = CAST(? AS uuid);";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, id.toString());
             ResultSet rs = preparedStatement.executeQuery();

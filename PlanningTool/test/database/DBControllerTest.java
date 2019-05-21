@@ -9,8 +9,8 @@ import org.junit.BeforeClass;
 
 public class DBControllerTest {
 
-    DBController dbController;
-    int authenticated = 0;
+    private DBController dbController;
+    private int authenticated = 0;
 
     public DBControllerTest() {
     }
@@ -26,7 +26,6 @@ public class DBControllerTest {
     @Before
     public void setUp() {
         dbController = new DBController();
-        
     }
 
     @After
