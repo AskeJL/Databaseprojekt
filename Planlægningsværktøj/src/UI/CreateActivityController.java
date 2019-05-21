@@ -62,9 +62,6 @@ public class CreateActivityController implements Initializable {
     @FXML
     private Label confirmationLabel;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
@@ -95,22 +92,22 @@ public class CreateActivityController implements Initializable {
         UUID citID = obsUUID.get(borgerList.getSelectionModel().getSelectedIndex());
         String username = pl.getiController().retrieveCitizenUsername(obsUUID.get(borgerList.getSelectionModel().getSelectedIndex()));
         pl.getiController().setCurrentCitizen(citID, username);
-        
+
         String name = activityNameField.getText();
         String description = descriptionArea.getText();
         int sTime = Integer.parseInt(startTime.getText());
         int eTime = Integer.parseInt(endTime.getText());
         int day = (int) dagToggle.getSelectedToggle().getUserData();
-        
+
         pl.getiController().getCurrentCitizen().getSchedule().addActivity(name, description, sTime, eTime, day, path);
         UUID activityUUID = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(name);
-        
+
         if (pl.getiController().storeActivity(activityUUID, citID, name, description, sTime, eTime, day, path)) {
             confirmationLabel.setText("Aktiviteten blev tilføjet!");
         } else {
             confirmationLabel.setText("Noget gik galt.");
         }
-        
+
     }
 
     @FXML

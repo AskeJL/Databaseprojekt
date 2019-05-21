@@ -1,10 +1,10 @@
 package domain;
 
 import java.io.Serializable;
-import javafx.scene.image.Image;
 import java.util.UUID;
 
 public class Activity implements Serializable, Comparable<Activity> {
+
     private String name;
     private String description;
     private int startTime;
@@ -13,17 +13,17 @@ public class Activity implements Serializable, Comparable<Activity> {
     private final UUID activityID;
     private int dayOfTheWeek;
 
-    public Activity(String name, String description, int startTime, int endTime,int day, String pictogramPath) {
+    public Activity(String name, String description, int startTime, int endTime, int day, String pictogramPath) {
         this.name = name;
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
         this.activityID = UUID.randomUUID();
         this.dayOfTheWeek = day;
-        this.pictogramPath = pictogramPath;  
+        this.pictogramPath = pictogramPath;
     }
-    
-    public Activity(String name, String description, int startTime, int endTime,int day, String pictogramPath, UUID activityID) {
+
+    public Activity(String name, String description, int startTime, int endTime, int day, String pictogramPath, UUID activityID) {
         this.name = name;
         this.description = description;
         this.startTime = startTime;

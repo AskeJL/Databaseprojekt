@@ -6,9 +6,8 @@ import java.util.UUID;
 
 public class Schedule {
 
-    //TODO update sequence diagram for the usecase opretAktivitet
     Controller controller = new Controller();
-    
+
     private ArrayList<Activity> schedule;
 
     public Schedule() {
@@ -61,6 +60,7 @@ public class Schedule {
         return al;
     }
 
+    @Override
     public String toString() {      //TODO maybe delete or update
         String returnString = "";
         for (Activity activity : schedule) {
@@ -74,7 +74,7 @@ public class Schedule {
         Activity aToRemove = null;
         for (Activity activity : schedule) {
             if (activity.getActivityID().equals(id)) {
-               aToRemove = activity;
+                aToRemove = activity;
             }
         }
         schedule.remove(aToRemove);

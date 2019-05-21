@@ -16,11 +16,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
-/**
- * FXML Controller class
- *
- * @author askel
- */
 public class CreateActivityController2 implements Initializable {
 
     @FXML
@@ -55,18 +50,15 @@ public class CreateActivityController2 implements Initializable {
     private RadioMenuItem søndagMenuButton;
     @FXML
     private Text nameLabel;
-    
+
     private String path = "NoPicture";
-    
+
     Planlægningsværktøj pl;
     @FXML
     private Button addActivityButton;
     @FXML
     private Label confirmationLabel;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();

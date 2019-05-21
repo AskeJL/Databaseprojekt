@@ -14,9 +14,6 @@ public class ScheduleController implements Initializable {
     @FXML
     private Label displayName;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();

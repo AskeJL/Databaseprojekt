@@ -2,7 +2,6 @@ package UI;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
 import javafx.collections.FXCollections;
@@ -37,9 +36,6 @@ public class BorgerActivitiesController implements Initializable {
     @FXML
     private Label endTimeLabel;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
@@ -47,7 +43,7 @@ public class BorgerActivitiesController implements Initializable {
         chosenDay = pl.getCurrentDay();
         obsAct = FXCollections.observableArrayList(pl.getiController().getCurrentCitizen().getSchedule().getActivityNamesOfday(chosenDay));
         activitiesLv.setItems(obsAct);
-        
+
     }
 
     @FXML
@@ -57,15 +53,17 @@ public class BorgerActivitiesController implements Initializable {
 
     @FXML
     private void handleLvMouseClickEvent(MouseEvent event) {
-        if(activitiesLv.getSelectionModel().getSelectedItem() != null){
-        String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
-        UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
-        startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
-        endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
-        pictogramTa.setText(pl.getiController().getActivityDescription(activityId));
-        if(!"NoPicture".equals(pl.getiController().getPictogramPath(activityId))){
-        pictogramIv.setImage(new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString()));
-        }else { pictogramIv.setImage(null);}
-    }
+        if (activitiesLv.getSelectionModel().getSelectedItem() != null) {
+            String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
+            UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
+            startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
+            endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
+            pictogramTa.setText(pl.getiController().getActivityDescription(activityId));
+            if (!"NoPicture".equals(pl.getiController().getPictogramPath(activityId))) {
+                pictogramIv.setImage(new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString()));
+            } else {
+                pictogramIv.setImage(null);
+            }
+        }
     }
 }

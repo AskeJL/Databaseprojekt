@@ -1,6 +1,5 @@
 package domain.users;
 
-import domain.Activity;
 import domain.Schedule;
 import java.io.Serializable;
 import java.util.Date;
@@ -18,13 +17,6 @@ public class Citizen extends User implements Serializable {
         this.birthday = birthday;
         schedule = new Schedule();
     }
-
-//    public Citizen(String name, String username, String CPR, Date birthday, UUID uuid) {
-//        super(name, username, uuid);
-//        this.CPR = CPR;
-//        this.birthday = birthday;
-//        schedule = new Schedule();
-//    }
 
     public Citizen(String name, String username, String CPR, Date birthday, UUID uuid, Schedule schedule) {
         super(name, username, uuid);

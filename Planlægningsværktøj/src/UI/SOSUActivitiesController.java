@@ -2,7 +2,6 @@ package UI;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
 import javafx.collections.FXCollections;
@@ -31,7 +30,7 @@ public class SOSUActivitiesController implements Initializable {
     private Button removeActivityBtn;
     @FXML
     private Button createActivityBtn;
-    
+
     int chosenDay;
 
     ObservableList<String> obsAct;
@@ -48,9 +47,6 @@ public class SOSUActivitiesController implements Initializable {
     @FXML
     private Label endTimeLabel;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
@@ -92,13 +88,16 @@ public class SOSUActivitiesController implements Initializable {
 
     @FXML
     private void lvClickedHandler(MouseEvent event) {
-        
-        if(activitiesLv.getSelectionModel().getSelectedItem() != null){
+
+        if (activitiesLv.getSelectionModel().getSelectedItem() != null) {
             String selectedName = activitiesLv.getSelectionModel().getSelectedItem();
             UUID activityId = pl.getiController().getCurrentCitizen().getSchedule().getActivityId(selectedName);
-            if(!"NoPicture".equals(pl.getiController().getPictogramPath(activityId))){
-            Image image = new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString());
-            pictogramIv.setImage(image);} else { pictogramIv.setImage(null);}
+            if (!"NoPicture".equals(pl.getiController().getPictogramPath(activityId))) {
+                Image image = new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString());
+                pictogramIv.setImage(image);
+            } else {
+                pictogramIv.setImage(null);
+            }
             startTimeLabel.setText((String.valueOf(pl.getiController().getActivityStartTime(activityId))));
             endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
             descriptionTa.setText(pl.getiController().getActivityDescription(activityId));

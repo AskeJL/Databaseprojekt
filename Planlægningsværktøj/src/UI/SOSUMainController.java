@@ -1,6 +1,5 @@
 package UI;
 
-import domain.users.Citizen;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -29,7 +28,7 @@ public class SOSUMainController implements Initializable {
     private Button createActivityBtn;
 
     ObservableList<UUID> obsUUID;
-    
+
     ObservableList<String> obsString;
 
     @FXML
@@ -37,9 +36,6 @@ public class SOSUMainController implements Initializable {
     @FXML
     private Button backBtn;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
@@ -74,7 +70,7 @@ public class SOSUMainController implements Initializable {
         for (UUID i : obsUUID) {
             obsString.add(pl.getiController().retrieveCitizenName(i));
         }
-        
+
         citizenLv.setItems(obsString);
     }
 

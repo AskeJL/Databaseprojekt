@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 
 public class BorgerScheduleController implements Initializable {
 
@@ -14,9 +13,6 @@ public class BorgerScheduleController implements Initializable {
     @FXML
     private Label displayName;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();

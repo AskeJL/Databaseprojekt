@@ -8,11 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-/**
- * FXML Controller class
- *
- * @author askel
- */
 public class SosuMainPageController implements Initializable {
 
     @FXML
@@ -23,16 +18,13 @@ public class SosuMainPageController implements Initializable {
     private Button createActivityBtn;
     @FXML
     private Button logOffBtn;
-    
+
     Planlægningsværktøj pl;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         pl = Planlægningsværktøj.getInstance();
-         nameLabel.setText("Bruger: " + pl.getiController().getCurrentSosu().getName());
+        pl = Planlægningsværktøj.getInstance();
+        nameLabel.setText("Bruger: " + pl.getiController().getCurrentSosu().getName());
     }
 
     @FXML
@@ -49,5 +41,5 @@ public class SosuMainPageController implements Initializable {
     private void logOffBtnHandler(ActionEvent event) {
         pl.changeScene("Login.fxml");
     }
-    
+
 }

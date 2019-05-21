@@ -5,9 +5,6 @@ import domain.users.Citizen;
 import domain.users.SOSU;
 import interfaces.IController;
 import interfaces.IControllerDB;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
@@ -40,7 +37,6 @@ public class Controller implements IController {
 //        }
     }
 
-    
     private Citizen currentCitizen;
     private SOSU currentSosu;
     private final IControllerDB controllerDB;
@@ -182,6 +178,6 @@ public class Controller implements IController {
 
     @Override
     public void deleteActivity(UUID activityId) {
-       controllerDB.deleteActivity(activityId);
+        controllerDB.deleteActivity(activityId);
     }
 }

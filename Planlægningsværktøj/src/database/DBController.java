@@ -1,6 +1,5 @@
 package database;
 
-import domain.Activity;
 import domain.users.Citizen;
 import domain.users.SOSU;
 import interfaces.IControllerDB;
@@ -291,7 +290,7 @@ public class DBController implements IControllerDB {
             preparedStatement.setString(7, String.valueOf(day));
             preparedStatement.setString(8, pictogramPath);
             result = preparedStatement.executeUpdate();
-            if (result > 0){
+            if (result > 0) {
                 return true;
             }
             connection.close();
@@ -389,6 +388,7 @@ public class DBController implements IControllerDB {
         }
         return null;
     }
+
     @Override
     public void deleteActivity(UUID activityId) {
         try (Connection connection = DriverManager.getConnection(url, "postgres", "postgres");) {
@@ -449,7 +449,6 @@ public class DBController implements IControllerDB {
 //        }
 //        return null;
 //    }
-
 //    @Override
 //    public UUID[] retrieveCitizenActivityIdsForGivenDay(UUID citizenId, int day) {
 //        UUID[] array;

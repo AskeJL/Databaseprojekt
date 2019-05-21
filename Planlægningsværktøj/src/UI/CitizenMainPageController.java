@@ -8,11 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-/**
- * FXML Controller class
- *
- * @author askel
- */
 public class CitizenMainPageController implements Initializable {
 
     @FXML
@@ -23,17 +18,14 @@ public class CitizenMainPageController implements Initializable {
     private Button seeScheduleBtn;
     @FXML
     private Button printBtn;
-    
+
     Planlægningsværktøj pl;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = Planlægningsværktøj.getInstance();
         nameLabel.setText(pl.getiController().getCurrentCitizen().getName());
-    }    
+    }
 
     @FXML
     private void logOffBtnHandler(ActionEvent event) {
@@ -49,5 +41,5 @@ public class CitizenMainPageController implements Initializable {
     private void printBtnHandler(ActionEvent event) {
         System.out.println("Ikke implementeret endnu.");
     }
-    
+
 }

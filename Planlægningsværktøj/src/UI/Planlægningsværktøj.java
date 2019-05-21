@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class Planlægningsværktøj extends Application {
 
@@ -23,13 +22,14 @@ public class Planlægningsværktøj extends Application {
     private final IController iController = new Controller();
     int currentDay;
     Scene scene;
-    String[] dayArray = {"","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"};
+    String[] dayArray = {"", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"};
+
     public IController getiController() {
         return iController;
     }
 
     public static Planlægningsværktøj getInstance() {
-        if(pl == null){
+        if (pl == null) {
             pl = new Planlægningsværktøj();
         }
         return pl;
@@ -70,11 +70,10 @@ public class Planlægningsværktøj extends Application {
     public void setCurrentDay(int currentDay) {
         this.currentDay = currentDay;
     }
-    
-    public ArrayList<UUID> getAcitivitesForUserOnDay(UUID citizenId, int day){
-       return null;
+
+    public ArrayList<UUID> getAcitivitesForUserOnDay(UUID citizenId, int day) {
+        return null;
     }
-    
 
     /**
      * @param args the command line arguments
