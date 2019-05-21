@@ -9,14 +9,14 @@ import javafx.scene.control.Label;
 
 public class ScheduleController implements Initializable {
 
-    private Planlægningsværktøj pl;
+    private PlanningTool pl;
 
     @FXML
     private Label displayName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pl = Planlægningsværktøj.getInstance();
+        pl = PlanningTool.getInstance();
     }
 
     @FXML
