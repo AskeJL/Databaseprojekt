@@ -12,19 +12,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/domain/users/SOSU.java</file>
-            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/UI/LoginController.java</file>
             <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/UI/PlanningTool.java</file>
-            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/domain/DatabasePopulation.java</file>
-            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/domain/Activity.java</file>
-            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/UI/SOSUMainController.java</file>
-            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/UI/CitizenMainPageController.java</file>
+            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/domain/users/Citizen.java</file>
             <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/domain/Controller.java</file>
             <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/UI/SosuMainPageController.java</file>
-            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/UI/CitizenActivitiesController.java</file>
+            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/UI/SOSUMainController.java</file>
+            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/domain/DatabasePopulation.java</file>
+            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/domain/users/SOSU.java</file>
+            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/domain/Activity.java</file>
             <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/database/DBController.java</file>
-            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/domain/users/Citizen.java</file>
-            <file>file:/C:/Users/zlyza/Documents/GitHubKraken/Databaseprojekt/PlanningTool/src/UI/SOSUActivitiesController.java</file>
         </group>
     </open-files>
 </project-private>
