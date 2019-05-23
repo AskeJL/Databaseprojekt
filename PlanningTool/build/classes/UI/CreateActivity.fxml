@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.CreateActivityController">
+   <children>
+      <Text layoutX="143.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret Aktivitet">
+         <font>
+            <Font name="Comic Sans MS" size="48.0" />
+         </font>
+      </Text>
+      <Button fx:id="addActivityButton" layoutX="314.0" layoutY="425.0" mnemonicParsing="false" onAction="#addActivityButtonHandler" text="Tilføj Aktivitet" />
+      <Button fx:id="goBackButton" layoutX="550.0" layoutY="438.0" mnemonicParsing="false" onAction="#goBackButtonHandle" text="Gå tilbage" />
+      <TextField fx:id="activityNameField" layoutX="84.0" layoutY="122.0" />
+      <TextField fx:id="startTime" layoutX="84.0" layoutY="317.0" />
+      <TextField fx:id="endTime" layoutX="84.0" layoutY="356.0" />
+      <ListView fx:id="borgerList" layoutX="386.0" layoutY="166.0" prefHeight="186.0" prefWidth="235.0" />
+      <Text layoutX="14.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktivitet:" wrappingWidth="52.800018072128296" />
+      <Text layoutX="14.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beskrivelse:" wrappingWidth="70.39998435974121" />
+      <TextArea fx:id="descriptionArea" layoutX="84.0" layoutY="166.0" prefHeight="143.0" prefWidth="235.0" />
+      <Text layoutX="14.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start tid:" wrappingWidth="70.39998435974121" />
+      <Text layoutX="14.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Slut tid:" wrappingWidth="70.39998435974121" />
+      <Text layoutX="449.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg borger" wrappingWidth="108.80000877380371">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="addPicture" layoutX="14.0" layoutY="438.0" mnemonicParsing="false" onAction="#addPictureHandler" text="Tilføj billede" />
+      <Text layoutX="14.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg dag:" wrappingWidth="70.39998435974121" />
+      <MenuButton fx:id="weekdayDropdownMenu" layoutX="84.0" layoutY="388.0" mnemonicParsing="false" text="Dag">
+        <items>
+            <RadioMenuItem fx:id="mandagMenuButton" mnemonicParsing="false" onAction="#changeNameMandag" selected="true" text="Mandag">
+               <toggleGroup>
+                  <ToggleGroup fx:id="dagToggle" />
+               </toggleGroup>
+            </RadioMenuItem>
+            <RadioMenuItem fx:id="tirsdagMenuButton" mnemonicParsing="false" onAction="#changeNameTirsdag" text="Tirsdag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="onsdagMenuButton" mnemonicParsing="false" onAction="#changeNameOnsdag" text="Onsdag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="torsdagMenuButton" mnemonicParsing="false" onAction="#changeNameTorsdag" text="Torsdag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="fredagMenuButton" mnemonicParsing="false" onAction="#changeNameFredag" text="Fredag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="lørdagMenuButton" mnemonicParsing="false" onAction="#changeNameLørdag" text="Lørdag" toggleGroup="$dagToggle" />
+            <RadioMenuItem fx:id="søndagMenuButton" mnemonicParsing="false" onAction="#changeNameSøndag" text="Søndag" toggleGroup="$dagToggle" />
+        </items>
+      </MenuButton>
+      <Label text="Label" />
+      <Label fx:id="confirmationLabel" layoutX="338.0" layoutY="385.0" />
+   </children>
+</AnchorPane>

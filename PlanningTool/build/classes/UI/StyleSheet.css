@@ -1,0 +1,16 @@
+.root {
+    -fx-border-color: firebrick;
+    -fx-border-width: 1px;
+    -fx-padding: 4px;
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(firebrick, darkred);
+    /*-fx-font-weight: bold;*/
+    -fx-border-color: black;
+}
+
+.button:hover{
+    -fx-background-color: linear-gradient(darkred, firebrick);
+}
