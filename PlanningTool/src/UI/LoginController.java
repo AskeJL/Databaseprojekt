@@ -45,18 +45,26 @@ public class LoginController implements Initializable {
     @FXML
     private void handleLoginBtn(ActionEvent event) {
         int type = controller.authenticate(userName.getText(), passWord.getText());
-        //SOSU login
-        if (type == 1) {
-            UUID id = controller.retrieveSosuId(userName.getText());
-            controller.setCurrentSosu(id);
-            pl.changeScene("SosuMainPage.fxml");
-        } //Citizen login
-        else if (type == 2) {
-            UUID id = controller.retrieveCitizenID(userName.getText());
-            controller.setCurrentCitizen(id, userName.getText());
-            pl.changeScene("CitizenMainPage.fxml");
-        } else if (type == -1) {
-            loginFail.setText("Ugyldigt login.");
+        switch (type) {
+            case 1: {
+                //SOSU login
+                UUID id = controller.retrieveSosuId(userName.getText());
+                controller.setCurrentSosu(id);
+                pl.changeScene("SosuMainPage.fxml");
+                break;
+            }
+            case 2: {
+                //Citizen login
+                UUID id = controller.retrieveCitizenID(userName.getText());
+                controller.setCurrentCitizen(id, userName.getText());
+                pl.changeScene("CitizenMainPage.fxml");
+                break;
+            }
+            case -1:
+                loginFail.setText("Ugyldigt login.");
+                break;
+            default:
+                break;
         }
     }
 }
