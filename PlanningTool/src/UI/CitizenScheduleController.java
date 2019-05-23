@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class BorgerScheduleController implements Initializable {
+public class CitizenScheduleController implements Initializable {
 
     private PlanningTool pl;
 

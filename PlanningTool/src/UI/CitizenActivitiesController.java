@@ -16,7 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class BorgerActivitiesController implements Initializable {
+public class CitizenActivitiesController implements Initializable {
 
     private PlanningTool pl;
     private int chosenDay;
