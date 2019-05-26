@@ -17,6 +17,7 @@ public class ScheduleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pl = PlanningTool.getInstance();
+        displayName.setText(pl.getiController().getCurrentCitizenName());
     }
 
     @FXML
