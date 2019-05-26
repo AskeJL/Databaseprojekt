@@ -31,7 +31,7 @@ public class DatabasePopulation {
         dp.iController.storeCitizen(cit2, "Jpassword", sosu1);
 
         for (int i = 1; i < 8; i++) {
-            Activity a1 = new Activity("Say no.", "Don't do drugs!", 1000, 1600, i, "https://nationalimprint.net/wp-content/uploads/2017/11/NI__0139_Q-TT-SAYNO.jpg");
+            Activity a1 = new Activity("Say no.", "Don't do drugs!", 1000, 1600, i, "resources/sayNo.jpg");
             dp.iController.storeActivity(a1.getActivityID(), cit2.getId(), a1.getName(), a1.getDescription(),
                     a1.getStartTime(), a1.getEndTime(), a1.getDayOfTheWeek(), a1.getPictogramPath());
         }
