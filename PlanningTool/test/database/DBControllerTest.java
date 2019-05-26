@@ -38,9 +38,9 @@ public class DBControllerTest {
      */
     @org.junit.Test
     public void testAuthenticate() {
-        authenticated = dbController.authenticate("sosu_test", "sosutest");
+        authenticated = dbController.authenticate("LJ", "ljpassword");
         assertEquals(1, authenticated);
-        authenticated = dbController.authenticate("test1", "test1");
+        authenticated = dbController.authenticate("Jens87", "Jpassword");
         assertEquals(2, authenticated);
         authenticated = dbController.authenticate("wrongUsername", "wrongPassword");
         Assert.assertNotSame(authenticated, 1);

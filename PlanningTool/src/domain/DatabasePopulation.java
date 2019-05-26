@@ -3,6 +3,7 @@ package domain;
 import domain.users.Citizen;
 import domain.users.SOSU;
 import interfaces.IController;
+import java.util.UUID;
 
 public class DatabasePopulation {
 
@@ -18,7 +19,8 @@ public class DatabasePopulation {
         SOSU sosu1 = new SOSU("Lars Jensen", "LJ");
         dp.iController.storeSOSU(sosu1, "ljpassword");
 
-        Citizen cit1 = new Citizen("Jens", "Jens87", "190887-4050", java.sql.Date.valueOf("1987-08-19"));
+        //UUID is set manually only because of the unittest.
+        Citizen cit1 = new Citizen("Jens", "Jens87", "190887-4050", java.sql.Date.valueOf("1987-08-19"), UUID.fromString("50586125-bfc9-4e3d-920c-95fa7bc433e5"), new Schedule());
         dp.iController.storeCitizen(cit1, "Jpassword", sosu1);
 
         for (int i = 1; i < 8; i++) {
@@ -30,7 +32,7 @@ public class DatabasePopulation {
         Activity a2 = new Activity("Shower", "You need to stay clean.", 1405, 1420, 1, "shower\\pictogram.png");
         dp.iController.storeActivity(a2.getActivityID(), cit1.getId(), a2.getName(), a2.getDescription(),
                 a2.getStartTime(), a2.getEndTime(), a2.getDayOfTheWeek(), a2.getPictogramPath());
-        
+
         Activity a3 = new Activity("Mealtime", "Ok", 1430, 1500, 1, "shower\\pictogram.png");
         dp.iController.storeActivity(a3.getActivityID(), cit1.getId(), a3.getName(), a3.getDescription(),
                 a3.getStartTime(), a3.getEndTime(), a3.getDayOfTheWeek(), a3.getPictogramPath());
