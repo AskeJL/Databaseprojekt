@@ -59,9 +59,7 @@ public class CitizenActivitiesController implements Initializable {
             endTimeLabel.setText((String.valueOf(pl.getiController().getActivityEndTime(activityId))));
             pictogramTa.setText(pl.getiController().getActivityDescription(activityId));
             if (!"NoPicture".equals(pl.getiController().getPictogramPath(activityId))) {
-                System.out.println(pl.getiController().getPictogramPath(activityId));
-//                pictogramIv.setImage(new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString()));
-                pictogramIv.setImage(new Image(new File("resources/sayNo.jpg").toURI().toString()));
+                pictogramIv.setImage(new Image(new File(pl.getiController().getPictogramPath(activityId)).toURI().toString()));
             } else {
                 pictogramIv.setImage(null);
             }
