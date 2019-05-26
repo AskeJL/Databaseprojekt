@@ -34,7 +34,7 @@ public class CitizenMainPageController implements Initializable {
 
     @FXML
     private void seeScheduleBtnHandler(ActionEvent event) {
-        pl.changeScene("BorgerSchedule.fxml");
+        pl.changeScene("CitizenSchedule.fxml");
     }
 
     @FXML

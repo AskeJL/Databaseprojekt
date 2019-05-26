@@ -23,43 +23,43 @@ public class CitizenScheduleController implements Initializable {
     @FXML
     private void mondayBtnHandle(ActionEvent event) {
         pl.setCurrentDay(1);
-        pl.changeScene("BorgerActivities.fxml");
+        pl.changeScene("CitizenActivities.fxml");
     }
 
     @FXML
     private void tuesdayBtnHandle(ActionEvent event) {
         pl.setCurrentDay(2);
-        pl.changeScene("BorgerActivities.fxml");
+        pl.changeScene("CitizenActivities.fxml");
     }
 
     @FXML
     private void wednesdayBtnHandle(ActionEvent event) {
         pl.setCurrentDay(3);
-        pl.changeScene("BorgerActivities.fxml");
+        pl.changeScene("CitizenActivities.fxml");
     }
 
     @FXML
     private void thursdayBtnHandle(ActionEvent event) {
         pl.setCurrentDay(4);
-        pl.changeScene("BorgerActivities.fxml");
+        pl.changeScene("CitizenActivities.fxml");
     }
 
     @FXML
     private void fridayBtnHandle(ActionEvent event) {
         pl.setCurrentDay(5);
-        pl.changeScene("BorgerActivities.fxml");
+        pl.changeScene("CitizenActivities.fxml");
     }
 
     @FXML
     private void saturdayBtnHandle(ActionEvent event) {
         pl.setCurrentDay(6);
-        pl.changeScene("BorgerActivities.fxml");
+        pl.changeScene("CitizenActivities.fxml");
     }
 
     @FXML
     private void sundayBtnHandle(ActionEvent event) {
         pl.setCurrentDay(7);
-        pl.changeScene("BorgerActivities.fxml");
+        pl.changeScene("CitizenActivities.fxml");
     }
 
     @FXML

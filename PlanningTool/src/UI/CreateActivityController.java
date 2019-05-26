@@ -35,7 +35,7 @@ public class CreateActivityController implements Initializable {
     @FXML
     private TextField endTime;
     @FXML
-    private ListView<String> borgerList;
+    private ListView<String> citizenList;
     @FXML
     private TextArea descriptionArea;
     @FXML
@@ -74,7 +74,7 @@ public class CreateActivityController implements Initializable {
             obsString.add(pl.getiController().retrieveCitizenName(i));
         }
 
-        borgerList.setItems(obsString);
+        citizenList.setItems(obsString);
 
         mandagMenuButton.setUserData(1);
         tirsdagMenuButton.setUserData(2);
@@ -88,8 +88,8 @@ public class CreateActivityController implements Initializable {
 
     @FXML
     private void addActivityButtonHandler(ActionEvent event) {
-        UUID citID = obsUUID.get(borgerList.getSelectionModel().getSelectedIndex());
-        String username = pl.getiController().retrieveCitizenUsername(obsUUID.get(borgerList.getSelectionModel().getSelectedIndex()));
+        UUID citID = obsUUID.get(citizenList.getSelectionModel().getSelectedIndex());
+        String username = pl.getiController().retrieveCitizenUsername(obsUUID.get(citizenList.getSelectionModel().getSelectedIndex()));
         pl.getiController().setCurrentCitizen(citID, username);
 
         String name = activityNameField.getText();

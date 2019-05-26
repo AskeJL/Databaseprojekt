@@ -47,7 +47,7 @@ public class CitizenActivitiesController implements Initializable {
 
     @FXML
     private void goBackButtonHandle(ActionEvent event) {
-        pl.changeScene("BorgerSchedule.fxml");
+        pl.changeScene("CitizenSchedule.fxml");
     }
 
     @FXML
