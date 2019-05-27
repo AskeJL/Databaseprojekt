@@ -51,7 +51,6 @@ public class SOSUActivitiesController implements Initializable {
         pl = PlanningTool.getInstance();
         dayLabel.setText(pl.getDayArray()[pl.getCurrentDay()]);
         chosenDay = pl.getCurrentDay();
-        System.out.println(chosenDay);
         obsAct = FXCollections.observableArrayList(pl.getiController().getCurrentCitizen().getSchedule().getActivityNamesOfday(chosenDay));
         activitiesLv.setItems(obsAct);
     }

@@ -23,6 +23,7 @@ public class CreateActivityController implements Initializable {
     private PlanningTool pl;
     private String path = "NoPicture";
     private ObservableList<UUID> obsUUID;
+    private ObservableList<String> obsString;
 
     @FXML
     private Button addActivityButton;
@@ -69,7 +70,7 @@ public class CreateActivityController implements Initializable {
         for (int i = 0; i < pl.getiController().getCurrentSosu().getCitizens().size(); i++) {
             obsUUID.add(pl.getiController().getCurrentSosu().getCitizens().get(i).getId());
         }
-        ObservableList<String> obsString = FXCollections.observableArrayList();
+        obsString = FXCollections.observableArrayList();
         for (UUID i : obsUUID) {
             obsString.add(pl.getiController().retrieveCitizenName(i));
         }
