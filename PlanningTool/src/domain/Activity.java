@@ -94,10 +94,8 @@ public class Activity implements Comparable<Activity> {
                 if (dif == 0) {
                     dif = this.name.compareTo(o.name);
                 }
-
             }
         }
-
         return dif;
     }
 

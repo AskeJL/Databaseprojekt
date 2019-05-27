@@ -1,5 +1,5 @@
 ================================================
-Project Planlægningsværktøj build script updated
+Project PlanningTool build script updated
 ================================================
 
 Project build script file jfx-impl.xml in nbproject sub-directory has not been recognized
