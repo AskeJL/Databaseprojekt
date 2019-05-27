@@ -1,9 +1,8 @@
 package domain;
 
-import java.io.Serializable;
 import java.util.UUID;
 
-public class Activity implements Serializable, Comparable<Activity> {
+public class Activity implements Comparable<Activity> {
 
     private String name;
     private String description;

@@ -1,9 +1,8 @@
 package domain.users;
 
-import java.io.Serializable;
 import java.util.UUID;
 
-public abstract class User implements Serializable {
+public abstract class User {
 
     private final UUID id;
     private String name;

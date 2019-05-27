@@ -1,11 +1,10 @@
 package domain.users;
 
 import domain.Schedule;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class Citizen extends User implements Serializable {
+public class Citizen extends User {
 
     private String CPR;
     private Date birthday;
