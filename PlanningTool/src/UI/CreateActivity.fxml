@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.CreateActivityController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.CreateActivityController">
    <children>
       <Text layoutX="143.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret Aktivitet">
          <font>
@@ -24,7 +24,7 @@
       <TextField fx:id="activityNameField" layoutX="84.0" layoutY="122.0" />
       <TextField fx:id="startTime" layoutX="84.0" layoutY="317.0" />
       <TextField fx:id="endTime" layoutX="84.0" layoutY="356.0" />
-      <ListView fx:id="CitizenList" layoutX="386.0" layoutY="166.0" prefHeight="186.0" prefWidth="235.0" />
+      <ListView fx:id="citizenList" layoutX="386.0" layoutY="166.0" prefHeight="186.0" prefWidth="235.0" />
       <Text layoutX="14.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktivitet:" wrappingWidth="52.800018072128296" />
       <Text layoutX="14.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beskrivelse:" wrappingWidth="70.39998435974121" />
       <TextArea fx:id="descriptionArea" layoutX="84.0" layoutY="166.0" prefHeight="143.0" prefWidth="235.0" />
@@ -52,7 +52,6 @@
             <RadioMenuItem fx:id="søndagMenuButton" mnemonicParsing="false" onAction="#changeNameSøndag" text="Søndag" toggleGroup="$dagToggle" />
         </items>
       </MenuButton>
-      <Label text="Label" />
       <Label fx:id="confirmationLabel" layoutX="338.0" layoutY="385.0" />
    </children>
 </AnchorPane>

@@ -57,7 +57,8 @@ public class PlanningTool extends Application {
             stage.show();
 
         } catch (IOException e) {
-            System.out.println("Can't load window" + e);
+            e.printStackTrace();
+//            System.out.println("Can't load window" + e);
         }
     }
 
